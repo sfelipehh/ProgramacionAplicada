@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1ad1a2;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sa.programacionaplicada.funcionesGUI.FuncionesViewController">
+   <children>
+      <VBox alignment="CENTER" layoutX="200.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" spacing="20.0">
+         <children>
+            <Label contentDisplay="CENTER" text="Funciones" textFill="#e44760">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="selectionComboBox" prefWidth="200" />
+            <TextField fx:id="inputTextField" prefWidth="200.0" text="Ingresa un numero">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font></TextField>
+            <Button fx:id="calcularButton" mnemonicParsing="false" text="Calcular">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font></Button>
+            <Label fx:id="resultLabel" contentDisplay="CENTER" text="Resultado:" textAlignment="CENTER" textFill="#2041a5" visible="true" wrapText="true">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font></Label>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

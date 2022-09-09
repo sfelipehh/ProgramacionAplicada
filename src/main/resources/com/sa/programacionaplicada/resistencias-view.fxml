@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #14d6d3;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sa.programacionaplicada.ResistenciasGUI.ResistenciasViewController">
+    <fx:define>
+        <ToggleGroup fx:id="selectionNumberBands" />
+    </fx:define>
+    <children>
+        <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" spacing="20.0">
+            <children>
+                <Label contentDisplay="CENTER" text="Calculadora de Resistencias" textFill="#e44760">
+                    <font>
+                        <Font name="Arial Bold" size="24.0" />
+                    </font>
+                </Label>
+            <HBox alignment="CENTER" spacing="25.0">
+               <children>
+                  <RadioButton id="4-bands" mnemonicParsing="false" selected="true" text="4 Bandas" toggleGroup="$selectionNumberBands">
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton id="5-bands" mnemonicParsing="false" text="5 Bandas" toggleGroup="$selectionNumberBands">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </RadioButton>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" maxWidth="-Infinity">
+               <children>
+                  <Line endX="50.0" strokeWidth="5.0">
+                     <stroke>
+                        <LinearGradient endY="1.0" startX="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.5263158082962036" green="0.5068225860595703" blue="0.5068225860595703" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.6947368383407593" green="0.6947368383407593" blue="0.6947368383407593" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </stroke>
+                  </Line>
+                  <HBox fx:id="colorsSelectionContainer" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" spacing="20.0">
+                      <padding>
+                          <Insets topRightBottomLeft="10" />
+                      </padding>
+                      <children>
+                        <ComboBox fx:id="selectionFirstDigit" prefWidth="50.0" visibleRowCount="5" />
+                        <ComboBox fx:id="selectionSecondDigit" prefWidth="50.0" visibleRowCount="5" />
+                        <ComboBox fx:id="selectionMultiplier" prefWidth="50.0" visibleRowCount="5" />
+                        <ComboBox fx:id="selectionTolerance" prefWidth="50.0" visibleRowCount="5" />
+                     </children>
+                  </HBox>
+                  <Line endX="50.0" strokeWidth="5.0">
+                     <stroke>
+                        <LinearGradient endY="1.0" startX="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.5263158082962036" green="0.5068225860595703" blue="0.5068225860595703" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.6947368383407593" green="0.6947368383407593" blue="0.6947368383407593" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </stroke>
+                  </Line>
+               </children>
+            </HBox>
+                <Button fx:id="calculateButton" mnemonicParsing="false" style="-fx-background-color: #23ac32;" text="Calcular">
+                    <font>
+                        <Font name="Arial" size="12.0" />
+                    </font></Button>
+                <Label fx:id="resultLabel" contentDisplay="CENTER" text="La resitencia es de :" textAlignment="CENTER" textFill="#2041a5" visible="true" wrapText="true">
+                    <font>
+                        <Font name="Arial" size="14.0" />
+                    </font></Label>
+            <Label text="Cambio de unidades :" textFill="#c10896">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefWidth="200.0" spacing="20">
+               <children>
+                  <ComboBox fx:id="selectionUnitsChange" prefWidth="150.0" />
+                  <Label fx:id="resultLabelUnits" text="Las nuevas unidades son :" textFill="#2041a5" />
+               </children>
+            </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
