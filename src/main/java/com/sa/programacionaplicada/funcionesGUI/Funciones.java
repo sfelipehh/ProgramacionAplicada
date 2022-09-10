@@ -12,6 +12,7 @@ public class Funciones {
         for (int i=1; i<=potencia; i++){
             resultado= resultado * numero;
         }
+        return resultado;
     }
 
     public static double calcularseno(double numero){
@@ -44,7 +45,7 @@ public class Funciones {
         return raiz;
     }
 
-        public int fibonacci(int n)  {
+    public static int fibonacci(int n)  {
         if(n == 0)
             return 0;
         else if(n == 1)

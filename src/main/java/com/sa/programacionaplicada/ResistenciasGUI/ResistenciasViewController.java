@@ -76,6 +76,9 @@ public class ResistenciasViewController implements Initializable {
 
         //Coloca la función a ejecutar cuando se dispare el botón
         calculateButton.setOnAction(this::calculate);
+
+        selectionUnitsChange.valueProperty().addListener(
+                (observableValue, s, t1) -> onChangeUnits(t1));
     }
 
     /**
@@ -135,7 +138,7 @@ public class ResistenciasViewController implements Initializable {
         selectionThirdDigit.getItems().addAll(ColoresResistencias.getDigits());
         selectionMultiplier.getItems().addAll(ColoresResistencias.values());
         selectionTolerance.getItems().addAll(ColoresResistencias.getBasicTolerances());
-        selectionUnitsChange.getItems().addAll("GigaOhm","MegaOhm", "KiloOhm", "Ohm", "miliOhm");
+        selectionUnitsChange.getItems().addAll("GigaOhm","MegaOhm", "KiloOhm", "Ohm", "miliOhm", "microOhm", "nanoOhm");
     }
 
     /**
@@ -228,6 +231,51 @@ public class ResistenciasViewController implements Initializable {
     }
 
     private void onChangeUnits(String newValue){
+        switch (newValue){
+            case "GigaOhm" -> {
+                resultLabelUnits.setText(
+                        "Las nuevas unidades son :"
+                        + "%.4f".formatted(CalculadoraResistencia.gigaohm(resistorValue))
+                        + "G" + omega);
+            }
+            case "MegaOhm" ->{
+                resultLabelUnits.setText(
+                        "Las nuevas unidades son :"
+                        + "%.4f".formatted(CalculadoraResistencia.megaohm(resistorValue))
+                        + "M" + omega);
+            }
+            case "KiloOhm" ->{
+                resultLabelUnits.setText(
+                        "Las nuevas unidades son :"
+                        + "%.4f".formatted(CalculadoraResistencia.kiloohm(resistorValue))
+                        + "K" + omega);
+            }
+            case "Ohm" -> {
+                resultLabelUnits.setText(
+                        "Las nuevas unidades son :"
+                        + "%.2f".formatted(resistorValue)
+                        + omega);
+            }
+            case "miliOhm" ->{
+                resultLabelUnits.setText(
+                        "Las nuevas unidades son :"
+                        + "%.2f".formatted(CalculadoraResistencia.miliohm(resistorValue))
+                        + "m" + omega);
+            }
+            case "microOhm" -> {
+                resultLabelUnits.setText(
+                        "Las nuevas unidades son :"
+                        + "%.2f".formatted(CalculadoraResistencia.microohm(resistorValue))
+                        + "u" + omega);
+            }
+            case "nanoOhm" -> {
+                resultLabelUnits.setText(
+                        "Las nuevas unidades son :"
+                        + "%.2f".formatted(CalculadoraResistencia.nanoohm(resistorValue))
+                        + "n" + omega);
+            }
+            default -> resultLabelUnits.setText("%.2f".formatted(resistorValue) + omega);
+        }
 
     }
     private static class SelectionCell {

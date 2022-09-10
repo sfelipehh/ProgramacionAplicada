@@ -27,7 +27,7 @@ public class FuncionesViewController implements Initializable {
         //Coloca que la comboBox no es editable
         selectionComboBox.setEditable(false);
         //Coloca los items de la comboBox
-        selectionComboBox.getItems().addAll(List.of("Seno", "Coseno"));
+        selectionComboBox.getItems().addAll(List.of("Seno", "Coseno","Tangente","Potencia","Fibonacci","Raíz Cuadrada","Factorial"));
         //Setup the cell factory
         selectionComboBox.setCellFactory(container -> new ListCell<>(){
             {
@@ -49,7 +49,11 @@ public class FuncionesViewController implements Initializable {
         selectionComboBox.valueProperty().addListener((observableValue, s, t1) -> {
             if(t1.equals("Seno") || t1.equals("Coseno") || t1.equals("Tangente")){
                 inputTextField.setPromptText("Escribe un ángulo en grados");
-            }
+            } else if (t1.equals("Fibonacci")) {
+                inputTextField.setPromptText("Escribe cual termino deseas");
+            } else if (t1.equals("Potencia")) {
+                inputTextField.setPromptText("Escribe un potencia así : a^b");
+            }else inputTextField.setPromptText("Escribe un número");
         });
         //Coloca la función a ejecutar cuando se dispare el botón
         calcularButton.setOnAction(this::calculate);
@@ -59,11 +63,26 @@ public class FuncionesViewController implements Initializable {
         NumberFormat numberFormat = NumberFormat.getNumberInstance();
         numberFormat.setMaximumFractionDigits(3);
         double input;
+        double input2;
         String selectedFunction = selectionComboBox.getValue();
         try {
-            input = Double.parseDouble(inputTextField.getText());
-            Double result = switch (selectedFunction){
+            if (selectedFunction.equals("Potencia")){
+                String a = inputTextField.getText().substring(0,inputTextField.getText().indexOf("^"));
+                String b = inputTextField.getText().substring(inputTextField.getText().indexOf("^")+1);
+                input = Double.parseDouble(a);
+                input2 = Double.parseDouble(b);
+            }else {
+                input = Double.parseDouble(inputTextField.getText());
+                input2 =0;
+            }
+            Double result = switch (selectedFunction) {
                 case "Seno" -> Funciones.calcularseno(input);
+                case "Coseno" -> Funciones.calcularcoseno(input);
+                case "Tangente" -> Funciones.calculartangente(input);
+                case "Potencia" -> Funciones.calcularpotencia(input,input2);
+                case "Fibonacci" -> (double) Funciones.fibonacci((int) input);
+                case "Raíz Cuadrada" -> Funciones.calcularraiz(input);
+                case "Factorial" -> input > 400.0 ? Double.NaN : Funciones.factorial((int) input);
                 default -> 0d;
             };
             resultLabel.setText("El resultado es: " + numberFormat.format(result));

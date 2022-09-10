@@ -34,7 +34,7 @@ public class CalculadoraResistencia {
 
     public static double gigaohm(double resistencia){
         double resultado;
-        resultado= resistencia*( 1/1000000000);
+        resultado= resistencia*(1e-9);
         return resultado;
     }
 }
