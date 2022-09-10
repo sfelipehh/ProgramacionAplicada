@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -26,7 +27,7 @@ public class FuncionesViewController implements Initializable {
         //Coloca que la comboBox no es editable
         selectionComboBox.setEditable(false);
         //Coloca los items de la comboBox
-        selectionComboBox.getItems().addAll(List.of("Seno", "Cos"));
+        selectionComboBox.getItems().addAll(List.of("Seno", "Coseno"));
         //Setup the cell factory
         selectionComboBox.setCellFactory(container -> new ListCell<>(){
             {
@@ -44,19 +45,30 @@ public class FuncionesViewController implements Initializable {
                 }
             }
         });
-
+        //Cambia el prompt text del campo de entrada cuando se selecciona cierta función
+        selectionComboBox.valueProperty().addListener((observableValue, s, t1) -> {
+            if(t1.equals("Seno") || t1.equals("Coseno") || t1.equals("Tangente")){
+                inputTextField.setPromptText("Escribe un ángulo en grados");
+            }
+        });
         //Coloca la función a ejecutar cuando se dispare el botón
         calcularButton.setOnAction(this::calculate);
     }
 
     private void calculate(ActionEvent actionEvent){
+        NumberFormat numberFormat = NumberFormat.getNumberInstance();
+        numberFormat.setMaximumFractionDigits(3);
         double input;
         String selectedFunction = selectionComboBox.getValue();
         try {
             input = Double.parseDouble(inputTextField.getText());
-            //String result = Funciones.Any(input)
-            resultLabel.setText("El resultado es: ");
+            Double result = switch (selectedFunction){
+                case "Seno" -> Funciones.calcularseno(input);
+                default -> 0d;
+            };
+            resultLabel.setText("El resultado es: " + numberFormat.format(result));
         }catch (Exception e){
+            e.printStackTrace();
             resultLabel.setText("Parametro de entrada invalido. Ingresaste un numero?");
         }
     }
