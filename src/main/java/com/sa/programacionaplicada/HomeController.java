@@ -1,8 +1,5 @@
 package com.sa.programacionaplicada;
 
-import com.sa.programacionaplicada.ResistenciasGUI.CalculadoraResistencia;
-import com.sa.programacionaplicada.funcionesGUI.Funciones;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,21 +24,12 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        functions.setText(Funciones.class.getSimpleName());
+        /*functions.setText(Funciones.class.getSimpleName());
         resistorCal.setText(CalculadoraResistencia.class.getSimpleName());
         functions.setOnAction(this::runFunctions);
-        resistorCal.setOnAction(this::runResistorCal);
+        resistorCal.setOnAction(this::runResistorCal);*/
     }
 
-    protected void runFunctions(ActionEvent actionEvent){
-        setScene("funciones-view.fxml");
-        actionEvent.consume();
-    }
-
-    protected void runResistorCal(ActionEvent actionEvent){
-        setScene("resistencias-view.fxml");
-        actionEvent.consume();
-    }
 
     private void setScene(String resource){
         FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
