@@ -1,5 +1,7 @@
 package com.sa.programacionaplicada;
 
+import com.sa.programacionaplicada.procesamientoDatos.logica.DistribucionUnidimensional;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,19 +19,22 @@ public class HomeController implements Initializable {
     @FXML
     private Label title;
     @FXML
-    private Button functions;
+    private Button button1;
 
     @FXML
-    private Button resistorCal;
+    private Button button2;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        /*functions.setText(Funciones.class.getSimpleName());
-        resistorCal.setText(CalculadoraResistencia.class.getSimpleName());
-        functions.setOnAction(this::runFunctions);
-        resistorCal.setOnAction(this::runResistorCal);*/
+        button1.setText(DistribucionUnidimensional.class.getSimpleName());
+        button1.setOnAction(this::runDistribucionEmpresa);
+        //resistorCal.setText(CalculadoraResistencia.class.getSimpleName());
+        //resistorCal.setOnAction(this::runResistorCal);
     }
 
+    private void runDistribucionEmpresa(ActionEvent actionEvent){
+        setScene("distribucion-empresa-view.fxml");
+    }
 
     private void setScene(String resource){
         FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
