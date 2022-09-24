@@ -10,7 +10,6 @@ public class DistribucionUnidimensional {
         double promedio = suma_promedio / datos.length;
         return (int) Math.ceil(promedio);
     }
-
     public int maximo(int[] equipos) {
         int aux = 0;
         for (int i = 0; i < equipos.length; i++) {
@@ -20,7 +19,6 @@ public class DistribucionUnidimensional {
         }
         return aux;
     }
-
     public int minimo(int[] equipos) {
         int aux = 0;
         for (int i = 0; i < equipos.length; i++) {
@@ -30,7 +28,6 @@ public class DistribucionUnidimensional {
         }
         return aux;
     }
-
     public int[] distribucion(int operadores, int[] equipos){
         int operadores_restantes = operadores;
         int[] distribucion = new int[equipos.length];

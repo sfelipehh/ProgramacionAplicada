@@ -24,7 +24,6 @@ import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class DistribucionEdificioController implements Initializable {
-
     @FXML
     private Button addMoneyButton;
     @FXML
@@ -186,9 +185,11 @@ public class DistribucionEdificioController implements Initializable {
             input = Integer.parseInt(setupDialog.getEditor().getText());
             int[][] indexesFound = logica.buscar(input,getArray());
             StringBuilder builder = new StringBuilder("El valor fue encontrado en los pisos y las oficinas\n");
-            if (indexesFound[0][0] !=-1){
+            if (!Arrays.stream(indexesFound).allMatch(ints -> ints[0]==-1)){
                 for (int[] index : indexesFound) {
-                    builder.append("Piso %d | Oficina %d \n".formatted(index[0], index[1]));
+                    if (index[0] != -1 && index[1] != -1) {
+                        builder.append("Piso %d | Oficina %d \n".formatted(index[0], index[1]));
+                    }
                 }
                 Alert show = new Alert(Alert.AlertType.INFORMATION);
                 show.setTitle("Resultado busqueda");

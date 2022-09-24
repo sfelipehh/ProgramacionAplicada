@@ -1,5 +1,7 @@
 package com.sa.programacionaplicada.procesamientoDatos.logica;/*Author:sfeli*/
 
+import java.util.Arrays;
+
 public class DistribucionBidimensional {
 
     public int[] totales(int[][] equipos){
@@ -13,7 +15,6 @@ public class DistribucionBidimensional {
         }
         return totales;
     }
-
     public double[] porcentajes(int[][] equipos){
         double[] porcentajes = new double[equipos.length];
         int suma_total = 0;
@@ -26,22 +27,22 @@ public class DistribucionBidimensional {
         }
         return porcentajes;
     }
-
     public int[][] buscar(int cantidad_equipos, int[][] equipos){
         int[][] encontrados = new int[equipos.length*equipos[0].length][2];
-        encontrados[0] = new int[]{-1,-1};
-        int var = 0;
+        int aux = 0;
         for (int i = 0; i < equipos.length; i++) {
             for (int j = 0; j < equipos[0].length; j++) {
                 if(equipos[i][j]==cantidad_equipos){
-                    encontrados[var] = new int[]{i,j};
-                    var++;
+                    encontrados[aux] = new int[]{i,j};
+                }else {
+                    encontrados[aux] = new int[]{-1,-1};
                 }
+                aux++;
             }
         }
+        System.out.println(Arrays.toString(encontrados));
         return encontrados;
     }
-
     public int[] presupuesto(int presupuesto,int[][] equipos){
         int[] presupuestos = new int[equipos.length];
         double[] porcentajes = porcentajes(equipos);
