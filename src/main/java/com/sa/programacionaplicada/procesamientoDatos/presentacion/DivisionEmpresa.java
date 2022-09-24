@@ -6,7 +6,6 @@ public class DivisionEmpresa {
     private final StringProperty name = new SimpleStringProperty(this, "name");
     private final IntegerProperty devices = new SimpleIntegerProperty(this,"devices");
     private final IntegerProperty operators = new SimpleIntegerProperty(this,"operators");
-
     private final ReadOnlyIntegerWrapper id = new ReadOnlyIntegerWrapper(this, "id");
     public DivisionEmpresa(int id){
         this.id.set(id);
@@ -63,6 +62,6 @@ public class DivisionEmpresa {
 
     @Override
     public String toString() {
-        return "Division:" + name.get() + "(Equipos:" + devices.get() + ')';
+        return name.get() + "(Equipos:" + devices.get() + ")(Operarios:" + operators.get() + ")";
     }
 }

@@ -5,25 +5,25 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sa.programacionaplicada.procesamientoDatos.presentacion.DistribucionEmpresaController">
+<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sa.programacionaplicada.procesamientoDatos.presentacion.DistribucionEmpresaController">
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0">
          <bottom>
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="totalDevicesLabel" text="Total Equipos" wrapText="true">
+                  <Label fx:id="totalDevicesLabel" style="-fx-border-color: #000000; -fx-border-radius: 4;" text="Total Equipos" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font name="Arial" size="12.0" />
                      </font></Label>
-                  <Label fx:id="averageDevicesLabel" text="Promedio Equipos División" wrapText="true">
+                  <Label fx:id="averageDevicesLabel" style="-fx-border-color: #000000; -fx-border-radius: 4;" text="Promedio Equipos División" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font name="Arial" size="12.0" />
                      </font></Label>
-                  <Label fx:id="maxDevicesDivisionLabel" text="División con más Equipos" wrapText="true">
+                  <Label fx:id="maxDevicesDivisionLabel" style="-fx-border-color: #000000; -fx-border-radius: 4;" text="División con más Equipos" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font name="Arial" size="12.0" />
                      </font></Label>
-                  <Label fx:id="minDevicesDivisionLabel" text="División con menos Equipos" wrapText="true">
+                  <Label fx:id="minDevicesDivisionLabel" style="-fx-border-color: #000000; -fx-border-radius: 4;" text="División con menos Equipos" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font name="Arial" size="12.0" />
                      </font></Label>
@@ -44,7 +44,7 @@
             </TableView>
          </center>
          <top>
-            <Label text="Distribución Equipos de la Empresa" BorderPane.alignment="CENTER">
+            <Label text="Distribución Equipos de la Empresa" textAlignment="CENTER" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Arial Bold" size="24.0" />
                </font>
@@ -54,22 +54,15 @@
             </Label>
          </top>
          <left>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="80.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="anyInputLabel" text="Cantidad de Divisiones" textAlignment="CENTER" wrapText="true">
-                     <font>
-                        <Font name="Arial" size="13.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="anyInput" promptText="Cantidad de divisiones">
-                     <font>
-                        <Font name="Arial" size="12.0" />
-                     </font>
-                  </TextField>
-                  <Button fx:id="anyInputCommitButton" mnemonicParsing="false" text="Ingresar" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="doDistributionButton" mnemonicParsing="false" text="Realizar distribución" textAlignment="CENTER" wrapText="true">
                      <VBox.margin>
                         <Insets top="2.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
                   </Button>
                   <Button fx:id="quitButton" mnemonicParsing="false" text="Salir">
                      <VBox.margin>
