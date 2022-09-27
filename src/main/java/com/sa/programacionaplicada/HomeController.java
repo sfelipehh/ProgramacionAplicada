@@ -1,7 +1,5 @@
 package com.sa.programacionaplicada;
 
-import com.sa.programacionaplicada.procesamientoDatos.logica.DistribucionBidimensional;
-import com.sa.programacionaplicada.procesamientoDatos.logica.DistribucionUnidimensional;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,9 +25,9 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        button1.setText(DistribucionUnidimensional.class.getSimpleName());
+        //button1.setText(DistribucionUnidimensional.class.getSimpleName());
         button1.setOnAction(this::runDistribucionEmpresa);
-        button2.setText(DistribucionBidimensional.class.getSimpleName());
+        //button2.setText(DistribucionBidimensional.class.getSimpleName());
         button2.setOnAction(this::runDistribucionEdificio);
     }
 
