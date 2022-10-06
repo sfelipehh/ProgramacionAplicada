@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="BOTTOM_LEFT" prefHeight="600" prefWidth="600.0" styleClass="calculator-container-pane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sa.programacionaplicada.presentacion.CientificaController">
+   <children>
+      <Label id="memo" fx:id="memoryLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefWidth="600.0" styleClass="display-panel" text="Memo" textAlignment="RIGHT" />
+      <Label id="actual" fx:id="actualLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefWidth="600.0" styleClass="display-panel" text="Actual" textAlignment="RIGHT" />
+      <Pane styleClass="container">
+         <children>
+             <MenuButton alignment="CENTER_RIGHT" mnemonicParsing="false" styleClass="more-functions" text="Trigonometria">
+                 <items>
+                     <MenuItem mnemonicParsing="false" text="2 Opción" />
+                     <MenuItem mnemonicParsing="false" text="Seno" />
+                     <MenuItem mnemonicParsing="false" text="Coseno" />
+                     <MenuItem mnemonicParsing="false" text="Tangente" />
+                 </items>
+             </MenuButton>
+         </children>
+      </Pane>
+      <GridPane fx:id="keyboardGridPane" prefHeight="300.0" prefWidth="600.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" prefWidth="120.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" prefWidth="120.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" prefWidth="120.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" prefWidth="120.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" minWidth="10.0" prefWidth="120.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <ToggleButton id="Op2" styleClass="button" mnemonicParsing="false" text="Alt" />
+             <Button id="Pow2" mnemonicParsing="false" text="𝒙^2" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+             <Button id="Root2" mnemonicParsing="false" text="√𝒙" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+             <Button id="yPow" mnemonicParsing="false" text="𝒙^𝒚" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+             <Button id="x10Pow" mnemonicParsing="false" text="10^𝒙" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+             <Button id="Log10" mnemonicParsing="false" text="log" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+             <Button id="eLog" mnemonicParsing="false" text="ln" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+             <Button id="piConstant" mnemonicParsing="false" text="𝛑" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+             <Button id="inverso" mnemonicParsing="false" text="1/𝒙" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+             <Button id="parentesisOpen" mnemonicParsing="false" text="(" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+             <Button id="seven" mnemonicParsing="false" styleClass="numeric" text="𝟳" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+             <Button id="four" mnemonicParsing="false" styleClass="numeric" text="𝟰" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+             <Button id="one" mnemonicParsing="false" styleClass="numeric" text="𝟭" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+             <Button id="sign" mnemonicParsing="false" styleClass="numeric" text="∓" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+             <Button id="eConstant" mnemonicParsing="false" text="e" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+             <Button id="abs" mnemonicParsing="false" text="|𝒙|" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+             <Button id="parentesisClose" mnemonicParsing="false" text=")" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+             <Button id="eight" mnemonicParsing="false" styleClass="numeric" text="𝟴" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+             <Button id="five" mnemonicParsing="false" styleClass="numeric" text="𝟱" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+             <Button id="two" mnemonicParsing="false" styleClass="numeric" text="𝟮" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+             <Button id="cero" mnemonicParsing="false" styleClass="numeric" text="𝟬" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+             <Button id="clear" mnemonicParsing="false" text="C" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+             <Button id="exp10" mnemonicParsing="false" text="exp" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+             <Button id="factorial" mnemonicParsing="false" text="𝑛!" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+             <Button id="nine" mnemonicParsing="false" styleClass="numeric" text="𝟵" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+             <Button id="six" mnemonicParsing="false" styleClass="numeric" text="𝟲" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+             <Button id="three" mnemonicParsing="false" styleClass="numeric" text="𝟯" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+             <Button id="floatPoint" mnemonicParsing="false" styleClass="numeric" text="," GridPane.columnIndex="3" GridPane.rowIndex="6" />
+             <Button id="delete" mnemonicParsing="false" text="Delete" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+             <Button id="mod" mnemonicParsing="false" text="mod" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+             <Button id="division" mnemonicParsing="false" text="÷" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+             <Button id="multiply" mnemonicParsing="false" text="×" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+             <Button id="less" mnemonicParsing="false" text="−" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+             <Button id="add" mnemonicParsing="false" text="+" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+             <Button id="equal" mnemonicParsing="false" styleClass="special" text="=" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+         </children>
+         <styleClass>
+            <String fx:value="container" />
+            <String fx:value="keyboard" />
+         </styleClass>
+
+      </GridPane>
+   </children>
+</VBox>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="600.0" stylesheets="@css/general.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sa.programacionaplicada.presentacion.CalculadoraController">
+   <children>
+      <TitledPane fx:id="containerPane" animated="false" collapsible="false" graphicTextGap="0.0" prefHeight="600" prefWidth="600" styleClass="container-pane" text="cientifica       " textOverrun="CLIP" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <fx:include fx:id="calculator" source="programador-view.fxml" />
+         </content>
+          <graphic>
+              <MenuBar prefHeight="32.0" prefWidth="32.0">
+                  <Menu mnemonicParsing="false" text="..">
+                      <MenuItem text="Cientifica" />
+                      <MenuItem text="Solidos" />
+                      <MenuItem text="Bit a Bit" />
+                  </Menu>
+              </MenuBar>
+          </graphic>
+      </TitledPane>
+   </children>
+</AnchorPane>

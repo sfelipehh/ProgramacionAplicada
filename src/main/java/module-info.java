@@ -5,7 +5,6 @@ module com.sa.programacionaplicada {
     requires org.kordamp.ikonli.javafx;
 
     opens com.sa.programacionaplicada to javafx.fxml;
-    opens com.sa.programacionaplicada.procesamientoDatos.presentacion to javafx.fxml;
-    exports com.sa.programacionaplicada.procesamientoDatos.presentacion;
+    opens com.sa.programacionaplicada.presentacion to javafx.fxml;
     exports com.sa.programacionaplicada;
 }

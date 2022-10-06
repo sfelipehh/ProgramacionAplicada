@@ -1,5 +1,6 @@
 package com.sa.programacionaplicada;
 
+import com.sa.programacionaplicada.presentacion.CalculadoraController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,14 +26,14 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //button1.setText(DistribucionUnidimensional.class.getSimpleName());
-        button1.setOnAction(this::runDistribucionEmpresa);
+        button1.setText(CalculadoraController.class.getSimpleName());
+        button1.setOnAction(this::runButton1);
         //button2.setText(DistribucionBidimensional.class.getSimpleName());
         button2.setOnAction(this::runDistribucionEdificio);
     }
 
-    private void runDistribucionEmpresa(ActionEvent actionEvent){
-        setScene("distribucion-empresa-view.fxml");
+    private void runButton1(ActionEvent actionEvent){
+        setScene("calculadora-view.fxml");
     }
     private void runDistribucionEdificio(ActionEvent actionEvent){
         setScene("distribucion-edificio-view.fxml");
@@ -41,7 +42,7 @@ public class HomeController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(resource));
         Stage window = (Stage) title.getScene().getWindow();
         try {
-            window.setScene(new Scene(loader.load(), 600, 400));
+            window.setScene(new Scene(loader.load(), 600, 600));
         }catch (IOException e){
             e.printStackTrace();
         }

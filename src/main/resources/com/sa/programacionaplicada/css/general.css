@@ -1,0 +1,90 @@
+@font-face {
+    font-family: "Noto Sans Math";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/NotoSansMath.ttf");
+}
+
+* {
+    -fx-text-fill: rgb(239, 238, 238);
+    -fx-font-family: 'Arial';
+    -fx-font-style: normal;
+    -fx-font-smoothing-type: lcd;
+}
+.calculator-container-pane, .container-pane .title, .menu-bar, .input-type {
+    -fx-background-color: rgb(31, 31, 31);
+    -fx-font-size: 18;
+    -fx-font-weight: bold;
+}
+
+.keyboard .button:hover,
+.menu-button:hover,
+.menu-button .label:hover,
+.menu:hover,
+.menu .menu-item:hover,
+.menu .label:hover,
+.menu:showing,
+.menu-item:hover,
+.menu-item:hover .label,
+.input-type:hover{
+    -fx-background-color: rgb(61, 61, 61);
+}
+
+.menu .menu-item, .menu-button .context-menu {
+    -fx-background-color: rgb(31, 31, 31);
+}
+.menu-item, .menu-item .label{
+    -fx-background-color: rgb(28, 28, 28);
+}
+
+.calculator-container-pane .container{
+    -fx-background-color: rgb(26, 26, 26);
+}
+
+.keyboard .button{
+    -fx-font-family: 'Noto Sans Math';
+    -fx-background-color: rgb(19, 19, 19);
+    -fx-font-size: 14;
+    -fx-pref-width: 120;
+    -fx-pref-height: 120;
+}
+
+.keyboard .numeric{
+    -fx-background-color: rgb(6, 6, 6);
+}
+
+.keyboard .special{
+    -fx-background-color: rgb(102, 39, 41);
+}
+
+.keyboard .special:hover{
+    -fx-background-color: rgb(191, 49, 53);
+}
+
+.display-panel {
+    -fx-padding: 0 10 0 0;
+}
+
+.more-functions{
+    -fx-background-color: rgb(26, 26, 26);
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+    -fx-padding: 2;
+    -fx-margin: 0 2 0 2;
+}
+
+.input-type:selected .type {
+    -fx-background-color: rgb(209, 52 ,56);
+    -fx-background-radius: 5 5 5 5;
+}
+
+#memo, .input-type {
+    -fx-font-family: 'Noto Sans Math';
+    -fx-font-size: 14;
+    -fx-font-weight: normal;
+}
+
+#actual {
+    -fx-font-size: 24;
+    -fx-font-weight: bolder;
+}
