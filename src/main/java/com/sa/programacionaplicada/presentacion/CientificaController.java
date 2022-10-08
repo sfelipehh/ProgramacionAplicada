@@ -273,6 +273,8 @@ public class CientificaController extends CalculatorBaseController {
                 memory[2] = "%.3f".formatted(calcutation);
                 stateProperty.set(CalculationState.ACTION_PERFORMED);
             }
+
+
         }
     }
 

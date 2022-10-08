@@ -7,7 +7,7 @@
    <children>
       <TitledPane fx:id="containerPane" animated="false" collapsible="false" graphicTextGap="0.0" prefHeight="600" prefWidth="600" styleClass="container-pane" text="cientifica       " textOverrun="CLIP" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
-            <fx:include fx:id="calculator" source="cientifica-view.fxml" />
+            <fx:include fx:id="calculator" source="programador-view.fxml" />
          </content>
           <graphic>
               <MenuBar prefHeight="32.0" prefWidth="32.0">

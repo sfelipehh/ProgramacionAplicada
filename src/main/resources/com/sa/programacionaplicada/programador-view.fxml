@@ -58,12 +58,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Button id="HexA" mnemonicParsing="false" text="A" />
-                <Button id="HexB" mnemonicParsing="false" text="B" GridPane.rowIndex="1" />
-                <Button id="HexC" mnemonicParsing="false" text="C" GridPane.rowIndex="2" />
-                <Button id="HexD" mnemonicParsing="false" text="D" GridPane.rowIndex="3" />
-                <Button id="HexE" mnemonicParsing="false" text="E" GridPane.rowIndex="4" />
-                <Button id="HexF" mnemonicParsing="false" text="F" GridPane.rowIndex="5" />
+                <Button id="a" mnemonicParsing="false" text="A" />
+                <Button id="b" mnemonicParsing="false" text="B" GridPane.rowIndex="1" />
+                <Button id="c" mnemonicParsing="false" text="C" GridPane.rowIndex="2" />
+                <Button id="d" mnemonicParsing="false" text="D" GridPane.rowIndex="3" />
+                <Button id="e" mnemonicParsing="false" text="E" GridPane.rowIndex="4" />
+                <Button id="f" mnemonicParsing="false" text="F" GridPane.rowIndex="5" />
                 <Button id="bitShiftLeft" mnemonicParsing="false" text="&lt;&lt;" GridPane.columnIndex="1" />
                 <Button id="parentesisOpen" mnemonicParsing="false" text="(" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <Button id="seven" mnemonicParsing="false" styleClass="numeric" text="𝟳" GridPane.columnIndex="1" GridPane.rowIndex="2" />
