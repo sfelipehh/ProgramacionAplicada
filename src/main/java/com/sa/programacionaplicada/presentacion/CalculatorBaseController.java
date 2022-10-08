@@ -42,7 +42,20 @@ public abstract class CalculatorBaseController implements Initializable {
         multiply(" × "),
         less(" − "),
         add(" + "),
-        equal(" = ");
+        equal(" = "),
+
+        a("A"),
+
+        b("B"),
+
+        c("C"),
+
+        d("D"),
+
+        e("E"),
+
+        f("F");
+
         private final String symbol;
         ButtonCodes(String symbol){
             this.symbol = symbol;
