@@ -1,6 +1,6 @@
 package com.sa.programacionaplicada.logica;
 
-public class OperacionesMatematicas {
+public class OperacionesMatematicas extends OperacionesTrigonometricas{
 
     public static double calcularpotencia(double numero, double potencia) {
         double resultado = 1;
@@ -18,10 +18,6 @@ public class OperacionesMatematicas {
         return raiz;
     }
 
-    public void double (double a) {
-        double resultado = Math.log(a);
-        return resultado;
-    }
 
     public static double logaritmonatural(double a) {
         double resultado = Math.log(a);

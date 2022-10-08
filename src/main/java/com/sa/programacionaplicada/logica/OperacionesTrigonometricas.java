@@ -1,6 +1,6 @@
 package com.sa.programacionaplicada.logica;
 
-public class OperacionesTrigonometricas {
+public class OperacionesTrigonometricas extends OperacionesBasicas{
 
 
 
