@@ -38,6 +38,11 @@ public class OperacionesMatematicas {
         return resultado;
     }
 
+
+    public static double Inverso( double a){
+        double resultado = 1/a;
+        return resultado;
+    }
 }
 
 
