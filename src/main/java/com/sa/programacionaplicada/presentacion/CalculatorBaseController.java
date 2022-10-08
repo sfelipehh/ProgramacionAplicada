@@ -9,9 +9,9 @@ import java.util.function.BiFunction;
 public abstract class CalculatorBaseController implements Initializable {
     enum ButtonCodes{
         Op2(""),
-        Pow2("%.4f^2"),
+        Pow2("%.4f^"),
         Root2("√%.4f"),
-        yPow("%.4f^%.4f"),
+        yPow("%.4f^"),
         x10Pow("10^%.4f"),
         Log10("log(%.4f)"),
         eLog("ln(%.4f)"),
@@ -56,7 +56,7 @@ public abstract class CalculatorBaseController implements Initializable {
     }
     protected final String[] memory = new String[]{"0", "0", "0"};
     protected final ObjectProperty<CalculationState> stateProperty = new SimpleObjectProperty<>(this, "state", CalculationState.FIRST_INPUT);
-    protected BiFunction<Double,Double,Double> actionChoosen;
+    protected BiFunction<Double,Double,Double> actionChosen;
     protected final StringBuilder memoryStringBuilder = new StringBuilder();
     protected final StringBuilder actualStringBuilder = new StringBuilder();
     public abstract String getCalculatorName();

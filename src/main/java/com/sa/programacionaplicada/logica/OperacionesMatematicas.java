@@ -2,7 +2,7 @@ package com.sa.programacionaplicada.logica;
 
 public class OperacionesMatematicas extends OperacionesTrigonometricas{
 
-    public static double calcularpotencia(double numero, double potencia) {
+    public double calcularpotencia(double numero, double potencia) {
         double resultado = 1;
         for (int i = 1; i <= potencia; i++) {
             resultado = resultado * numero;
@@ -11,34 +11,51 @@ public class OperacionesMatematicas extends OperacionesTrigonometricas{
     }
 
 
-    public static double calcularraiz(double numero) {
+    public double calcularraiz(double numero, double raiz) {
 
-        double raiz;
-        raiz = Math.sqrt(numero);
-        return raiz;
+        double resultado;
+        resultado = Math.pow(numero, 1/raiz);
+        return resultado;
     }
 
 
-    public static double logaritmonatural(double a) {
+    public double logaritmonatural(double a) {
         double resultado = Math.log(a);
         return resultado;
     }
 
-    public static double modulo(double a) {
+    public double valorabsoluto(double a) {
         double resultado = Math.abs(a);
         return resultado;
     }
 
-    public static double logaritmo(double a) {
+    public double logaritmo(double a) {
         double resultado = Math.log10(a);
         return resultado;
     }
 
 
-    public static double Inverso( double a){
+    public double inverso( double a){
         double resultado = 1/a;
         return resultado;
     }
+
+    public double x10Pow(double a){
+        return calcularpotencia(10,a);
+    }
+
+    public double factorial (double numero){
+        if (numero >=101){
+            return -1;
+        }
+        double resultado=1;
+        for(int i= 2; i<= numero; i++){
+            resultado *= i;
+        }
+        return resultado;
+
+    }
+
 }
 
 
