@@ -20,15 +20,17 @@ public class OperacionesBasicas {
         return multiplicacion;
     }
 
-    public static double dividir (double a, double b){
-        double division;
-        if (b=!0) {
 
-            division = a / b;
-            return division;
+        public double dividir ( double a, double b){
+            double respuesta=0;
+            try{
+                respuesta=a/b;
+            }
+            catch(Exception e){
+                System.out.println("Error al dividir por 0");
+            }
+            return  respuesta;
         }
-
-
 
 
 }
