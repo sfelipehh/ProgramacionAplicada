@@ -69,7 +69,6 @@
                 <Button id="seven" mnemonicParsing="false" styleClass="numeric" text="𝟳" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <Button id="four" mnemonicParsing="false" styleClass="numeric" text="𝟰" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <Button id="one" mnemonicParsing="false" styleClass="numeric" text="𝟭" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <Button id="sign" mnemonicParsing="false" styleClass="numeric" text="∓" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                 <Button id="bitShiftRight" mnemonicParsing="false" text="&gt;&gt;" GridPane.columnIndex="2" />
                 <Button id="parentesisClose" mnemonicParsing="false" text=")" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                 <Button id="eight" mnemonicParsing="false" styleClass="numeric" text="𝟴" GridPane.columnIndex="2" GridPane.rowIndex="2" />
