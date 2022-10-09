@@ -6,12 +6,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.ButtonBase;
-import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class CientificaController extends CalculatorBaseController {
@@ -21,6 +20,8 @@ public class CientificaController extends CalculatorBaseController {
     private Label actualLabel;
     @FXML
     private GridPane keyboardGridPane;
+    @FXML
+    private MenuButton moreFunctionsButton;
 
     private final OperacionesMatematicas logica = new OperacionesMatematicas();
 
@@ -30,6 +31,9 @@ public class CientificaController extends CalculatorBaseController {
         ObservableList<Node> keysButtons = keyboardGridPane.getChildren();
         for (Node button : keysButtons) {
             ((ButtonBase) button).setOnAction(this::getButtonAction);
+        }
+        for (MenuItem option: moreFunctionsButton.getItems()) {
+            option.setOnAction(this::getButtonAction);
         }
         memoryLabel.setText(null);
         actualLabel.setText("0");
@@ -165,14 +169,36 @@ public class CientificaController extends CalculatorBaseController {
         return Double.parseDouble(checkInput(memory[inputIndex]));
     }
     private void getButtonAction(ActionEvent actionEvent){
-        ButtonCodes buttonCode = ButtonCodes.valueOf(((ButtonBase) actionEvent.getSource()).getId());
-        switch (buttonCode){
+        ButtonCodes buttonCode = null;
+        if (actionEvent.getSource() instanceof ButtonBase){
+            buttonCode = ButtonCodes.valueOf(((ButtonBase) actionEvent.getSource()).getId());
+        }
+        if (actionEvent.getSource() instanceof MenuItem){
+            buttonCode = ButtonCodes.valueOf(((MenuItem) actionEvent.getSource()).getId());
+        }
+        switch (Objects.requireNonNull(buttonCode)){
             case Op2 -> {
                 ToggleButton op2Button = ((ToggleButton) actionEvent.getSource());
                 if (!op2Button.isSelected()){
                     op2Button.getStyleClass().add("special");
+                    keyboardGridPane.getChildren().forEach(node -> {
+                        String nodeId = node.getId();
+                        switch (nodeId){
+                            case "Pow2" -> node.setId("Pow3");
+                            case "Root2" -> node.setId("Root3");
+                            case "yPow" -> node.setId("yRoot");
+                        }
+                    });
                 }else {
                     op2Button.getStyleClass().remove("special");
+                    keyboardGridPane.getChildren().forEach(node -> {
+                        String nodeId = node.getId();
+                        switch (nodeId){
+                            case "Pow3" -> node.setId("Pow2");
+                            case "Root3" -> node.setId("Root2");
+                            case "yRoot" -> node.setId("yPow");
+                        }
+                    });
                 }
             }
             case Pow2 -> {
@@ -273,7 +299,54 @@ public class CientificaController extends CalculatorBaseController {
                 memory[2] = "%.3f".formatted(calcutation);
                 stateProperty.set(CalculationState.ACTION_PERFORMED);
             }
-
+            case sen -> {
+                if (!memory[0].equals("")) {
+                    actionChosen = (aDouble, aDouble2) -> logica.calcularseno(aDouble);
+                    onActionChosen(buttonCode.getSymbol(), true);
+                }
+            }
+            case cos -> {
+                if (!memory[0].equals("")) {
+                    actionChosen = (aDouble, aDouble2) -> logica.calcularcoseno(aDouble);
+                    onActionChosen(buttonCode.getSymbol(), true);
+                }
+            }
+            case tan -> {
+                if (!memory[0].equals("")) {
+                    actionChosen = (aDouble, aDouble2) -> logica.calculartangente(aDouble);
+                    onActionChosen(buttonCode.getSymbol(), true);
+                }
+            }
+            case Pow3 -> {
+                if (!memory[0].equals("")) {
+                    actionChosen = logica::calcularpotencia;
+                    memory[1] = "3";
+                    onActionChosen(buttonCode.getSymbol(),true);
+                }
+                stateProperty.set(CalculationState.ACTION_CHOOSE);
+            }
+            case Root3 -> {
+                if (!memory[0].equals("")) {
+                    actionChosen = logica::calcularraiz;
+                    memory[1] = "3";
+                    onActionChosen(buttonCode.getSymbol(),true);
+                }
+                stateProperty.set(CalculationState.ACTION_CHOOSE);
+            }
+            case yRoot -> {
+                if (!memory[0].equals("")) {
+                    actionChosen = logica::calcularraiz;
+                    onActionChosen(buttonCode.getSymbol(),true);
+                }
+            }
+            /*case ePow -> {
+                if (!memory[0].equals("")) {
+                    actionChosen = logica::calcularpotencia;
+                    memory[0] = "2,718281";
+                    onActionChosen(buttonCode.getSymbol(),true);
+                }
+            }*/
+            default -> throw new IllegalStateException("Unexpected value: " + buttonCode);
 
         }
     }

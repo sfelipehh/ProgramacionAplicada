@@ -281,9 +281,6 @@ public class ProgramadorController extends CalculatorBaseController{
         }
     }
 
-
-
-
     private int castToUnsignedByte(int number){
         return number & 0xFF;
     }

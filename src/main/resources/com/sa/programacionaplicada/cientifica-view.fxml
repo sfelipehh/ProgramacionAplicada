@@ -10,12 +10,11 @@
       <Label id="actual" fx:id="actualLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefWidth="600.0" styleClass="display-panel" text="Actual" textAlignment="RIGHT" />
       <Pane styleClass="container">
          <children>
-             <MenuButton alignment="CENTER_RIGHT" mnemonicParsing="false" styleClass="more-functions" text="Trigonometria">
+             <MenuButton  fx:id="moreFunctionsButton"  alignment="CENTER_RIGHT" mnemonicParsing="false" styleClass="more-functions" text="Trigonometria">
                  <items>
-                     <MenuItem mnemonicParsing="false" text="2 Opción" />
-                     <MenuItem mnemonicParsing="false" text="Seno" />
-                     <MenuItem mnemonicParsing="false" text="Coseno" />
-                     <MenuItem mnemonicParsing="false" text="Tangente" />
+                     <MenuItem id="sen" mnemonicParsing="false" text="Seno" />
+                     <MenuItem id="cos" mnemonicParsing="false" text="Coseno" />
+                     <MenuItem id="tan" mnemonicParsing="false" text="Tangente" />
                  </items>
              </MenuButton>
          </children>

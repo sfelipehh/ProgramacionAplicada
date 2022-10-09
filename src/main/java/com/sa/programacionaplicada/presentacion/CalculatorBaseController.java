@@ -43,19 +43,18 @@ public abstract class CalculatorBaseController implements Initializable {
         less(" − "),
         add(" + "),
         equal(" = "),
-
         a("A"),
-
         b("B"),
-
         c("C"),
-
         d("D"),
-
         e("E"),
-
-        f("F");
-
+        f("F"), 
+        sen("sen(%.4f)"),
+        cos("cos(%.4f)"),
+        tan("tan(%.4f)"),
+        Pow3("%.4f^"),
+        Root3("3√%.4f"),
+        yRoot("√%.4f");
         private final String symbol;
         ButtonCodes(String symbol){
             this.symbol = symbol;
@@ -65,7 +64,7 @@ public abstract class CalculatorBaseController implements Initializable {
         }
     }
     enum CalculationState{
-        FIRST_INPUT, SECOND_INPUT, ACTION_CHOOSE, ACTION_PERFORMED;
+        FIRST_INPUT, SECOND_INPUT, ACTION_CHOOSE, ACTION_PERFORMED
     }
     protected final String[] memory = new String[]{"0", "0", "0"};
     protected final ObjectProperty<CalculationState> stateProperty = new SimpleObjectProperty<>(this, "state", CalculationState.FIRST_INPUT);
