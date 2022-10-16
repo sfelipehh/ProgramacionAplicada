@@ -1,6 +1,6 @@
 package com.sa.programacionaplicada.logica;
 
-public class Rectangulo {
+public class Rectangulo extends Figura {
 
     private double base;
 
@@ -20,7 +20,7 @@ public class Rectangulo {
         return area;
     }
 
-    public double calculararea(double base, double altura){
+    public double calculararea(){
 
         area= base*altura;
         return area;

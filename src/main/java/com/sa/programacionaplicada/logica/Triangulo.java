@@ -1,6 +1,6 @@
 package com.sa.programacionaplicada.logica;
 
-public class Triangulo {
+public class Triangulo extends Figura {
 
     private double base;
 
@@ -20,7 +20,7 @@ public class Triangulo {
         return area;
     }
 
-    public double calculararea(double lado){
+    public double calculararea(){
 
         area= (base*altura)/2;
         return area;

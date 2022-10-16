@@ -1,6 +1,6 @@
 package com.sa.programacionaplicada.logica;
 
-public class Cono {
+public class Cono extends Figura{
 
     private double radio;
 
@@ -21,7 +21,7 @@ public class Cono {
         return volumen;
     }
 
-    public double calcularvolumen(double radio, double altura){
+    public double calcularvolumen(){
         volumen= (Math.PI* (radio*radio)* altura)/3;
         return volumen;
     }

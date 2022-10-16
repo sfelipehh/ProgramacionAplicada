@@ -1,6 +1,6 @@
 package com.sa.programacionaplicada.logica;
 
-public class Circulo {
+public class Circulo extends Figura {
 
     private double radio;
 
@@ -14,8 +14,7 @@ public class Circulo {
         return area;
     }
 
-    public double calculararea(double radio){
-
+    public double calculararea(){
         area= Math.PI* (radio*radio);
         return area;
 

@@ -1,6 +1,6 @@
 package com.sa.programacionaplicada.logica;
 
-public class PiramideBaseCuadrada {
+public class PiramideBaseCuadrada extends Figura{
     private double lado;
 
     private double altura;
@@ -20,7 +20,7 @@ public class PiramideBaseCuadrada {
         return volumen;
     }
 
-    public double calcularvolumen(double lado, double altura){
+    public double calcularvolumen(){
         volumen= (Math.PI* (lado*lado)* altura)/3;
         return volumen;
     }

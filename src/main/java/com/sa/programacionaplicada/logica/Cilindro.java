@@ -1,6 +1,6 @@
 package com.sa.programacionaplicada.logica;
 
-public class Cilindro {
+public class Cilindro extends Figura{
 
     private double radio;
 
@@ -21,7 +21,7 @@ public class Cilindro {
         return volumen;
     }
 
-   public double calcularvolumen(double radio, double altura){
+   public double calcularvolumen(){
         volumen= Math.PI* (radio*radio)* altura;
         return volumen;
    }

@@ -10,11 +10,18 @@
             <fx:include fx:id="calculator" source="programador-view.fxml" />
          </content>
           <graphic>
-              <MenuBar prefHeight="32.0" prefWidth="32.0">
-                  <Menu mnemonicParsing="false" text="..">
-                      <MenuItem text="Cientifica" />
-                      <MenuItem text="Solidos" />
-                      <MenuItem text="Bit a Bit" />
+              <MenuBar  prefHeight="32.0" prefWidth="32.0">
+                  <Menu fx:id="menu" mnemonicParsing="false" text="..">
+                      <MenuItem id="scientific" text="Cientifica" onAction="#calculatorChange"/>
+                      <MenuItem id="figurasRombo" text="Rombo" onAction="#calculatorChange"/>
+                      <MenuItem id="figurasCuadrado" text="Cuadrado" onAction="#calculatorChange"/>
+                      <MenuItem id="figurasCirculo" text="Circulo" onAction="#calculatorChange"/>
+                      <MenuItem id="figurasTriangulo" text="Triangulo" onAction="#calculatorChange"/>
+                      <MenuItem id="figurasPiramideBaseCuadrada" text="Piramide Base Cuadrada" onAction="#calculatorChange"/>
+                      <MenuItem id="figurasCilindro" text="Cilindro" onAction="#calculatorChange"/>
+                      <MenuItem id="figurasCono" text="Cono" onAction="#calculatorChange"/>
+                      <MenuItem id="figurasEsfera" text="Esfera" onAction="#calculatorChange"/>
+                      <MenuItem id="bit" text="Bit a Bit" onAction="#calculatorChange"/>
                   </Menu>
               </MenuBar>
           </graphic>

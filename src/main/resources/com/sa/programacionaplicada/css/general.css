@@ -37,11 +37,11 @@
     -fx-background-color: rgb(28, 28, 28);
 }
 
-.calculator-container-pane .container{
+.calculator-container-pane .container, .figures-container-pane {
     -fx-background-color: rgb(26, 26, 26);
 }
 
-.keyboard .button{
+.keyboard .button, .figures-container-pane #figure-calculation-button {
     -fx-font-family: 'Noto Sans Math';
     -fx-background-color: rgb(19, 19, 19);
     -fx-font-size: 14;
@@ -49,15 +49,15 @@
     -fx-pref-height: 120;
 }
 
-.keyboard .numeric{
+.keyboard .numeric {
     -fx-background-color: rgb(6, 6, 6);
 }
 
-.keyboard .special{
+.keyboard .special {
     -fx-background-color: rgb(102, 39, 41);
 }
 
-.keyboard .special:hover{
+.keyboard .special:hover, .figures-container-pane #figure-calculation-button:hover {
     -fx-background-color: rgb(191, 49, 53);
 }
 
@@ -65,7 +65,7 @@
     -fx-padding: 0 10 0 0;
 }
 
-.more-functions{
+.more-functions {
     -fx-background-color: rgb(26, 26, 26);
     -fx-font-size: 14;
     -fx-font-weight: bold;
@@ -78,7 +78,16 @@
     -fx-background-radius: 5 5 5 5;
 }
 
-#memo, .input-type {
+
+.figures-container-pane .container .parameter-input-layout .text-field {
+   -fx-background-color: rgb(31, 31, 31);
+}
+
+#memo,
+.input-type,
+.parameter-input-layout,
+.figures-container-pane #figure-calculation-button,
+.figures-container-pane .figure-calculation-label {
     -fx-font-family: 'Noto Sans Math';
     -fx-font-size: 14;
     -fx-font-weight: normal;

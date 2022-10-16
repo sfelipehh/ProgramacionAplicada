@@ -1,6 +1,6 @@
 package com.sa.programacionaplicada.logica;/*Author:sfeli*/
 
-public class Esfera {
+public class Esfera extends Figura{
     private double radio;
     private double volumen;
 
@@ -15,7 +15,7 @@ public class Esfera {
     }
 
 
-    public double calcularvolumen(double radio){
+    public double calcularvolumen(){
 
         volumen= (4/3) * Math.PI* (radio*radio*radio);
         return volumen;

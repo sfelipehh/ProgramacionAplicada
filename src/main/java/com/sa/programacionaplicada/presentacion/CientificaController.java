@@ -41,11 +41,16 @@ public class CientificaController extends CalculatorBaseController {
     }
     private ChangeListener<CalculationState> showResult(){
         return (observableValue, old, t1) -> {
-          if (t1 == CalculationState.ACTION_CHOOSE){
+          if (t1 == CalculationState.ACTION_CHOOSE || t1 == CalculationState.ONE_ARG_ACTION_CHOOSE){
               modifyMemoryString("-P");
+          }
+          if (t1 == CalculationState.ACTION_CHOOSE){
               stateProperty.set(CalculationState.SECOND_INPUT);
           }
-          if (t1 == CalculationState.ACTION_PERFORMED){
+          if (t1 == CalculationState.ACTION_PERFORMED && old != CalculationState.ONE_ARG_ACTION_CHOOSE){
+              modifyMemoryString("-A", memory[1]);
+          }
+          if (t1 == CalculationState.ACTION_PERFORMED) {
               modifyMemoryString("-P");
               renewActual(memory[2]);
               memory[0] = checkInput(memory[2]);
@@ -69,19 +74,20 @@ public class CientificaController extends CalculatorBaseController {
         return inputString.replace(",",".");
     }
     private void doInput(String inputNumber) {
-        int calculationStateOrdinal = stateProperty.get().ordinal();
-        if ((!memory[calculationStateOrdinal].equals("") && calculationStateOrdinal==CalculationState.ACTION_PERFORMED.ordinal())){
-            renewActual(inputNumber);
+        int calculationStateOrdinal = stateProperty.get().ordinal() <= 1 ? stateProperty.get().ordinal() : 0;
+
+        if ((!memory[calculationStateOrdinal].equals("") && stateProperty.get().ordinal()==CalculationState.ACTION_PERFORMED.ordinal())){
             CientificaController.this.stateProperty.set(CalculationState.FIRST_INPUT);
-        }else if ( !memory[calculationStateOrdinal].equals("") && calculationStateOrdinal == CalculationState.SECOND_INPUT.ordinal()){
             renewActual(inputNumber);
-        }else if (memory[calculationStateOrdinal].equals("0")){
+        }else if ( memory[calculationStateOrdinal].equals("") && calculationStateOrdinal == CalculationState.SECOND_INPUT.ordinal()){
+            renewActual(inputNumber);
+        }else if (memory[calculationStateOrdinal].equals("") || memory[calculationStateOrdinal].equals("0")){
             renewActual(inputNumber);
         } else if (inputNumber.equals("3,141592") || inputNumber.equals("2,718281")){
             renewActual(inputNumber);
         }else updateActual(inputNumber);
 
-        if (memory[calculationStateOrdinal].equals("0") || inputNumber.equals("3,141592") || inputNumber.equals("2,718281")){
+        if (memory[calculationStateOrdinal].equals("") || inputNumber.equals("3,141592") || inputNumber.equals("2,718281")){
             memory[calculationStateOrdinal] = inputNumber;
         }else if (inputNumber.equals("-")){
             if (memory[calculationStateOrdinal].charAt(0) == '-'){
@@ -132,9 +138,7 @@ public class CientificaController extends CalculatorBaseController {
             memoryLabel.setText(memoryStringBuilder.toString());
         }
         if (flag.equals("-A") && args!=null){
-            if (!(args.equals("0") && (stateProperty.get() == CalculationState.ACTION_CHOOSE))){
-                memoryStringBuilder.append(args);
-            }
+            memoryStringBuilder.append(args);
         }
         if (flag.equals("-CL")){
             memoryStringBuilder.deleteCharAt(memoryStringBuilder.length()-1);
@@ -147,10 +151,11 @@ public class CientificaController extends CalculatorBaseController {
     private void onActionChosen(String actionSymbol, boolean oneArg) {
         if (oneArg){
             modifyMemoryString("-A", actionSymbol.formatted(getInput(0)));
+            stateProperty.set(CalculationState.ONE_ARG_ACTION_CHOOSE);
         }else {
             modifyMemoryString("-A", memory[0] + actionSymbol);
+            stateProperty.set(CalculationState.ACTION_CHOOSE);
         }
-        stateProperty.set(CalculationState.ACTION_CHOOSE);
     }
     private double getInput(int inputIndex){
         String input = memory[inputIndex];
@@ -165,6 +170,9 @@ public class CientificaController extends CalculatorBaseController {
         }
         if (input.equals("-2,718281")){
             return Math.E*-1;
+        }
+        if (input.equals("")){
+            return 0;
         }
         return Double.parseDouble(checkInput(memory[inputIndex]));
     }
@@ -207,7 +215,6 @@ public class CientificaController extends CalculatorBaseController {
                     memory[1] = "2";
                     onActionChosen(buttonCode.getSymbol(),true);
                 }
-                stateProperty.set(CalculationState.ACTION_CHOOSE);
             }
             case Root2 -> {
                 if (!memory[0].equals("")) {
@@ -215,7 +222,6 @@ public class CientificaController extends CalculatorBaseController {
                     memory[1] = "2";
                     onActionChosen(buttonCode.getSymbol(),true);
                 }
-                stateProperty.set(CalculationState.ACTION_CHOOSE);
             }
             case yPow -> {
                 if (!memory[0].equals("")) {
@@ -291,14 +297,7 @@ public class CientificaController extends CalculatorBaseController {
                 onActionChosen(buttonCode.getSymbol());
                 actionChosen = logica::sumar;
             }
-            case equal -> {
-                double firstArg = getInput(0);
-                double secondArg = getInput(1);
-                modifyMemoryString("-A", memory[1]);
-                double calcutation = actionChosen.apply(firstArg,secondArg);
-                memory[2] = "%.3f".formatted(calcutation);
-                stateProperty.set(CalculationState.ACTION_PERFORMED);
-            }
+            case equal -> doCalculation();
             case sen -> {
                 if (!memory[0].equals("")) {
                     actionChosen = (aDouble, aDouble2) -> logica.calcularseno(aDouble);
@@ -351,11 +350,19 @@ public class CientificaController extends CalculatorBaseController {
         }
     }
 
+    private void doCalculation() {
+        double firstArg = getInput(0);
+        double secondArg = getInput(1);
+        double calcutation = actionChosen.apply(firstArg,secondArg);
+        memory[2] = "%.3f".formatted(calcutation);
+        stateProperty.set(CalculationState.ACTION_PERFORMED);
+    }
+
     private void doClear() {
         modifyMemoryString("-C");
-        memory[0] = "0";
-        memory[1] = "0";
-        memory[2] = "0";
+        memory[0] = "";
+        memory[1] = "";
+        memory[2] = "";
         stateProperty.set(CalculationState.FIRST_INPUT);
         renewActual("0");
     }

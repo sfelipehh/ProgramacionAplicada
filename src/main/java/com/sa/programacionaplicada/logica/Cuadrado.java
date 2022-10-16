@@ -1,6 +1,6 @@
 package com.sa.programacionaplicada.logica;
 
-public class Cuadrado {
+public class Cuadrado extends Figura{
 
     private double lado;
 
@@ -14,8 +14,7 @@ public class Cuadrado {
         return area;
     }
 
-    public double calculararea(double lado){
-
+    public double calculararea(){
         area=lado*lado;
         return area;
     }

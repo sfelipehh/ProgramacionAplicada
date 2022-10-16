@@ -1,6 +1,6 @@
 package com.sa.programacionaplicada.logica;
 
-public class Rombo {
+public class Rombo extends Figura {
 
     private double diagonalmayor;
 
@@ -20,7 +20,7 @@ public class Rombo {
         return area;
     }
 
-    public double calculararea(double diagonalmayor, double diagonalmenor){
+    public double calculararea(){
         area= (diagonalmayor*diagonalmenor)/2;
         return area;
     }

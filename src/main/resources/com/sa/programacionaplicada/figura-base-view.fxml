@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="600.0" spacing="50.0" styleClass="figures-container-pane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sa.programacionaplicada.presentacion.FigurasViewController">
+   <children>
+      <Label fx:id="titleLabel" styleClass="figure-calculation-label" text="NombreFigura" />
+      <VBox fx:id="parametersContainer" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="container" />
+      <Button id="figure-calculation-button" fx:id="doCalculationButton" alignment="CENTER" mnemonicParsing="false" text="Calcular " textAlignment="CENTER" />
+      <Label styleClass="figure-calculation-label" fx:id="resultLabel" text="Label" visible="false" />
+   </children>
+</VBox>
