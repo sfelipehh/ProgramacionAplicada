@@ -189,22 +189,48 @@ public class CientificaController extends CalculatorBaseController {
                 ToggleButton op2Button = ((ToggleButton) actionEvent.getSource());
                 if (!op2Button.isSelected()){
                     op2Button.getStyleClass().add("special");
-                    keyboardGridPane.getChildren().forEach(node -> {
+                    keyboardGridPane.getChildren().stream().filter(node -> node instanceof Button).forEach(node -> {
                         String nodeId = node.getId();
-                        switch (nodeId){
-                            case "Pow2" -> node.setId("Pow3");
-                            case "Root2" -> node.setId("Root3");
-                            case "yPow" -> node.setId("yRoot");
+                        Button button = ((Button) node);
+                        switch (nodeId) {
+                            case "Pow2" -> {
+                                node.setId("Pow3");
+                                button.getStyleClass().add("pseudo-special");
+                                button.setText("\uD835\uDC99^3");
+                            }
+                            case "Root2" -> {
+                                node.setId("Root3");
+                                button.getStyleClass().add("pseudo-special");
+                                button.setText("3√\uD835\uDC99");
+                            }
+                            case "yPow" -> {
+                                node.setId("yRoot");
+                                button.getStyleClass().add("pseudo-special");
+                                button.setText("\uD835\uDC9A√\uD835\uDC99");
+                            }
                         }
                     });
                 }else {
                     op2Button.getStyleClass().remove("special");
-                    keyboardGridPane.getChildren().forEach(node -> {
+                    keyboardGridPane.getChildren().stream().filter(node -> node instanceof Button).forEach(node -> {
                         String nodeId = node.getId();
-                        switch (nodeId){
-                            case "Pow3" -> node.setId("Pow2");
-                            case "Root3" -> node.setId("Root2");
-                            case "yRoot" -> node.setId("yPow");
+                        Button button = ((Button) node);
+                        switch (nodeId) {
+                            case "Pow3" -> {
+                                node.setId("Pow2");
+                                button.getStyleClass().remove("pseudo-special");
+                                button.setText("\uD835\uDC99^2");
+                            }
+                            case "Root3" -> {
+                                node.setId("Root2");
+                                button.getStyleClass().remove("pseudo-special");
+                                button.setText("√\uD835\uDC99");
+                            }
+                            case "yRoot" -> {
+                                node.setId("yPow");
+                                button.getStyleClass().remove("pseudo-special");
+                                button.setText("\uD835\uDC99^\uD835\uDC9A");
+                            }
                         }
                     });
                 }

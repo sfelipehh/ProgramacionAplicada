@@ -93,6 +93,10 @@
     -fx-font-weight: normal;
 }
 
+.keyboard .pseudo-special:hover {
+    -fx-background-color : rgb(102, 39, 41);
+}
+
 #actual {
     -fx-font-size: 24;
     -fx-font-weight: bolder;

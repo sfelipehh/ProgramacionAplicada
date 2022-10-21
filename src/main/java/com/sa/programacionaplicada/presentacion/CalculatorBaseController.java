@@ -54,7 +54,15 @@ public abstract class CalculatorBaseController implements Initializable {
         tan("tan(%.4f)"),
         Pow3("%.4f^"),
         Root3("3√%.4f"),
-        yRoot("√%.4f");
+        yRoot("√%.4f"),
+        bitShiftLeft("<<"),
+        bitShiftRight(">>"),
+        and(" AND "),
+        or(" OR "),
+        not("NOT %s"),
+        nand(" NAND "),
+        nor(" NOR "),
+        xor(" XOR ");
         private final String symbol;
         ButtonCodes(String symbol){
             this.symbol = symbol;

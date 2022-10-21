@@ -29,14 +29,14 @@
          </graphic></ToggleButton>
         <Pane styleClass="container">
             <children>
-                <MenuButton alignment="CENTER_RIGHT" mnemonicParsing="false" styleClass="more-functions" text="Bit a Bit">
+                <MenuButton fx:id="moreFunctionsButton" alignment="CENTER_RIGHT" mnemonicParsing="false" styleClass="more-functions" text="Bit a Bit">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="AND" />
-                        <MenuItem mnemonicParsing="false" text="OR" />
-                        <MenuItem mnemonicParsing="false" text="NOT" />
-                        <MenuItem mnemonicParsing="false" text="NAND" />
-                        <MenuItem mnemonicParsing="false" text="NOR" />
-                        <MenuItem mnemonicParsing="false" text="XOR" />
+                        <MenuItem id="and" mnemonicParsing="false" text="AND" />
+                        <MenuItem id="or" mnemonicParsing="false" text="OR" />
+                        <MenuItem id="not" mnemonicParsing="false" text="NOT" />
+                        <MenuItem id="nand" mnemonicParsing="false" text="NAND" />
+                        <MenuItem id="nor" mnemonicParsing="false" text="NOR" />
+                        <MenuItem id="xor" mnemonicParsing="false" text="XOR" />
                     </items>
                 </MenuButton>
             </children>
@@ -64,12 +64,12 @@
                 <Button id="d" mnemonicParsing="false" text="D" GridPane.rowIndex="3" />
                 <Button id="e" mnemonicParsing="false" text="E" GridPane.rowIndex="4" />
                 <Button id="f" mnemonicParsing="false" text="F" GridPane.rowIndex="5" />
-                <Button id="bitShiftLeft" mnemonicParsing="false" text="&lt;&lt;" GridPane.columnIndex="1" />
-                <Button id="parentesisOpen" mnemonicParsing="false" text="(" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Button GridPane.columnIndex="1" />
+                <Button GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <Button id="seven" mnemonicParsing="false" styleClass="numeric" text="𝟳" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <Button id="four" mnemonicParsing="false" styleClass="numeric" text="𝟰" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <Button id="one" mnemonicParsing="false" styleClass="numeric" text="𝟭" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <Button id="bitShiftRight" mnemonicParsing="false" text="&gt;&gt;" GridPane.columnIndex="2" />
+                <Button GridPane.columnIndex="2" />
                 <Button id="parentesisClose" mnemonicParsing="false" text=")" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                 <Button id="eight" mnemonicParsing="false" styleClass="numeric" text="𝟴" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                 <Button id="five" mnemonicParsing="false" styleClass="numeric" text="𝟱" GridPane.columnIndex="2" GridPane.rowIndex="3" />

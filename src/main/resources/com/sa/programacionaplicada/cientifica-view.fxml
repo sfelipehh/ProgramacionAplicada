@@ -46,14 +46,14 @@
              <Button id="eLog" mnemonicParsing="false" text="ln" GridPane.columnIndex="0" GridPane.rowIndex="6" />
              <Button id="piConstant" mnemonicParsing="false" text="𝛑" GridPane.columnIndex="1" GridPane.rowIndex="0" />
              <Button id="inverso" mnemonicParsing="false" text="1/𝒙" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-             <Button id="parentesisOpen" mnemonicParsing="false" text="(" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+             <Button GridPane.columnIndex="1" GridPane.rowIndex="2" />
              <Button id="seven" mnemonicParsing="false" styleClass="numeric" text="𝟳" GridPane.columnIndex="1" GridPane.rowIndex="3" />
              <Button id="four" mnemonicParsing="false" styleClass="numeric" text="𝟰" GridPane.columnIndex="1" GridPane.rowIndex="4" />
              <Button id="one" mnemonicParsing="false" styleClass="numeric" text="𝟭" GridPane.columnIndex="1" GridPane.rowIndex="5" />
              <Button id="sign" mnemonicParsing="false" styleClass="numeric" text="∓" GridPane.columnIndex="1" GridPane.rowIndex="6" />
              <Button id="eConstant" mnemonicParsing="false" text="e" GridPane.columnIndex="2" GridPane.rowIndex="0" />
              <Button id="abs" mnemonicParsing="false" text="|𝒙|" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-             <Button id="parentesisClose" mnemonicParsing="false" text=")" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+             <Button GridPane.columnIndex="2" GridPane.rowIndex="2" />
              <Button id="eight" mnemonicParsing="false" styleClass="numeric" text="𝟴" GridPane.columnIndex="2" GridPane.rowIndex="3" />
              <Button id="five" mnemonicParsing="false" styleClass="numeric" text="𝟱" GridPane.columnIndex="2" GridPane.rowIndex="4" />
              <Button id="two" mnemonicParsing="false" styleClass="numeric" text="𝟮" GridPane.columnIndex="2" GridPane.rowIndex="5" />
