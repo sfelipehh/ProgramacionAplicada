@@ -135,44 +135,51 @@ public class ProgramadorController extends CalculatorBaseController{
             if (newToggleButton.equals(OCTButton)) {
                     for (Node keysButtons : keyboardGridPane.getChildren()) {
                         if (keysButtons instanceof ButtonBase) {
-                            ButtonCodes buttonId = ButtonCodes.valueOf(keysButtons.getId());
-                            switch (buttonId) {
-                                case eight, nine -> keysButtons.setDisable(true);
-                                case one, two, three, four, five, six, seven -> keysButtons.setDisable(false);
-                            }
+                            try {
+                                ButtonCodes buttonId = ButtonCodes.valueOf(keysButtons.getId());
+                                switch (buttonId) {
+                                    case eight, nine -> keysButtons.setDisable(true);
+                                    case one, two, three, four, five, six, seven -> keysButtons.setDisable(false);
+                                }
+                            }catch (IllegalArgumentException ignored){}
                         }
                     }
                 }
             if (newToggleButton.equals(BINButton)) {
                     for (Node keysButtons : keyboardGridPane.getChildren()) {
                         if (keysButtons instanceof ButtonBase) {
-                            ButtonCodes buttonId = ButtonCodes.valueOf(keysButtons.getId());
-                            switch (buttonId) {
-                                case two, three, four, five, six, seven, eight, nine ,a, b, c, d, e, f -> keysButtons.setDisable(true);
-                            }
+                            try {
+                                ButtonCodes buttonId = ButtonCodes.valueOf(keysButtons.getId());
+                                switch (buttonId) {
+                                    case two, three, four, five, six, seven, eight, nine ,a, b, c, d, e, f -> keysButtons.setDisable(true);
+                                }
+                            }catch (IllegalArgumentException ignored){}
                         }
                     }
                 }
             if (newToggleButton.equals(HEXButton)) {
                     for (Node keysButtons : keyboardGridPane.getChildren()) {
                         if (keysButtons instanceof ButtonBase) {
-                            ButtonCodes buttonId = ButtonCodes.valueOf(keysButtons.getId());
-                            switch (buttonId) {
-                                case one, two, three, four, five, six, seven, eight, nine, a, b, c, d, e, f ->
-                                        keysButtons.setDisable(false);
-                            }
-
+                            try {
+                                ButtonCodes buttonId = ButtonCodes.valueOf(keysButtons.getId());
+                                switch (buttonId) {
+                                    case one, two, three, four, five, six, seven, eight, nine, a, b, c, d, e, f ->
+                                            keysButtons.setDisable(false);
+                                }
+                            }catch (IllegalArgumentException ignored){}
                         }
                     }
                 }
             if (newToggleButton.equals(DECButton)) {
                     for (Node keysButtons : keyboardGridPane.getChildren()) {
                         if (keysButtons instanceof ButtonBase) {
-                            ButtonCodes buttonId = ButtonCodes.valueOf(keysButtons.getId());
-                            switch (buttonId) {
-                                case one, two, three, four, five, six, seven, eight, nine -> keysButtons.setDisable(false);
-                                case a, b, c, d, e, f -> keysButtons.setDisable(true);
-                            }
+                            try {
+                                ButtonCodes buttonId = ButtonCodes.valueOf(keysButtons.getId());
+                                switch (buttonId) {
+                                    case one, two, three, four, five, six, seven, eight, nine -> keysButtons.setDisable(false);
+                                    case a, b, c, d, e, f -> keysButtons.setDisable(true);
+                                }
+                            }catch (IllegalArgumentException ignored){}
                         }
                     }
                 }

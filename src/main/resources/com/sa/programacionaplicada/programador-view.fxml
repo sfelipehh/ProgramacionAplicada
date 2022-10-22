@@ -64,13 +64,13 @@
                 <Button id="d" mnemonicParsing="false" text="D" GridPane.rowIndex="3" />
                 <Button id="e" mnemonicParsing="false" text="E" GridPane.rowIndex="4" />
                 <Button id="f" mnemonicParsing="false" text="F" GridPane.rowIndex="5" />
-                <Button GridPane.columnIndex="1" />
-                <Button GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Button id="null" GridPane.columnIndex="1" />
+                <Button id="null" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <Button id="seven" mnemonicParsing="false" styleClass="numeric" text="𝟳" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <Button id="four" mnemonicParsing="false" styleClass="numeric" text="𝟰" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <Button id="one" mnemonicParsing="false" styleClass="numeric" text="𝟭" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <Button GridPane.columnIndex="2" />
-                <Button GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <Button id="null" GridPane.columnIndex="2" />
+                <Button id="null" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                 <Button id="eight" mnemonicParsing="false" styleClass="numeric" text="𝟴" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                 <Button id="five" mnemonicParsing="false" styleClass="numeric" text="𝟱" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                 <Button id="two" mnemonicParsing="false" styleClass="numeric" text="𝟮" GridPane.columnIndex="2" GridPane.rowIndex="4" />

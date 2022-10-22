@@ -179,191 +179,196 @@ public class CientificaController extends CalculatorBaseController {
     private void getButtonAction(ActionEvent actionEvent){
         ButtonCodes buttonCode = null;
         if (actionEvent.getSource() instanceof ButtonBase){
-            buttonCode = ButtonCodes.valueOf(((ButtonBase) actionEvent.getSource()).getId());
+            try {
+                buttonCode = ButtonCodes.valueOf(((ButtonBase) actionEvent.getSource()).getId());
+            }catch (IllegalArgumentException ignored){}
         }
         if (actionEvent.getSource() instanceof MenuItem){
-            buttonCode = ButtonCodes.valueOf(((MenuItem) actionEvent.getSource()).getId());
+            try {
+                buttonCode = ButtonCodes.valueOf(((MenuItem) actionEvent.getSource()).getId());
+            }catch (IllegalArgumentException ignored){}
         }
-        switch (Objects.requireNonNull(buttonCode)){
-            case Op2 -> {
-                ToggleButton op2Button = ((ToggleButton) actionEvent.getSource());
-                if (!op2Button.isSelected()){
-                    op2Button.getStyleClass().add("special");
-                    keyboardGridPane.getChildren().stream().filter(node -> node instanceof Button).forEach(node -> {
-                        String nodeId = node.getId();
-                        Button button = ((Button) node);
-                        switch (nodeId) {
-                            case "Pow2" -> {
-                                node.setId("Pow3");
-                                button.getStyleClass().add("pseudo-special");
-                                button.setText("\uD835\uDC99^3");
+        try{
+            switch (Objects.requireNonNull(buttonCode)){
+                case Op2 -> {
+                    ToggleButton op2Button = ((ToggleButton) actionEvent.getSource());
+                    if (!op2Button.isSelected()){
+                        op2Button.getStyleClass().add("special");
+                        keyboardGridPane.getChildren().stream().filter(node -> node instanceof Button).forEach(node -> {
+                            String nodeId = node.getId();
+                            Button button = ((Button) node);
+                            switch (nodeId) {
+                                case "Pow2" -> {
+                                    node.setId("Pow3");
+                                    button.getStyleClass().add("pseudo-special");
+                                    button.setText("\uD835\uDC99^3");
+                                }
+                                case "Root2" -> {
+                                    node.setId("Root3");
+                                    button.getStyleClass().add("pseudo-special");
+                                    button.setText("3√\uD835\uDC99");
+                                }
+                                case "yPow" -> {
+                                    node.setId("yRoot");
+                                    button.getStyleClass().add("pseudo-special");
+                                    button.setText("\uD835\uDC9A√\uD835\uDC99");
+                                }
                             }
-                            case "Root2" -> {
-                                node.setId("Root3");
-                                button.getStyleClass().add("pseudo-special");
-                                button.setText("3√\uD835\uDC99");
+                        });
+                    }else {
+                        op2Button.getStyleClass().remove("special");
+                        keyboardGridPane.getChildren().stream().filter(node -> node instanceof Button).forEach(node -> {
+                            String nodeId = node.getId();
+                            Button button = ((Button) node);
+                            switch (nodeId) {
+                                case "Pow3" -> {
+                                    node.setId("Pow2");
+                                    button.getStyleClass().remove("pseudo-special");
+                                    button.setText("\uD835\uDC99^2");
+                                }
+                                case "Root3" -> {
+                                    node.setId("Root2");
+                                    button.getStyleClass().remove("pseudo-special");
+                                    button.setText("√\uD835\uDC99");
+                                }
+                                case "yRoot" -> {
+                                    node.setId("yPow");
+                                    button.getStyleClass().remove("pseudo-special");
+                                    button.setText("\uD835\uDC99^\uD835\uDC9A");
+                                }
                             }
-                            case "yPow" -> {
-                                node.setId("yRoot");
-                                button.getStyleClass().add("pseudo-special");
-                                button.setText("\uD835\uDC9A√\uD835\uDC99");
-                            }
-                        }
-                    });
-                }else {
-                    op2Button.getStyleClass().remove("special");
-                    keyboardGridPane.getChildren().stream().filter(node -> node instanceof Button).forEach(node -> {
-                        String nodeId = node.getId();
-                        Button button = ((Button) node);
-                        switch (nodeId) {
-                            case "Pow3" -> {
-                                node.setId("Pow2");
-                                button.getStyleClass().remove("pseudo-special");
-                                button.setText("\uD835\uDC99^2");
-                            }
-                            case "Root3" -> {
-                                node.setId("Root2");
-                                button.getStyleClass().remove("pseudo-special");
-                                button.setText("√\uD835\uDC99");
-                            }
-                            case "yRoot" -> {
-                                node.setId("yPow");
-                                button.getStyleClass().remove("pseudo-special");
-                                button.setText("\uD835\uDC99^\uD835\uDC9A");
-                            }
-                        }
-                    });
+                        });
+                    }
                 }
-            }
-            case Pow2 -> {
-                if (!memory[0].equals("")) {
-                    actionChosen = logica::calcularpotencia;
-                    memory[1] = "2";
+                case Pow2 -> {
+                    if (!memory[0].equals("")) {
+                        actionChosen = logica::calcularpotencia;
+                        memory[1] = "2";
+                        onActionChosen(buttonCode.getSymbol(),true);
+                    }
+                }
+                case Root2 -> {
+                    if (!memory[0].equals("")) {
+                        actionChosen = logica::calcularraiz;
+                        memory[1] = "2";
+                        onActionChosen(buttonCode.getSymbol(),true);
+                    }
+                }
+                case yPow -> {
+                    if (!memory[0].equals("")) {
+                        actionChosen = logica::calcularpotencia;
+                        onActionChosen(buttonCode.getSymbol(),true);
+                    }
+                }
+                case x10Pow -> {
+                    actionChosen = ((aDouble, aDouble2) -> logica.x10Pow(aDouble));
                     onActionChosen(buttonCode.getSymbol(),true);
                 }
-            }
-            case Root2 -> {
-                if (!memory[0].equals("")) {
-                    actionChosen = logica::calcularraiz;
-                    memory[1] = "2";
+                case Log10 -> {
+                    actionChosen = (aDouble, aDouble2) -> logica.logaritmo(aDouble);
                     onActionChosen(buttonCode.getSymbol(),true);
                 }
-            }
-            case yPow -> {
-                if (!memory[0].equals("")) {
-                    actionChosen = logica::calcularpotencia;
+                case eLog -> {
+                    actionChosen =(aDouble, aDouble2) -> logica.logaritmonatural(aDouble);
                     onActionChosen(buttonCode.getSymbol(),true);
                 }
-            }
-            case x10Pow -> {
-                actionChosen = ((aDouble, aDouble2) -> logica.x10Pow(aDouble));
-                onActionChosen(buttonCode.getSymbol(),true);
-            }
-            case Log10 -> {
-                actionChosen = (aDouble, aDouble2) -> logica.logaritmo(aDouble);
-                onActionChosen(buttonCode.getSymbol(),true);
-            }
-            case eLog -> {
-                actionChosen =(aDouble, aDouble2) -> logica.logaritmonatural(aDouble);
-                onActionChosen(buttonCode.getSymbol(),true);
-            }
-            case piConstant -> doInput("3,141592");
-            case inverso -> {
-                actionChosen = (aDouble, aDouble2) -> logica.inverso(aDouble);
-                onActionChosen(buttonCode.getSymbol(),true);
-            }
-            case parentesisOpen -> {
-            }
-            case seven -> doInput("7");
-            case four -> doInput("4");
-            case one -> doInput("1");
-            case sign -> doInput("-");
-            case eConstant -> doInput("2,718281");
-            case abs -> {
-                actionChosen = (aDouble, aDouble2) -> logica.valorabsoluto(aDouble);
-                onActionChosen(buttonCode.getSymbol(),true);
-            }
-            case parentesisClose -> {
-            }
-            case eight -> doInput("8");
-            case five -> doInput("5");
-            case two -> doInput("2");
-            case cero -> doInput("0");
-            case clear -> doClear();
-            case exp10 -> {
-            }
-            case factorial -> {
-                if (!memory[0].equals("")) {
-                    actionChosen = (aDouble, aDouble2) -> logica.factorial(aDouble);
-                    onActionChosen(buttonCode.getSymbol(), true);
-                }
-            }
-            case nine -> doInput("9");
-            case six -> doInput("6");
-            case three -> doInput("3");
-            case floatPoint -> doInput(",");
-            case delete -> undoInput();
-            case mod -> {
-                onActionChosen(buttonCode.getSymbol());
-                actionChosen = logica::modulo;
-            }
-            case division -> {
-                onActionChosen(buttonCode.getSymbol());
-                actionChosen = logica::dividir;
-            }
-            case multiply -> {
-                onActionChosen(buttonCode.getSymbol());
-                actionChosen = logica::multiplicar;
-            }
-            case less -> {
-                onActionChosen(buttonCode.getSymbol());
-                actionChosen = logica::restar;
-            }
-            case add -> {
-                onActionChosen(buttonCode.getSymbol());
-                actionChosen = logica::sumar;
-            }
-            case equal -> doCalculation();
-            case sen -> {
-                if (!memory[0].equals("")) {
-                    actionChosen = (aDouble, aDouble2) -> logica.calcularseno(aDouble);
-                    onActionChosen(buttonCode.getSymbol(), true);
-                }
-            }
-            case cos -> {
-                if (!memory[0].equals("")) {
-                    actionChosen = (aDouble, aDouble2) -> logica.calcularcoseno(aDouble);
-                    onActionChosen(buttonCode.getSymbol(), true);
-                }
-            }
-            case tan -> {
-                if (!memory[0].equals("")) {
-                    actionChosen = (aDouble, aDouble2) -> logica.calculartangente(aDouble);
-                    onActionChosen(buttonCode.getSymbol(), true);
-                }
-            }
-            case Pow3 -> {
-                if (!memory[0].equals("")) {
-                    actionChosen = logica::calcularpotencia;
-                    memory[1] = "3";
+                case piConstant -> doInput("3,141592");
+                case inverso -> {
+                    actionChosen = (aDouble, aDouble2) -> logica.inverso(aDouble);
                     onActionChosen(buttonCode.getSymbol(),true);
                 }
-                stateProperty.set(CalculationState.ACTION_CHOOSE);
-            }
-            case Root3 -> {
-                if (!memory[0].equals("")) {
-                    actionChosen = logica::calcularraiz;
-                    memory[1] = "3";
+                case parentesisOpen -> {
+                }
+                case seven -> doInput("7");
+                case four -> doInput("4");
+                case one -> doInput("1");
+                case sign -> doInput("-");
+                case eConstant -> doInput("2,718281");
+                case abs -> {
+                    actionChosen = (aDouble, aDouble2) -> logica.valorabsoluto(aDouble);
                     onActionChosen(buttonCode.getSymbol(),true);
                 }
-                stateProperty.set(CalculationState.ACTION_CHOOSE);
-            }
-            case yRoot -> {
-                if (!memory[0].equals("")) {
-                    actionChosen = logica::calcularraiz;
-                    onActionChosen(buttonCode.getSymbol(),true);
+                case parentesisClose -> {
                 }
-            }
+                case eight -> doInput("8");
+                case five -> doInput("5");
+                case two -> doInput("2");
+                case cero -> doInput("0");
+                case clear -> doClear();
+                case exp10 -> {
+                }
+                case factorial -> {
+                    if (!memory[0].equals("")) {
+                        actionChosen = (aDouble, aDouble2) -> logica.factorial(aDouble);
+                        onActionChosen(buttonCode.getSymbol(), true);
+                    }
+                }
+                case nine -> doInput("9");
+                case six -> doInput("6");
+                case three -> doInput("3");
+                case floatPoint -> doInput(",");
+                case delete -> undoInput();
+                case mod -> {
+                    onActionChosen(buttonCode.getSymbol());
+                    actionChosen = logica::modulo;
+                }
+                case division -> {
+                    onActionChosen(buttonCode.getSymbol());
+                    actionChosen = logica::dividir;
+                }
+                case multiply -> {
+                    onActionChosen(buttonCode.getSymbol());
+                    actionChosen = logica::multiplicar;
+                }
+                case less -> {
+                    onActionChosen(buttonCode.getSymbol());
+                    actionChosen = logica::restar;
+                }
+                case add -> {
+                    onActionChosen(buttonCode.getSymbol());
+                    actionChosen = logica::sumar;
+                }
+                case equal -> doCalculation();
+                case sen -> {
+                    if (!memory[0].equals("")) {
+                        actionChosen = (aDouble, aDouble2) -> logica.calcularseno(aDouble);
+                        onActionChosen(buttonCode.getSymbol(), true);
+                    }
+                }
+                case cos -> {
+                    if (!memory[0].equals("")) {
+                        actionChosen = (aDouble, aDouble2) -> logica.calcularcoseno(aDouble);
+                        onActionChosen(buttonCode.getSymbol(), true);
+                    }
+                }
+                case tan -> {
+                    if (!memory[0].equals("")) {
+                        actionChosen = (aDouble, aDouble2) -> logica.calculartangente(aDouble);
+                        onActionChosen(buttonCode.getSymbol(), true);
+                    }
+                }
+                case Pow3 -> {
+                    if (!memory[0].equals("")) {
+                        actionChosen = logica::calcularpotencia;
+                        memory[1] = "3";
+                        onActionChosen(buttonCode.getSymbol(),true);
+                    }
+                    stateProperty.set(CalculationState.ACTION_CHOOSE);
+                }
+                case Root3 -> {
+                    if (!memory[0].equals("")) {
+                        actionChosen = logica::calcularraiz;
+                        memory[1] = "3";
+                        onActionChosen(buttonCode.getSymbol(),true);
+                    }
+                    stateProperty.set(CalculationState.ACTION_CHOOSE);
+                }
+                case yRoot -> {
+                    if (!memory[0].equals("")) {
+                        actionChosen = logica::calcularraiz;
+                        onActionChosen(buttonCode.getSymbol(),true);
+                    }
+                }
             /*case ePow -> {
                 if (!memory[0].equals("")) {
                     actionChosen = logica::calcularpotencia;
@@ -371,9 +376,10 @@ public class CientificaController extends CalculatorBaseController {
                     onActionChosen(buttonCode.getSymbol(),true);
                 }
             }*/
-            default -> throw new IllegalStateException("Unexpected value: " + buttonCode);
+                default -> System.out.println("Parametro no esperado");
 
-        }
+            }
+        }catch (NullPointerException ignored){}
     }
 
     private void doCalculation() {
