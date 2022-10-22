@@ -35,19 +35,21 @@ public class FigurasViewController<T extends Figura> extends CalculatorBaseContr
     @FXML
     private Label resultLabel;
     private void doCalculation(ActionEvent actionEvent){
-        for (int i = 0; i < parameterSetMethod.length; i++){
-            HBox hboxParameter = (HBox) parametersContainer.getChildren().get(i);
-            Method methodParameter = parameterSetMethod[i];
-            if (hboxParameter.getId().equals(methodParameter.getName())){
-                String textInput = ((TextField) hboxParameter.getChildren().get(1)).getText();
-                try {
-                    methodParameter.invoke(figura,Double.parseDouble(textInput));
-                } catch (InvocationTargetException | IllegalAccessException ignored) {
-                }catch (NumberFormatException notANumber){
-                    System.out.println("No se ha ingresado un numero");
-                    return;
+        for (int i = 0; i < parameterSetMethod.length; i++) {
+            try {
+                HBox hboxParameter = (HBox) parametersContainer.getChildren().get(i);
+                Method methodParameter = parameterSetMethod[i];
+                if (hboxParameter.getId().equals(methodParameter.getName())) {
+                    String textInput = ((TextField) hboxParameter.getChildren().get(1)).getText();
+                    try {
+                        methodParameter.invoke(figura, Double.parseDouble(textInput));
+                    } catch (InvocationTargetException | IllegalAccessException ignored) {
+                    } catch (NumberFormatException notANumber) {
+                        System.out.println("No se ha ingresado un numero");
+                        return;
+                    }
                 }
-            }
+            }catch (IndexOutOfBoundsException ignored){}
         }
 
         try {

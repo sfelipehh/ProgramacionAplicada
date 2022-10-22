@@ -11,7 +11,7 @@ public abstract class CalculatorBaseController implements Initializable {
         Op2(""),
         Pow2("%.4f^2"),
         Root2("√%.4f"),
-        yPow("%.4f^3"),
+        yPow("%.4f^"),
         x10Pow("10^%.4f"),
         Log10("log(%.4f)"),
         eLog("ln(%.4f)"),

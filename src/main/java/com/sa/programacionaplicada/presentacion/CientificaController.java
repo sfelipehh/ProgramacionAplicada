@@ -257,7 +257,7 @@ public class CientificaController extends CalculatorBaseController {
                 case yPow -> {
                     if (!memory[0].equals("")) {
                         actionChosen = logica::calcularpotencia;
-                        onActionChosen(buttonCode.getSymbol(),true);
+                        onActionChosen(buttonCode.getSymbol());
                     }
                 }
                 case x10Pow -> {
@@ -366,7 +366,7 @@ public class CientificaController extends CalculatorBaseController {
                 case yRoot -> {
                     if (!memory[0].equals("")) {
                         actionChosen = logica::calcularraiz;
-                        onActionChosen(buttonCode.getSymbol(),true);
+                        onActionChosen(buttonCode.getSymbol());
                     }
                 }
             /*case ePow -> {
