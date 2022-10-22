@@ -70,7 +70,7 @@
                 <Button id="four" mnemonicParsing="false" styleClass="numeric" text="𝟰" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <Button id="one" mnemonicParsing="false" styleClass="numeric" text="𝟭" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                 <Button GridPane.columnIndex="2" />
-                <Button id="parentesisClose" mnemonicParsing="false" text=")" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <Button GridPane.columnIndex="2" GridPane.rowIndex="1" />
                 <Button id="eight" mnemonicParsing="false" styleClass="numeric" text="𝟴" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                 <Button id="five" mnemonicParsing="false" styleClass="numeric" text="𝟱" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                 <Button id="two" mnemonicParsing="false" styleClass="numeric" text="𝟮" GridPane.columnIndex="2" GridPane.rowIndex="4" />

@@ -57,7 +57,9 @@
     -fx-background-color: rgb(102, 39, 41);
 }
 
-.keyboard .special:hover, .figures-container-pane #figure-calculation-button:hover {
+.keyboard .special:hover,
+.keyboard .pseudo-special:hover,
+.figures-container-pane #figure-calculation-button:hover {
     -fx-background-color: rgb(191, 49, 53);
 }
 
@@ -93,9 +95,6 @@
     -fx-font-weight: normal;
 }
 
-.keyboard .pseudo-special:hover {
-    -fx-background-color : rgb(102, 39, 41);
-}
 
 #actual {
     -fx-font-size: 24;
