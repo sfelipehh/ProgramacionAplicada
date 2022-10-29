@@ -1,6 +1,5 @@
 package com.sa.programacionaplicada;
 
-import com.sa.programacionaplicada.presentacion.CalculadoraController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +25,7 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        button1.setText(CalculadoraController.class.getSimpleName());
+        button1.setText("");
         button1.setOnAction(this::runButton1);
         //button2.setText(DistribucionBidimensional.class.getSimpleName());
         button2.setOnAction(this::runDistribucionEdificio);
