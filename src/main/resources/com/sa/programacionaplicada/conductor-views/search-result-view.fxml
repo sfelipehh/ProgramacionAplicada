@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane hgap="5.0" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sa.programacionaplicada.presentacion.conductor.SearchResultConductorController">
+    <columnConstraints>
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <Label text="Identificación" GridPane.halignment="RIGHT" />
+        <Label fx:id="idLabel" text="Id" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
+        <Label text="Nombre" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+        <Label text="Apellidos" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+        <Label fx:id="nameLabel" text="Nombre" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+        <Label fx:id="lastNameLabel" text="Apellidos" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
+        <Label text="Categoria de Licencia" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+        <Label fx:id="categoryLicenceLabel" text="Licencia" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+        <Label text="Código del Vehículo" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+        <Label fx:id="idVehiculoLabel" text="Id Vehículo" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+        <Label fx:id="residenceCityLabel" text="Ciudad" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="9" />
+        <Label fx:id="zoneLabel" text="Barrio" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+        <Label text="Ciudad de Residencia y Barrio" textAlignment="CENTER" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
+      <Label text="Telefono" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+      <Label fx:id="phoneLabel" text="Tel" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4" />
+      <Label text="Telefono Celular" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+      <Label fx:id="cellphoneLabel" text="Celular" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="5" />
+      <Label text="Fecha de Nacimiento" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+      <Label fx:id="birthdateLabel" text="Nacimiento" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="6" />
+      <Label text="Correo Electronico" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
+      <Label fx:id="emailLabel" text="Email" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="7" />
+      <Label text="Turno" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
+      <Label fx:id="turnLabel" text="Dia" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="8" />
+      <Label text="Estado Civil" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
+      <Label fx:id="civilstateLabel" text="SOL" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="8" />
+      <Label text="Dirección" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
+      <Label fx:id="addressLabel" text="Cll 68 # 393" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="9" />
+    </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</GridPane>

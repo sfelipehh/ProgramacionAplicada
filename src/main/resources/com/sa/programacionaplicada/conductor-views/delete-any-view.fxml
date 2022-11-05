@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" fillWidth="false" prefHeight="600.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sa.programacionaplicada.presentacion.conductor.DeleteAnyConductoresController">
+   <children>
+      <Label text="Identificación" />
+      <TextField fx:id="idField" alignment="CENTER" promptText="Id" />
+      <JFXButton mnemonicParsing="false" onAction="#doDelete" style="-fx-background-color: rgb(208,45,69);" text="Elminar" textFill="WHITE" />
+   </children>
+</VBox>

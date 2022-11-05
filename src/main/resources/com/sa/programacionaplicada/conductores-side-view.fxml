@@ -12,7 +12,11 @@
         <Tab fx:id="searchAny" text="Consultar" >
             <fx:include source="conductor-views/search-any-view.fxml"/>
         </Tab>
-        <Tab fx:id="modifyAny" text="Modificar" />
-        <Tab fx:id="deleteAny" text="Eliminar" />
+        <Tab fx:id="modifyAny" text="Modificar" >
+            <fx:include source="conductor-views/modify-any-view.fxml"/>
+        </Tab>
+        <Tab fx:id="deleteAny" text="Eliminar" >
+            <fx:include source="conductor-views/delete-any-view.fxml"/>
+        </Tab>
     </JFXTabPane>
 </AnchorPane>
