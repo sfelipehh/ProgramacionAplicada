@@ -1,5 +1,7 @@
 package com.sa.programacionaplicada;
 import java.sql.*;
+
+import javax.swing.table.DefaultTableModel;
 public class Conductores {
 
    static Connection con;
@@ -150,7 +152,7 @@ public class Conductores {
       this.codigovehiculo = codigovehiculo;
    }
 
-   public boolean GuardarCliente(){
+   public boolean GuardarConductor(){
       try
       {
          cx= new Conexion();
@@ -187,7 +189,7 @@ public class Conductores {
 
    }
 
-   public boolean ActualizarCliente(){
+   public boolean ActualizarConductor(){
       try {
          cx = new Conexion();
          con = cx.getConexion();
@@ -208,7 +210,7 @@ public class Conductores {
 
    }
 
-   public boolean ConsultarCliente((long IdentificacionABuscar){
+   public boolean ConsultarConductor((long IdentificacionABuscar){
       try {
          boolean consultaOK=false;
          cx = new Conexion();
@@ -258,7 +260,7 @@ public class Conductores {
 
       }
 
-   public boolean EliminarCliente(long IdentificacionABuscar){
+   public boolean EliminarConductor(long IdentificacionABuscar){
 
       try
       {
