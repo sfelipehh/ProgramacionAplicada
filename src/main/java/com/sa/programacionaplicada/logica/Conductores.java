@@ -1,155 +1,231 @@
 package com.sa.programacionaplicada.logica;
 
+import javafx.beans.property.LongProperty;
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 import java.sql.*;
+import java.util.ArrayList;
 
 public class Conductores {
 
-   static Connection con;
-   static Conexion cx;
+   private static Connection con;
+   private static Conexion cx;
 
-   private long identificacion;
-   private String nombre;
-   private String apellido;
-   private String genero;
-   private String celular;
-   private String fijo;
-   private String fecha;
-   private String correo;
-   private String numerolicencia;
-   private String categorialicencia;
-   private String turno;
-   private String ciudad;
-   private String direccion;
-   private String barrio;
-   private String estadocivil;
-   private String codigovehiculo;
-
-   public long getIdentificacion() {
-      return identificacion;
+   private final LongProperty id = new SimpleLongProperty(this,"id",0);
+   private final LongProperty idLicencia = new SimpleLongProperty(this,"idLicencia");
+   private final StringProperty name = new SimpleStringProperty(this,"name");
+   private final StringProperty lastName = new SimpleStringProperty(this,"lastName");
+   private final StringProperty phone = new SimpleStringProperty(this,"phone");
+   private final StringProperty cellphone = new SimpleStringProperty(this,"cellphone");
+   private final StringProperty birthDate = new SimpleStringProperty(this,"birthDate");
+   private final StringProperty email = new SimpleStringProperty(this,"email");
+   private final StringProperty licenseCategory = new SimpleStringProperty(this,"licenseCategory");
+   private final StringProperty turn = new SimpleStringProperty(this,"turn");
+   private final StringProperty residenceCity = new SimpleStringProperty(this,"residenceCity");
+   private final StringProperty address = new SimpleStringProperty(this,"address");
+   private final StringProperty zone = new SimpleStringProperty(this,"zone");
+   private final StringProperty civilState = new SimpleStringProperty(this,"civilState");
+   public Conductores(){}
+   public Conductores(Long id){
+      setId(id);
+   }
+   public Conductores(
+           Long id,
+           Long idLicencia,
+           String name,
+           String lastName,
+           String cellphone,
+           String birthDate,
+           String email,
+           String licenseCategory,
+           String turn,
+           String residenceCity,
+           String address,
+           String zone,
+           String civilState) {
+      setId(id);
+      setIdLicencia(idLicencia);
+      setName(name);
+      setLastName(lastName);
+      setCellphone(cellphone);
+      setBirthDate(birthDate);
+      setEmail(email);
+      setLicenseCategory(licenseCategory);
+      setTurn(turn);
+      setResidenceCity(residenceCity);
+      setAddress(address);
+      setZone(zone);
+      setCivilState(civilState);
    }
 
-   public void setIdentificacion(long identificacion) {
-      this.identificacion = identificacion;
+   public long getIdLicencia() {
+      return idLicencia.get();
    }
 
-   public String getNombre() {
-      return nombre;
+   public LongProperty idLicenciaProperty() {
+      return idLicencia;
    }
 
-   public void setNombre(String nombre) {
-      this.nombre = nombre;
+   public void setIdLicencia(long idLicencia) {
+      this.idLicencia.set(idLicencia);
    }
 
-   public String getApellido() {
-      return apellido;
+   public String getName() {
+      return name.get();
    }
 
-   public void setApellido(String apellido) {
-      this.apellido = apellido;
+   public StringProperty nameProperty() {
+      return name;
    }
 
-   public String getGenero() {
-      return genero;
+   public void setName(String name) {
+      this.name.set(name);
    }
 
-   public void setGenero(String genero) {
-      this.genero = genero;
+   public String getLastName() {
+      return lastName.get();
    }
 
-   public String getCelular() {
-      return celular;
+   public StringProperty lastNameProperty() {
+      return lastName;
    }
 
-   public void setCelular(String celular) {
-      this.celular = celular;
+   public void setLastName(String lastName) {
+      this.lastName.set(lastName);
    }
 
-   public String getFijo() {
-      return fijo;
+   public String getPhone() {
+      return phone.get();
    }
 
-   public void setFijo(String fijo) {
-      this.fijo = fijo;
+   public StringProperty phoneProperty() {
+      return phone;
    }
 
-   public String getFecha() {
-      return fecha;
+   public void setPhone(String phone) {
+      this.phone.set(phone);
    }
 
-   public void setFecha(String fecha) {
-      this.fecha = fecha;
+   public String getCellphone() {
+      return cellphone.get();
    }
 
-   public String getCorreo() {
-      return correo;
+   public StringProperty cellphoneProperty() {
+      return cellphone;
    }
 
-   public void setCorreo(String correo) {
-      this.correo = correo;
+   public void setCellphone(String cellphone) {
+      this.cellphone.set(cellphone);
    }
 
-   public String getNumerolicencia() {
-      return numerolicencia;
+   public String getBirthDate() {
+      return birthDate.get();
    }
 
-   public void setNumerolicencia(String numerolicencia) {
-      this.numerolicencia = numerolicencia;
+   public StringProperty birthDateProperty() {
+      return birthDate;
    }
 
-   public String getCategorialicencia() {
-      return categorialicencia;
+   public void setBirthDate(String birthDate) {
+      this.birthDate.set(birthDate);
    }
 
-   public void setCategorialicencia(String categorialicencia) {
-      this.categorialicencia = categorialicencia;
+   public String getEmail() {
+      return email.get();
    }
 
-   public String getTurno() {
-      return turno;
+   public StringProperty emailProperty() {
+      return email;
    }
 
-   public void setTurno(String turno) {
-      this.turno = turno;
+   public void setEmail(String email) {
+      this.email.set(email);
    }
 
-   public String getCiudad() {
-      return ciudad;
+   public String getLicenseCategory() {
+      return licenseCategory.get();
    }
 
-   public void setCiudad(String ciudad) {
-      this.ciudad = ciudad;
+   public StringProperty licenseCategoryProperty() {
+      return licenseCategory;
    }
 
-   public String getDireccion() {
-      return direccion;
+   public void setLicenseCategory(String licenseCategory) {
+      this.licenseCategory.set(licenseCategory);
    }
 
-   public void setDireccion(String direccion) {
-      this.direccion = direccion;
+   public String getTurn() {
+      return turn.get();
    }
 
-   public String getBarrio() {
-      return barrio;
+   public StringProperty turnProperty() {
+      return turn;
    }
 
-   public void setBarrio(String barrio) {
-      this.barrio = barrio;
+   public void setTurn(String turn) {
+      this.turn.set(turn);
    }
 
-   public String getEstadocivil() {
-      return estadocivil;
+   public String getResidenceCity() {
+      return residenceCity.get();
    }
 
-   public void setEstadocivil(String estadocivil) {
-      this.estadocivil = estadocivil;
+   public StringProperty residenceCityProperty() {
+      return residenceCity;
    }
 
-   public String getCodigovehiculo() {
-      return codigovehiculo;
+   public void setResidenceCity(String residenceCity) {
+      this.residenceCity.set(residenceCity);
    }
 
-   public void setCodigovehiculo(String codigovehiculo) {
-      this.codigovehiculo = codigovehiculo;
+   public String getAddress() {
+      return address.get();
+   }
+
+   public StringProperty addressProperty() {
+      return address;
+   }
+
+   public void setAddress(String address) {
+      this.address.set(address);
+   }
+
+   public String getZone() {
+      return zone.get();
+   }
+
+   public StringProperty zoneProperty() {
+      return zone;
+   }
+
+   public void setZone(String zone) {
+      this.zone.set(zone);
+   }
+
+   public String getCivilState() {
+      return civilState.get();
+   }
+
+   public StringProperty civilStateProperty() {
+      return civilState;
+   }
+
+   public void setCivilState(String civilState) {
+      this.civilState.set(civilState);
+   }
+
+   public long getId() {
+      return id.get();
+   }
+
+   public LongProperty idProperty() {
+      return id;
+   }
+
+   public void setId(Long id) {
+      this.id.set(id);
    }
 
    public boolean GuardarConductor(){
@@ -157,25 +233,23 @@ public class Conductores {
       {
          cx= new Conexion();
          con= cx.getConexion();
-         PreparedStatement stmt = con.prepareStatement("INSERT INTO Conductores (id_Conductor, id_licencia_Conductor,name_Conductor, last_name_Conductor, phone_Conductor, cellphone_Conductor, birth_date_Conductor, email_Conductor, licence_category_Conductor, turn_ Conductor, residence_city_Conductor , address_Conductor, zone_ Conductor, civil_state_Conductor) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+         PreparedStatement stmt = con.prepareStatement("INSERT INTO tbl_conductores (id_Conductor, id_licencia_Conductor,name_Conductor, last_name_Conductor, phone_Conductor, cellphone_Conductor, birth_date_Conductor, email_Conductor, licence_category_Conductor, turn_Conductor, residence_city_Conductor , address_Conductor, zone_Conductor, civil_state_Conductor) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-         stmt.setString(1, "" + this.identificacion);
-         stmt.setString(2,this.nombre);
-         stmt.setString(3,this.apellido);
-         stmt.setString(4,this.genero);
-         stmt.setString(5,this.celular);
-         stmt.setString(6,this.fijo);
-         stmt.setString(7,this.fecha);
-         stmt.setString(8,this.correo);
-         stmt.setString(9,this.numerolicencia);
-         stmt.setString(10,this.categorialicencia);
-         stmt.setString(11,this.turno);
-         stmt.setString(13,this.ciudad);
-         stmt.setString(14,this.direccion);
-         stmt.setString(12,this.barrio);
-         stmt.setString(13,this.estadocivil);
-         stmt.setString(14,this.codigovehiculo);
-
+         stmt.setString(1, String.valueOf(this.getId()));
+         stmt.setString(2, String.valueOf(this.getIdLicencia()));
+         stmt.setString(3,this.getName());
+         stmt.setString(4,this.getLastName());
+         stmt.setString(5,this.getPhone());
+         stmt.setString(6,this.getCellphone());
+         stmt.setString(7,this.getBirthDate());
+         stmt.setString(8,this.getEmail());
+         stmt.setString(9,this.getLicenseCategory());
+         stmt.setString(10,this.getTurn());
+         stmt.setString(11,this.getResidenceCity());
+         stmt.setString(12,this.getAddress());
+         stmt.setString(13,this.getZone());
+         stmt.setString(14,this.getCivilState());
+         //stmt.setString(15,this.codigovehiculo);
          stmt.executeUpdate();
          stmt.close();
          con.close();
@@ -193,9 +267,9 @@ public class Conductores {
       try {
          cx = new Conexion();
          con = cx.getConexion();
-         PreparedStatement stmt = con.prepareStatement("UPDATE Conductores SET name_Conductor = '" +
-                 this.nombre + "', last_name_Conductor = '" + this.apellido + "', phone_Conductor='" + this.fijo + "', cellphone_Conductor='" + this.celular +
-                 "', birth_date_Conductor = '" + this.fecha + " ', email_Conductor = '" + this.correo + "', licence_category_Conductor ='"+ this.categorialicencia + "', id_licencia_Conductor ='"+this.numerolicencia + "', turn_Conductor = '" + this.turno +"', residence_city_Conductor= '" + this.ciudad + "', adress_Conductor ='"+ this.direccion +"', zone_Conductor ='" +this.barrio+"', civil_state_Conductor = '" + this.estadocivil + "' WHERE (id_Conductor = " + this.identificacion + ")");
+         PreparedStatement stmt = con.prepareStatement("UPDATE tbl_conductores SET name_Conductor = '" +
+                 this.getName() + "', last_name_Conductor = '" + this.getLastName() + "', phone_Conductor='" + this.getPhone() + "', cellphone_Conductor='" + this.getCellphone() +
+                 "', birth_date_Conductor = '" + this.getBirthDate() + " ', email_Conductor = '" + this.getEmail() + "', licence_category_Conductor ='"+ this.getLicenseCategory() + "', id_licencia_Conductor ='"+this.getIdLicencia() + "', turn_Conductor = '" + this.getTurn() +"', residence_city_Conductor= '" + this.getResidenceCity() + "', address_Conductor ='"+ this.getAddress() +"', zone_Conductor ='" +this.getZone()+"', civil_state_Conductor = '" + this.getCivilState() + "' WHERE (id_Conductor = " + this.getId() + ")");
          stmt.executeUpdate();
          stmt.close();
          con.close();
@@ -207,9 +281,38 @@ public class Conductores {
          System.out.println(e.getMessage());
          return false;
       }
-
    }
-
+   public static ArrayList<Conductores> consultarTodos(){
+      ArrayList<Conductores> resultList = new ArrayList<>();
+      try{
+         cx = new Conexion();
+         con = cx.getConexion();
+         Statement statement = con.createStatement();
+         ResultSet rs = statement.executeQuery("SELECT * FROM tbl_conductores");
+         while (rs.next()){
+            Conductores actual_row = new Conductores();
+            actual_row.setId(Long.parseLong(rs.getString("id_conductor")));
+            actual_row.setIdLicencia(Long.parseLong(rs.getString("id_Licencia_Conductor")));
+            actual_row.setName(rs.getString("name_Conductor"));
+            actual_row.setLastName(rs.getString("last_name_Conductor"));
+            actual_row.setPhone(rs.getString("phone_Conductor"));
+            actual_row.setCellphone(rs.getString("cellphone_Conductor"));
+            actual_row.setBirthDate(rs.getString("birth_date_Conductor"));
+            actual_row.setEmail(rs.getString("email_Conductor"));
+            actual_row.setLicenseCategory(rs.getString("licence_category_Conductor"));
+            actual_row.setTurn(rs.getString("turn_Conductor"));
+            actual_row.setResidenceCity(rs.getString("residence_city_Conductor"));
+            actual_row.setAddress(rs.getString("address_Conductor"));
+            actual_row.setCivilState(rs.getString("civil_state_Conductor"));
+            actual_row.setZone(rs.getString("zone_Conductor"));
+            resultList.add(actual_row);
+         }
+      }catch (Exception e){
+         System.out.println(e.getMessage());
+         return null;
+      }
+      return resultList;
+   }
    public boolean ConsultarConductor(long IdentificacionABuscar){
       try {
          boolean consultaOK = false;
@@ -221,21 +324,21 @@ public class Conductores {
                  IdentificacionABuscar);
 
          if (rs.next()) {
-            this.identificacion = Long.parseLong(rs.getString("id_conductor"));
-            this.nombre = rs.getString("name_Conductor");
-            this.apellido = rs.getString("last_name_Conductor");
-            this.genero = "K";
-            this.celular = rs.getString("cellphone_Conductor");
-            this.fijo = rs.getString("phone_Conductor");
-            this.fecha = rs.getString("birth_date_Conductor");
-            this.correo = rs.getString("email_Conductor");
-            this.numerolicencia = rs.getString("id_Licencia_Conductor");
-            this.categorialicencia = rs.getString("licence_category_Conductor");
-            this.turno = rs.getString("turn_Conductor");
-            this.ciudad = rs.getString("residence_city_Conductor");
-            this.direccion = rs.getString("address_Conductor");
-            this.estadocivil = rs.getString("civil_state_Conductor");
-            this.codigovehiculo = "12";
+            this.setId(Long.parseLong(rs.getString("id_conductor")));
+            this.setIdLicencia(Long.parseLong(rs.getString("id_Licencia_Conductor")));
+            this.setName(rs.getString("name_Conductor"));
+            this.setLastName(rs.getString("last_name_Conductor"));
+            this.setPhone(rs.getString("phone_Conductor"));
+            this.setCellphone(rs.getString("cellphone_Conductor"));
+            this.setBirthDate(rs.getString("birth_date_Conductor"));
+            this.setEmail(rs.getString("email_Conductor"));
+            this.setLicenseCategory(rs.getString("licence_category_Conductor"));
+            this.setTurn(rs.getString("turn_Conductor"));
+            this.setResidenceCity(rs.getString("residence_city_Conductor"));
+            this.setAddress(rs.getString("address_Conductor"));
+            this.setCivilState(rs.getString("civil_state_Conductor"));
+            this.setZone(rs.getString("zone_Conductor"));
+            //this.codigovehiculo = "12";
 
             consultaOK = true;
          }
@@ -251,11 +354,11 @@ public class Conductores {
             return false;
          }
       }
-   public boolean EliminarConductor(long IdentificacionABuscar){
+   public static boolean EliminarConductor(long IdentificacionABuscar){
       try {
          cx = new Conexion();
          con = cx.getConexion();
-         PreparedStatement stmt = con.prepareStatement("DELETE FROM Conductores WHERE (id_Conductor = " + IdentificacionABuscar + ")");
+         PreparedStatement stmt = con.prepareStatement("DELETE FROM tbl_conductores WHERE (id_Conductor = " + IdentificacionABuscar + ")");
          stmt.executeUpdate();
          stmt.close();
          con.close();

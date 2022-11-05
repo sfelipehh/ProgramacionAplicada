@@ -28,13 +28,13 @@
     <children>
         <Label text="Identificación" GridPane.halignment="RIGHT" />
         <TextField fx:id="idField" promptText="Id" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
-        <JFXButton buttonType="RAISED" defaultButton="true" onAction="#doSearch" style="-fx-background-color: rgb(66,208,207);" text="Buscar" GridPane.columnIndex="2" />
+        <JFXButton buttonType="RAISED" defaultButton="true" onAction="#doSearch" style="-fx-background-color: rgb(66,208,207);" text=" Buscar o Crear" GridPane.columnIndex="2" />
         <Label text="Nombre" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
         <Label text="Apellidos" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
         <TextField fx:id="nameField" disable="true" promptText="Nombre" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
         <TextField fx:id="lastNameField" disable="true" promptText="Apellidos" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
-        <Label text="Categoria de Licencia" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-        <ChoiceBox fx:id="categoryLicenceChoiceBox" disable="true" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+        <Label text="Categoria de Licencia" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+        <ChoiceBox fx:id="categoryLicenseChoiceBox" disable="true" prefWidth="150.0" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
         <Label text="Código del Vehículo" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
         <TextField fx:id="idVehiculoField" disable="true" promptText="Id Vehículo" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
         <TextField fx:id="residenceCityField" promptText="Ciudad" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="9" />
@@ -55,6 +55,8 @@
         <Label text="Dirección" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
         <TextField fx:id="addressField" disable="true" promptText="Cll 68 # 393" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="9" />
         <JFXButton fx:id="modificationButton" buttonType="RAISED" disable="true" onAction="#doModification" style="-fx-background-color: rgb(172,208,80);" text="Guardar" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="10" />
+      <Label text="Id Licencia" GridPane.rowIndex="1" />
+      <TextField fx:id="idLicenseField" disable="true" promptText="Id Licencia" GridPane.columnIndex="1" GridPane.rowIndex="1" />
     </children>
     <padding>
         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

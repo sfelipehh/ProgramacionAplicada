@@ -30,10 +30,10 @@
         <Label text="Apellidos" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
         <Label fx:id="nameLabel" text="Nombre" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
         <Label fx:id="lastNameLabel" text="Apellidos" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
-        <Label text="Categoria de Licencia" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-        <Label fx:id="categoryLicenceLabel" text="Licencia" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
-        <Label text="Código del Vehículo" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-        <Label fx:id="idVehiculoLabel" text="Id Vehículo" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+        <Label text="Categoria de Licencia" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+        <Label fx:id="categoryLicenceLabel" text="Licencia" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+        <Label text="Código del Vehículo" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+        <Label fx:id="idVehiculoLabel" text="Id Vehículo" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
         <Label fx:id="residenceCityLabel" text="Ciudad" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="9" />
         <Label fx:id="zoneLabel" text="Barrio" GridPane.columnIndex="1" GridPane.rowIndex="9" />
         <Label text="Ciudad de Residencia y Barrio" textAlignment="CENTER" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
@@ -51,6 +51,8 @@
       <Label fx:id="civilstateLabel" text="SOL" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="8" />
       <Label text="Dirección" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
       <Label fx:id="addressLabel" text="Cll 68 # 393" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="9" />
+      <Label text="Id Licencia" GridPane.rowIndex="1" />
+      <Label fx:id="idLicenseLabel" text="Id Licencia" GridPane.columnIndex="1" GridPane.rowIndex="1" />
     </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

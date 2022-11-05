@@ -18,11 +18,13 @@ public class ModifyAnyConductoresController implements Initializable {
     @FXML
     private TextField idField;
     @FXML
+    private TextField idLicenseField;
+    @FXML
     private TextField nameField;
     @FXML
     private TextField lastNameField;
     @FXML
-    private ChoiceBox<ConductorLicenseCategory> categoryLicenceChoiceBox;
+    private ChoiceBox<ConductorLicenseCategory> categoryLicenseChoiceBox;
     @FXML
     private TextField idVehiculoField;
     @FXML
@@ -48,62 +50,109 @@ public class ModifyAnyConductoresController implements Initializable {
     private final Conductores object = new Conductores();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        categoryLicenceChoiceBox.getItems().addAll(ConductorLicenseCategory.B1,ConductorLicenseCategory.B2);
+        categoryLicenseChoiceBox.getItems().addAll(ConductorLicenseCategory.B1,ConductorLicenseCategory.B2);
         turnChoiceBox.getItems().addAll(ConductorTurn.DIA,ConductorTurn.NOCHE);
         civilstateChoiceBox.getItems().addAll(ConductorCivilState.SOL,ConductorCivilState.NOSOL);
     }
-
+    public void reset(){
+        idField.setText(null);
+        modificationButton.setOnAction(this::doModification);
+    }
     @FXML
     private void doSearch(ActionEvent actionEvent) {
         if (!idField.getText().equals("")){
             if (object.ConsultarConductor(Long.parseLong(idField.getText()))){
                 fillView();
+            }else {
+                setEnabled();
+                modificationButton.setOnAction(this::doCreation);
             }
         }
     }
     private void fillView(){
-        nameField.setText(object.getNombre());
+        idLicenseField.setText(String.valueOf(object.getIdLicencia()));
+        idLicenseField.setDisable(false);
+        nameField.setText(object.getName());
         nameField.setDisable(false);
-        lastNameField.setText(object.getApellido());
+        lastNameField.setText(object.getLastName());
         lastNameField.setDisable(false);
-        categoryLicenceChoiceBox.setValue(ConductorLicenseCategory.valueOf(object.getCategorialicencia()));
-        categoryLicenceChoiceBox.setDisable(false);
+        categoryLicenseChoiceBox.setValue(ConductorLicenseCategory.valueOf(object.getLicenseCategory()));
+        categoryLicenseChoiceBox.setDisable(false);
         idVehiculoField.setText("K");
         idVehiculoField.setDisable(false);
-        residenceCityField.setText(object.getCiudad());
+        residenceCityField.setText(object.getResidenceCity());
         residenceCityField.setDisable(false);
-        zoneField.setText(object.getBarrio());
+        zoneField.setText(object.getZone());
         zoneField.setDisable(false);
-        phoneField.setText(object.getFijo());
+        phoneField.setText(object.getPhone());
         phoneField.setDisable(false);
-        cellphoneField.setText(object.getCelular());
+        cellphoneField.setText(object.getCellphone());
         cellphoneField.setDisable(false);
-        birthdateField.setText(object.getFecha());
+        birthdateField.setText(object.getBirthDate());
         birthdateField.setDisable(false);
-        emailField.setText(object.getCorreo());
+        emailField.setText(object.getEmail());
         emailField.setDisable(false);
-        turnChoiceBox.setValue(ConductorTurn.valueOf(object.getTurno()));
+        turnChoiceBox.setValue(ConductorTurn.valueOf(object.getTurn()));
         turnChoiceBox.setDisable(false);
-        civilstateChoiceBox.setValue(ConductorCivilState.valueOf(object.getEstadocivil()));
+        civilstateChoiceBox.setValue(ConductorCivilState.valueOf(object.getCivilState()));
         civilstateChoiceBox.setDisable(false);
-        addressField.setText(object.getDireccion());
+        addressField.setText(object.getAddress());
+        addressField.setDisable(false);
+        modificationButton.setDisable(false);
+    }
+    private void setEnabled(){
+        idLicenseField.setDisable(false);
+        nameField.setDisable(false);
+        lastNameField.setDisable(false);
+        categoryLicenseChoiceBox.setDisable(false);
+        idVehiculoField.setDisable(false);
+        residenceCityField.setDisable(false);
+        zoneField.setDisable(false);
+        phoneField.setDisable(false);
+        cellphoneField.setDisable(false);
+        birthdateField.setDisable(false);
+        emailField.setDisable(false);
+        turnChoiceBox.setDisable(false);
+        civilstateChoiceBox.setDisable(false);
         addressField.setDisable(false);
         modificationButton.setDisable(false);
     }
     @FXML
     private void doModification(ActionEvent actionEvent) {
-        object.setNombre(nameField.getText());
-        object.setApellido(lastNameField.getText());
-        object.setCategorialicencia(categoryLicenceChoiceBox.getValue().toString());
-        object.setCiudad(residenceCityField.getText());
-        object.setBarrio(zoneField.getText());
-        object.setFijo(phoneField.getText());
-        object.setCelular(cellphoneField.getText());
-        object.setFecha(birthdateField.getText());
-        object.setCorreo(emailField.getText());
-        object.setTurno(turnChoiceBox.getValue().toString());
-        object.setEstadocivil(civilstateChoiceBox.getValue().toString());
-        object.setDireccion(addressField.getText());
+        object.setIdLicencia(Long.parseLong(idLicenseField.getText()));
+        object.setName(nameField.getText());
+        object.setLastName(lastNameField.getText());
+        object.setLicenseCategory(categoryLicenseChoiceBox.getValue().toString());
+        object.setResidenceCity(residenceCityField.getText());
+        object.setZone(zoneField.getText());
+        object.setPhone(phoneField.getText());
+        object.setCellphone(cellphoneField.getText());
+        object.setBirthDate(birthdateField.getText());
+        object.setEmail(emailField.getText());
+        object.setTurn(turnChoiceBox.getValue().toString());
+        object.setCivilState(civilstateChoiceBox.getValue().toString());
+        object.setAddress(addressField.getText());
         object.ActualizarConductor();
+    }
+    private void doCreation(ActionEvent actionEvent){
+        object.setId(Long.parseLong(idField.getText()));
+        object.setIdLicencia(Long.parseLong(idLicenseField.getText()));
+        object.setName(nameField.getText());
+        object.setLastName(lastNameField.getText());
+        object.setLicenseCategory(categoryLicenseChoiceBox.getValue().toString());
+        object.setResidenceCity(residenceCityField.getText());
+        object.setZone(zoneField.getText());
+        object.setPhone(phoneField.getText());
+        object.setCellphone(cellphoneField.getText());
+        object.setBirthDate(birthdateField.getText());
+        object.setEmail(emailField.getText());
+        object.setTurn(turnChoiceBox.getValue().toString());
+        object.setCivilState(civilstateChoiceBox.getValue().toString());
+        object.setAddress(addressField.getText());
+        if (object.GuardarConductor()){
+            System.out.println("Conductor guardado");
+        }else {
+            System.out.println("No guardado");
+        }
     }
 }
