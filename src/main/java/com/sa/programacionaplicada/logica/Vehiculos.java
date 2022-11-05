@@ -85,7 +85,7 @@ public class Vehiculos {
         {
             cx= new Conexion();
             con= cx.getConexion();
-            PreparedStatement stmt = con.prepareStatement("INSERT INTO Vehiculos (codigo,placa,tipo,marca,modelo,descripcion, fechainicio, estadoasignacion) VALUES (?,?,?,?,?,?,?,?)");
+            PreparedStatement stmt = con.prepareStatement("INSERT INTO Vehiculos (id_Vehiculo, placa_Vehiculo,type_Vehiculo,brand_Vehiculo,model_Vehiculo,desc_Vehiculo, start_oper_date_Vehiculo ) VALUES (?,?,?,?,?,?,?)");
 
             stmt.setString(1, "" + this.codigo);
             stmt.setString(2,this.placa);
@@ -112,9 +112,9 @@ public class Vehiculos {
         try {
             cx = new Conexion();
             con = cx.getConexion();
-            PreparedStatement stmt = con.prepareStatement("UPDATE Vehiculos SET Placa = '" +
-                    this.placa + "', Tipo = '" + this.tipo + "', Marca ='" + this.marca + "', Modelo='" + this.modelo+
-                    "' WHERE (Codigo de Vehiculo = " + this.codigo + ")");
+            PreparedStatement stmt = con.prepareStatement("UPDATE Vehiculos SET placa_Vehiculo = '" +
+                    this.placa + "', type_Vehiculo = '" + this.tipo + "', brand_Vehiculo ='" + this.marca + "', model_Vehiculo'" + this.modelo+
+                    "', desc_Vehiculo='" +this.descripcion+"', start_oper_date_Vehiculo ='"+this.fechainicio+"' WHERE (id_Vehiculo= " + this.codigo + ")");
             stmt.executeUpdate();
             stmt.close();
             con.close();
@@ -136,17 +136,17 @@ public class Vehiculos {
             con = cx.getConexion();
             Statement stmt = con.createStatement();
 
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Vehiculos where codigo = " + CodigoABuscar);
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Vehiculos where id_Vehiculo = " + CodigoABuscar);
 
             if (rs.next()) {
                 rs.first();
-                this.codigo = Long.parseLong(rs.getString("Codigo de Vehiculo"));
-                this.placa = rs.getString("Placa");
-                this.tipo = rs.getString("Tipo");
-                this.marca = rs.getString("Marca");
-                this.modelo = rs.getString("Modelo");
-                this.descripcion = rs.getString("Descripcion");
-                this.fechainicio = rs.getString("Fecha de Inicio");
+                this.codigo = Long.parseLong(rs.getString("id_Vehiculo"));
+                this.placa = rs.getString("placa_Vehiculo");
+                this.tipo = rs.getString("type_Vehiculo");
+                this.marca = rs.getString("brand_Vehiculo");
+                this.modelo = rs.getString("model_Vehiculo");
+                this.descripcion = rs.getString("desc_Vehiculo");
+                this.fechainicio = rs.getString("start_oper_date_Vehiculo");
                 this.estadoasignacion = rs.getString("Estado de Asignacion");
 
                 consultaOK = true;
@@ -168,7 +168,7 @@ public class Vehiculos {
         {
             cx = new Conexion();
             con = cx.getConexion();
-            PreparedStatement stmt = con.prepareStatement("DELETE FROM Vehiculos WHERE (codigo = " + CodigoABuscar + ")");
+            PreparedStatement stmt = con.prepareStatement("DELETE FROM Vehiculos WHERE (id_Vehiculo = " + CodigoABuscar + ")");
             stmt.executeUpdate();
             stmt.close();
             con.close();

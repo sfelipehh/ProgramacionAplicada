@@ -157,7 +157,7 @@ public class Conductores {
       {
          cx= new Conexion();
          con= cx.getConexion();
-         PreparedStatement stmt = con.prepareStatement("INSERT INTO Conductores (identificacion, Nombre, Apellido, Genero, Celular, Fijo, Fecha de Nacimiento, Correo Electronico, Numero de Licencia, Categoria de licencia, Turno, Ciudad,  Direccion, Barrio, Estado Civil, Codigo Vehiculo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+         PreparedStatement stmt = con.prepareStatement("INSERT INTO Conductores (id_Conductor, id_licencia_Conductor,name_Conductor, last_name_Conductor, phone_Conductor, cellphone_Conductor, birth_date_Conductor, email_Conductor, licence_category_Conductor, turn_ Conductor, residence_city_Conductor , address_Conductor, zone_ Conductor, civil_state_Conductor) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
          stmt.setString(1, "" + this.identificacion);
          stmt.setString(2,this.nombre);
@@ -193,9 +193,9 @@ public class Conductores {
       try {
          cx = new Conexion();
          con = cx.getConexion();
-         PreparedStatement stmt = con.prepareStatement("UPDATE Clientes SET Nombre = '" +
-                 this.nombre + "', Apellido = '" + this.apellido + "',Fijo='" + this.fijo + "',Celular='" + this.celular +
-                 "' WHERE (identificacion = " + this.identificacion + ")");
+         PreparedStatement stmt = con.prepareStatement("UPDATE Conductores SET name_Conductor = '" +
+                 this.nombre + "', last_name_Conductor = '" + this.apellido + "', phone_Conductor='" + this.fijo + "', cellphone_Conductor='" + this.celular +
+                 "', birth_date_Conductor = '" + this.fecha + " ', email_Conductor = '" + this.correo + "', licence_category_Conductor ='"+ this.categorialicencia + "', id_licencia_Conductor ='"+this.numerolicencia + "', turn_Conductor = '" + this.turno +"', residence_city_Conductor= '" + this.ciudad + "', adress_Conductor ='"+ this.direccion +"', zone_Conductor ='" +this.barrio+"', civil_state_Conductor = '" + this.estadocivil + "' WHERE (id_Conductor = " + this.identificacion + ")");
          stmt.executeUpdate();
          stmt.close();
          con.close();
@@ -255,7 +255,7 @@ public class Conductores {
       try {
          cx = new Conexion();
          con = cx.getConexion();
-         PreparedStatement stmt = con.prepareStatement("DELETE FROM Conductores WHERE (identificacion = " + IdentificacionABuscar + ")");
+         PreparedStatement stmt = con.prepareStatement("DELETE FROM Conductores WHERE (id_Conductor = " + IdentificacionABuscar + ")");
          stmt.executeUpdate();
          stmt.close();
          con.close();
