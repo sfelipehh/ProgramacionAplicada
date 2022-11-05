@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sa.programacionaplicada.presentacion.ConductoresSideController">
+    <JFXTabPane fx:id="tabsContainer" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+        <Tab fx:id="searchAllTab" onSelectionChanged="#searchAll" text="Conductores">
+            <fx:include source="conductor-views/search-all-view.fxml" />
+        </Tab>
+        <Tab fx:id="searchAny" text="Consultar" >
+            <fx:include source="conductor-views/search-any-view.fxml"/>
+        </Tab>
+        <Tab fx:id="modifyAny" text="Modificar" />
+        <Tab fx:id="deleteAny" text="Eliminar" />
+    </JFXTabPane>
+</AnchorPane>

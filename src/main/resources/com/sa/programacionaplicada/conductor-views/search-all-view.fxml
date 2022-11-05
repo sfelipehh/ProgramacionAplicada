@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+
+<TableView fx:id="table" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sa.programacionaplicada.presentacion.conductor.SearchAllConductoresContoller">
+   <columns>
+      <TableColumn fx:id="id" editable="false" prefWidth="75.0" sortable="false" text="Id" />
+      <TableColumn fx:id="idLicencia" editable="false" prefWidth="75.0" sortable="false" text="Id Licencia" />
+      <TableColumn fx:id="name" editable="false" prefWidth="75.0" sortable="false" text="Name" />
+      <TableColumn fx:id="lastName" editable="false" prefWidth="75.0" sortable="false" text="Last Name" />
+      <TableColumn fx:id="phone" editable="false" prefWidth="75.0" sortable="false" text="Phone" />
+      <TableColumn fx:id="cellphone" editable="false" prefWidth="75.0" sortable="false" text="Cellphone" />
+      <TableColumn fx:id="birthDate" editable="false" prefWidth="75.0" sortable="false" text="Birth Date" />
+      <TableColumn fx:id="email" editable="false" prefWidth="75.0" sortable="false" text="Email" />
+      <TableColumn fx:id="licenceCategory" editable="false" prefWidth="75.0" sortable="false" text="Licence Category" />
+      <TableColumn fx:id="turn" editable="false" prefWidth="75.0" sortable="false" text="Turn" />
+      <TableColumn fx:id="residenceCity" editable="false" prefWidth="75.0" sortable="false" text="Residence City" />
+      <TableColumn fx:id="address" editable="false" prefWidth="75.0" sortable="false" text="Address" />
+      <TableColumn fx:id="zone" editable="false" prefWidth="75.0" sortable="false" text="Zone" />
+      <TableColumn fx:id="civilState" editable="false" prefWidth="75.0" sortable="false" text="Civil State" />
+   </columns>
+</TableView>

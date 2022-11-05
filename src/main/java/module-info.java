@@ -8,6 +8,8 @@ module com.sa.programacionaplicada {
     requires mysql.connector.j;
 
     opens com.sa.programacionaplicada to javafx.fxml;
-    //opens com.sa.programacionaplicada.presentacion to javafx.fxml;
+    opens com.sa.programacionaplicada.presentacion to javafx.fxml;
+    opens com.sa.programacionaplicada.presentacion.conductor to javafx.fxml;
+    opens com.sa.programacionaplicada.logica to javafx.base;
     exports com.sa.programacionaplicada;
 }
