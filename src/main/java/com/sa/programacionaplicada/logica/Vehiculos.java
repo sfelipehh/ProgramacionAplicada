@@ -1,7 +1,7 @@
-package com.sa.programacionaplicada;
-import java.sql.*;
+package com.sa.programacionaplicada.logica;
+import com.sa.programacionaplicada.logica.Conexion;
 
-import javax.swing.table.DefaultTableModel;
+import java.sql.*;
 
 public class Vehiculos {
     static Connection con;
@@ -85,7 +85,7 @@ public class Vehiculos {
         {
             cx= new Conexion();
             con= cx.getConexion();
-            PreparedStatement stmt = con.prepareStatement(''INSERT INTO Vehiculos (codigo,placa,tipo,marca,modelo,descripcion, fechainicio, estadoasignacion) VALUES (?,?,?,?,?,?,?,?)'');
+            PreparedStatement stmt = con.prepareStatement("INSERT INTO Vehiculos (codigo,placa,tipo,marca,modelo,descripcion, fechainicio, estadoasignacion) VALUES (?,?,?,?,?,?,?,?)");
 
             stmt.setString(1, "" + this.codigo);
             stmt.setString(2,this.placa);
@@ -129,48 +129,38 @@ public class Vehiculos {
 
     }
 
-    public boolean ConsultarVehiculo((long CodigoABuscar){
+    public boolean ConsultarVehiculo(long CodigoABuscar){
         try {
-            boolean consultaOK=false;
+            boolean consultaOK = false;
             cx = new Conexion();
             con = cx.getConexion();
             Statement stmt = con.createStatement();
 
-            ResultSet rs = stmt.executeQuery ("SELECT * FROM Vehiculos where codigo = " +
-                   CodigoABuscar);
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Vehiculos where codigo = " + CodigoABuscar);
 
-            if (rs.next()==true) {
+            if (rs.next()) {
                 rs.first();
-                this.codigo= Long.parseLong(rs.getString("Codigo de Vehiculo"));
-                this.placa=rs.getString("Placa");
-                this.tipo=rs.getString("Tipo");
-                this.marca=rs.getString("Marca");
-                this.modelo=rs.getString("Modelo");
-                this.descripcion= rs.getString("Descripcion");
-                this.fechainicio=rs.getString("Fecha de Inicio");
-                this.estadoasignacion=rs.getString("Estado de Asignacion");
+                this.codigo = Long.parseLong(rs.getString("Codigo de Vehiculo"));
+                this.placa = rs.getString("Placa");
+                this.tipo = rs.getString("Tipo");
+                this.marca = rs.getString("Marca");
+                this.modelo = rs.getString("Modelo");
+                this.descripcion = rs.getString("Descripcion");
+                this.fechainicio = rs.getString("Fecha de Inicio");
+                this.estadoasignacion = rs.getString("Estado de Asignacion");
 
-                consultaOK= true;
+                consultaOK = true;
             }
-            else
-            {
-                consultaOK=false;
-            }
-
             stmt.close();
             con.close();
-
             return consultaOK;
- catch ( Exception e )
+        }
+        catch ( Exception e )
             {
                 System.out.println(e.getMessage());
                 return false;
             }
-
-
         }
-
-    }
 
     public boolean EliminarVehiculo(long CodigoABuscar){
 
@@ -178,9 +168,7 @@ public class Vehiculos {
         {
             cx = new Conexion();
             con = cx.getConexion();
-            PreparedStatement stmt = con.prepareStatement("DELETE FROM Vehiculos WHERE
-            (codigo = " + CodigoABuscar + ")");
-
+            PreparedStatement stmt = con.prepareStatement("DELETE FROM Vehiculos WHERE (codigo = " + CodigoABuscar + ")");
             stmt.executeUpdate();
             stmt.close();
             con.close();

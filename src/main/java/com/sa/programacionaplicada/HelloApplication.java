@@ -1,5 +1,6 @@
 package com.sa.programacionaplicada;
 
+import com.sa.programacionaplicada.logica.Conductores;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,6 +16,8 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
+        Conductores conductores1 = new Conductores();
+        System.out.println(conductores1.ConsultarConductor(1));
 
     }
 

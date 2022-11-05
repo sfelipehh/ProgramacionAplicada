@@ -1,7 +1,7 @@
-package com.sa.programacionaplicada;
+package com.sa.programacionaplicada.logica;
+
 import java.sql.*;
 
-import javax.swing.table.DefaultTableModel;
 public class Conductores {
 
    static Connection con;
@@ -157,7 +157,7 @@ public class Conductores {
       {
          cx= new Conexion();
          con= cx.getConexion();
-         PreparedStatement stmt = con.prepareStatement(''INSERT INTO Conductores (identificacion, Nombre, Apellido, Genero, Celular, Fijo, Fecha de Nacimiento, Correo Electronico, Numero de Licencia, Categoria de licencia, Turno, Ciudad,  Direccion, Barrio, Estado Civil, Codigo Vehiculo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)'');
+         PreparedStatement stmt = con.prepareStatement("INSERT INTO Conductores (identificacion, Nombre, Apellido, Genero, Celular, Fijo, Fecha de Nacimiento, Correo Electronico, Numero de Licencia, Categoria de licencia, Turno, Ciudad,  Direccion, Barrio, Estado Civil, Codigo Vehiculo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
          stmt.setString(1, "" + this.identificacion);
          stmt.setString(2,this.nombre);
@@ -210,65 +210,52 @@ public class Conductores {
 
    }
 
-   public boolean ConsultarConductor((long IdentificacionABuscar){
+   public boolean ConsultarConductor(long IdentificacionABuscar){
       try {
-         boolean consultaOK=false;
+         boolean consultaOK = false;
          cx = new Conexion();
          con = cx.getConexion();
          Statement stmt = con.createStatement();
 
-         ResultSet rs = stmt.executeQuery ("SELECT * FROM Conductores where identificacion = " +
+         ResultSet rs = stmt.executeQuery("SELECT * FROM tbl_conductores WHERE id_conductor = " +
                  IdentificacionABuscar);
 
-         if (rs.next()==true) {
-            rs.first();
-            this.identificacion= Long.parseLong(rs.getString("Identificacion"));
-            this.nombre=rs.getString("Nombre");
-            this.apellido=rs.getString("Apellido");
-            this.genero=rs.getString("Genero");
-            this.celular=rs.getString("Celular");
-            this.fijo= rs.getString("Fijo");
-            this.fecha=rs.getString("Fecha de Nacimiento");
-            this.correo=rs.getString("Correo Electronico");
-            this.numerolicencia=rs.getString("Numero de Licencia");
-            this.categorialicencia=rs.getString("Categoria de Licencia");
-            this.turno= rs.getString("Turno");
-            this.ciudad=rs.getString("Ciudad");
-            this.direccion=rs.getString("Direccion");
-            this.estadocivil=rs.getString("Estado Civil");
-            this.codigovehiculo=rs.getString("Codigo Vehiculo");
+         if (rs.next()) {
+            this.identificacion = Long.parseLong(rs.getString("id_conductor"));
+            this.nombre = rs.getString("name_Conductor");
+            this.apellido = rs.getString("last_name_Conductor");
+            this.genero = "K";
+            this.celular = rs.getString("cellphone_Conductor");
+            this.fijo = rs.getString("phone_Conductor");
+            this.fecha = rs.getString("birth_date_Conductor");
+            this.correo = rs.getString("email_Conductor");
+            this.numerolicencia = rs.getString("id_Licencia_Conductor");
+            this.categorialicencia = rs.getString("licence_category_Conductor");
+            this.turno = rs.getString("turn_Conductor");
+            this.ciudad = rs.getString("residence_city_Conductor");
+            this.direccion = rs.getString("address_Conductor");
+            this.estadocivil = rs.getString("civil_state_Conductor");
+            this.codigovehiculo = "12";
 
-            consultaOK= true;
-         }
-         else
-         {
-            consultaOK=false;
+            consultaOK = true;
          }
 
          stmt.close();
          con.close();
 
          return consultaOK;
- catch ( Exception e )
+      }
+      catch ( Exception e )
          {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
             return false;
          }
-
-
       }
-
-      }
-
    public boolean EliminarConductor(long IdentificacionABuscar){
-
-      try
-      {
+      try {
          cx = new Conexion();
          con = cx.getConexion();
-         PreparedStatement stmt = con.prepareStatement("DELETE FROM Conductores WHERE
-         (identificacion = " + IdentificacionABuscar + ")");
-
+         PreparedStatement stmt = con.prepareStatement("DELETE FROM Conductores WHERE (identificacion = " + IdentificacionABuscar + ")");
          stmt.executeUpdate();
          stmt.close();
          con.close();
