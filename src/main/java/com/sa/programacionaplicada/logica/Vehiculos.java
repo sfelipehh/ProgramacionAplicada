@@ -6,7 +6,6 @@ import java.sql.*;
 public class Vehiculos {
     static Connection con;
     static Conexion cx;
-
     private long codigo;
     private String placa;
     private String tipo;

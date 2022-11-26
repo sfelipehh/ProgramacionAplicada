@@ -22,6 +22,8 @@ public class SearchAllConductoresContoller implements Initializable {
     @FXML
     private TableColumn<Conductores,Long> idLicencia;
     @FXML
+    private TableColumn<Conductores, Long> idVehiculo;
+    @FXML
     private TableColumn<Conductores,String> name;
     @FXML
     private TableColumn<Conductores,String> lastName;
@@ -64,6 +66,7 @@ public class SearchAllConductoresContoller implements Initializable {
     private void setupColumns(){
         id.setCellValueFactory(new PropertyValueFactory<>(conductoress.get(0).idProperty().getName()));
         idLicencia.setCellValueFactory(new PropertyValueFactory<>(conductoress.get(0).idLicenciaProperty().getName()));
+        idVehiculo.setCellValueFactory(new PropertyValueFactory<>(conductoress.get(0).idVehiculoProperty().getName()));
         name.setCellValueFactory(new PropertyValueFactory<>(conductoress.get(0).nameProperty().getName()));
         lastName.setCellValueFactory(new PropertyValueFactory<>(conductoress.get(0).lastNameProperty().getName()));
         phone.setCellValueFactory(new PropertyValueFactory<>(conductoress.get(0).phoneProperty().getName()));

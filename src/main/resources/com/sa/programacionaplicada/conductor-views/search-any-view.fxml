@@ -34,14 +34,14 @@
       <Label text="Categoria de Licencia" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <CheckBox fx:id="searchByLicenseCategory" mnemonicParsing="false" text="Buscar Por" GridPane.rowIndex="3" />
       <ChoiceBox fx:id="categoryLicenceChoiceBox" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-      <CheckBox fx:id="searchByIdVehiculo" mnemonicParsing="false" text="Buscar Por" GridPane.rowIndex="4" />
+      <CheckBox fx:id="searchByIdVehiculo" disable="true" mnemonicParsing="false" text="Buscar Por" GridPane.rowIndex="4" />
       <Label text="Código del Vehículo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <TextField fx:id="idVehiculoField" promptText="Id Vehículo" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+      <TextField fx:id="idVehiculoField" disable="true" promptText="Id Vehículo" GridPane.columnIndex="2" GridPane.rowIndex="4" />
       <CheckBox fx:id="searchByResidenceCityAndZone" mnemonicParsing="false" text="Buscar Por" GridPane.rowIndex="5" />
       <TextField fx:id="residenceCityField" promptText="Ciudad" GridPane.columnIndex="2" GridPane.rowIndex="5" />
       <TextField fx:id="zoneField" promptText="Barrio" GridPane.columnIndex="3" GridPane.rowIndex="5" />
       <Label text="Ciudad de Residencia y Barrio" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <JFXButton onAction="#doSearch" buttonType="RAISED" defaultButton="true" mnemonicParsing="false" style="-fx-background-color: rgb(66,208,207);" text="Buscar" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+      <JFXButton buttonType="RAISED" defaultButton="true" mnemonicParsing="false" onAction="#doSearch" style="-fx-background-color: rgb(66,208,207);" text="Buscar" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6" />
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

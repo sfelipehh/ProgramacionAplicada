@@ -6,6 +6,7 @@
    <columns>
       <TableColumn fx:id="id" editable="false" prefWidth="75.0" sortable="false" text="Id" />
       <TableColumn fx:id="idLicencia" editable="false" prefWidth="75.0" sortable="false" text="Id Licencia" />
+      <TableColumn fx:id="idVehiculo" editable="false" prefWidth="75.0" sortable="false" text="Id Vehiculo" />
       <TableColumn fx:id="name" editable="false" prefWidth="75.0" sortable="false" text="Name" />
       <TableColumn fx:id="lastName" editable="false" prefWidth="75.0" sortable="false" text="Last Name" />
       <TableColumn fx:id="phone" editable="false" prefWidth="75.0" sortable="false" text="Phone" />

@@ -17,7 +17,7 @@ public class HelloApplication extends Application {
         stage.setResizable(false);
         stage.show();
         Conductores conductores1 = new Conductores();
-        System.out.println(conductores1.ConsultarConductor(1));
+        System.out.println(conductores1.ConsultarConductorPorId(1));
 
     }
 

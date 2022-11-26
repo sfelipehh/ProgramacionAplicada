@@ -61,7 +61,7 @@ public class ModifyAnyConductoresController implements Initializable {
     @FXML
     private void doSearch(ActionEvent actionEvent) {
         if (!idField.getText().equals("")){
-            if (object.ConsultarConductor(Long.parseLong(idField.getText()))){
+            if (object.ConsultarConductorPorId(Long.parseLong(idField.getText()))){
                 fillView();
             }else {
                 setEnabled();

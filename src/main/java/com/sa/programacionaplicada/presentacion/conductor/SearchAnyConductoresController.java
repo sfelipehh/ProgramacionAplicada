@@ -62,10 +62,37 @@ public class SearchAnyConductoresController implements Initializable {
     @FXML
     private void doSearch(ActionEvent actionEvent) {
         if (searchById.isSelected()){
-            if (result.ConsultarConductor(Long.parseLong(idField.getText()))){
+            if (result.ConsultarConductorPorId(Long.parseLong(idField.getText()))){
                 resultController.fillView(result);
                 resultDialog.show();
             }
+        }else
+        if (searchByName.isSelected()){
+            if (result.ConsultarConductorPorNombre(nameField.getText())){
+                resultController.fillView(result);
+                resultDialog.show();
+            }
+        }else
+        if (searchByLastName.isSelected()){
+            if (result.ConsultarConductorPorApellido(lastNameField.getText())){
+                resultController.fillView(result);
+                resultDialog.show();
+            }
+        }else
+        if(searchByLicenseCategory.isSelected()){
+            if (result.ConsultarConductorPorCategoriaLicencia(categoryLicenceChoiceBox.getValue().toString())){
+                resultController.fillView(result);
+                resultDialog.show();
+            }
+        }else
+        if(searchByResidenceCityAndZone.isSelected()){
+            if (result.ConsultarConductorPorCiudadYBarrio(residenceCityField.getText(), zoneField.getText())){
+                resultController.fillView(result);
+                resultDialog.show();
+            }
+        }
+        else {
+            System.out.println("No encontrado");
         }
     }
 }

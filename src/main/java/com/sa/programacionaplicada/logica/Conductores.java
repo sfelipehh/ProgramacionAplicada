@@ -15,6 +15,7 @@ public class Conductores {
 
    private final LongProperty id = new SimpleLongProperty(this,"id",0);
    private final LongProperty idLicencia = new SimpleLongProperty(this,"idLicencia");
+   private final LongProperty idVehiculo = new SimpleLongProperty(this,"idVehiculo");
    private final StringProperty name = new SimpleStringProperty(this,"name");
    private final StringProperty lastName = new SimpleStringProperty(this,"lastName");
    private final StringProperty phone = new SimpleStringProperty(this,"phone");
@@ -58,6 +59,29 @@ public class Conductores {
       setAddress(address);
       setZone(zone);
       setCivilState(civilState);
+   }
+
+   public long getId() {
+      return id.get();
+   }
+
+   public LongProperty idProperty() {
+      return id;
+   }
+
+   public void setId(Long id) {
+      this.id.set(id);
+   }
+   public long getIdVehiculo() {
+      return idVehiculo.get();
+   }
+
+   public LongProperty idVehiculoProperty() {
+      return idVehiculo;
+   }
+
+   public void setIdVehiculo(long idVehiculo) {
+      this.idVehiculo.set(idVehiculo);
    }
 
    public long getIdLicencia() {
@@ -216,24 +240,12 @@ public class Conductores {
       this.civilState.set(civilState);
    }
 
-   public long getId() {
-      return id.get();
-   }
-
-   public LongProperty idProperty() {
-      return id;
-   }
-
-   public void setId(Long id) {
-      this.id.set(id);
-   }
-
    public boolean GuardarConductor(){
       try
       {
          cx= new Conexion();
          con= cx.getConexion();
-         PreparedStatement stmt = con.prepareStatement("INSERT INTO tbl_conductores (id_Conductor, id_licencia_Conductor,name_Conductor, last_name_Conductor, phone_Conductor, cellphone_Conductor, birth_date_Conductor, email_Conductor, licence_category_Conductor, turn_Conductor, residence_city_Conductor , address_Conductor, zone_Conductor, civil_state_Conductor) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+         PreparedStatement stmt = con.prepareStatement("INSERT INTO tbl_conductores (id_Conductor, id_licencia_Conductor,name_Conductor, last_name_Conductor, phone_Conductor, cellphone_Conductor, birth_date_Conductor, email_Conductor, licence_category_Conductor, turn_Conductor, residence_city_Conductor , address_Conductor, zone_Conductor, civil_state_Conductor, fk_id_Vehiculo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
          stmt.setString(1, String.valueOf(this.getId()));
          stmt.setString(2, String.valueOf(this.getIdLicencia()));
@@ -249,7 +261,7 @@ public class Conductores {
          stmt.setString(12,this.getAddress());
          stmt.setString(13,this.getZone());
          stmt.setString(14,this.getCivilState());
-         //stmt.setString(15,this.codigovehiculo);
+         stmt.setString(15, String.valueOf(this.getIdVehiculo()));
          stmt.executeUpdate();
          stmt.close();
          con.close();
@@ -269,7 +281,17 @@ public class Conductores {
          con = cx.getConexion();
          PreparedStatement stmt = con.prepareStatement("UPDATE tbl_conductores SET name_Conductor = '" +
                  this.getName() + "', last_name_Conductor = '" + this.getLastName() + "', phone_Conductor='" + this.getPhone() + "', cellphone_Conductor='" + this.getCellphone() +
-                 "', birth_date_Conductor = '" + this.getBirthDate() + " ', email_Conductor = '" + this.getEmail() + "', licence_category_Conductor ='"+ this.getLicenseCategory() + "', id_licencia_Conductor ='"+this.getIdLicencia() + "', turn_Conductor = '" + this.getTurn() +"', residence_city_Conductor= '" + this.getResidenceCity() + "', address_Conductor ='"+ this.getAddress() +"', zone_Conductor ='" +this.getZone()+"', civil_state_Conductor = '" + this.getCivilState() + "' WHERE (id_Conductor = " + this.getId() + ")");
+                 "', birth_date_Conductor = '" + this.getBirthDate()
+                 + " ', email_Conductor = '" + this.getEmail()
+                 + "', licence_category_Conductor ='"
+                 + this.getLicenseCategory()
+                 + "', id_licencia_Conductor ='"+this.getIdLicencia()
+                 + "', turn_Conductor = '" + this.getTurn()
+                 + "', residence_city_Conductor= '" + this.getResidenceCity()
+                 + "', address_Conductor ='"+ this.getAddress()
+                 + "', zone_Conductor ='" +this.getZone()
+                 + "', civil_state_Conductor = '" + this.getCivilState()
+                 + "',fk_id_Vehiculo = '" + this.getIdVehiculo() + "' WHERE (id_Conductor = " + this.getId() + ")");
          stmt.executeUpdate();
          stmt.close();
          con.close();
@@ -293,6 +315,8 @@ public class Conductores {
             Conductores actual_row = new Conductores();
             actual_row.setId(Long.parseLong(rs.getString("id_conductor")));
             actual_row.setIdLicencia(Long.parseLong(rs.getString("id_Licencia_Conductor")));
+            String idVehiculo = rs.getString("fk_id_Vehiculo");
+            actual_row.setIdVehiculo(idVehiculo!=null ? Long.parseLong(idVehiculo) : 0);
             actual_row.setName(rs.getString("name_Conductor"));
             actual_row.setLastName(rs.getString("last_name_Conductor"));
             actual_row.setPhone(rs.getString("phone_Conductor"));
@@ -313,7 +337,7 @@ public class Conductores {
       }
       return resultList;
    }
-   public boolean ConsultarConductor(long IdentificacionABuscar){
+   public boolean ConsultarConductorPorId(long IdentificacionABuscar){
       try {
          boolean consultaOK = false;
          cx = new Conexion();
@@ -322,6 +346,48 @@ public class Conductores {
 
          ResultSet rs = stmt.executeQuery("SELECT * FROM tbl_conductores WHERE id_conductor = " +
                  IdentificacionABuscar);
+
+         if (rs.next()) {
+            this.setId(Long.parseLong(rs.getString("id_conductor")));
+            this.setIdLicencia(Long.parseLong(rs.getString("id_Licencia_Conductor")));
+            this.setIdVehiculo(Long.parseLong(rs.getString("fk_id_Vehiculo")));
+            this.setName(rs.getString("name_Conductor"));
+            this.setLastName(rs.getString("last_name_Conductor"));
+            this.setPhone(rs.getString("phone_Conductor"));
+            this.setCellphone(rs.getString("cellphone_Conductor"));
+            this.setBirthDate(rs.getString("birth_date_Conductor"));
+            this.setEmail(rs.getString("email_Conductor"));
+            this.setLicenseCategory(rs.getString("licence_category_Conductor"));
+            this.setTurn(rs.getString("turn_Conductor"));
+            this.setResidenceCity(rs.getString("residence_city_Conductor"));
+            this.setAddress(rs.getString("address_Conductor"));
+            this.setCivilState(rs.getString("civil_state_Conductor"));
+            this.setZone(rs.getString("zone_Conductor"));
+
+            consultaOK = true;
+         }
+
+         stmt.close();
+         con.close();
+
+         return consultaOK;
+      }
+      catch ( Exception e )
+         {
+            e.printStackTrace();
+            return false;
+         }
+   }
+
+   public boolean ConsultarConductorPorNombre(String nombreABuscar){
+      try {
+         boolean consultaOK = false;
+         cx = new Conexion();
+         con = cx.getConexion();
+         Statement stmt = con.createStatement();
+
+         ResultSet rs = stmt.executeQuery("SELECT * FROM tbl_conductores WHERE name_Conductor = '" +
+                 nombreABuscar + "'");
 
          if (rs.next()) {
             this.setId(Long.parseLong(rs.getString("id_conductor")));
@@ -349,11 +415,135 @@ public class Conductores {
          return consultaOK;
       }
       catch ( Exception e )
-         {
-            e.printStackTrace();
-            return false;
-         }
+      {
+         e.printStackTrace();
+         return false;
       }
+   }
+   public boolean ConsultarConductorPorApellido(String apellidoABuscar){
+      try {
+         boolean consultaOK = false;
+         cx = new Conexion();
+         con = cx.getConexion();
+         Statement stmt = con.createStatement();
+
+         ResultSet rs = stmt.executeQuery("SELECT * FROM tbl_conductores WHERE last_name_Conductor = '" +
+                 apellidoABuscar + "'");
+
+         if (rs.next()) {
+            this.setId(Long.parseLong(rs.getString("id_conductor")));
+            this.setIdLicencia(Long.parseLong(rs.getString("id_Licencia_Conductor")));
+            this.setName(rs.getString("name_Conductor"));
+            this.setLastName(rs.getString("last_name_Conductor"));
+            this.setPhone(rs.getString("phone_Conductor"));
+            this.setCellphone(rs.getString("cellphone_Conductor"));
+            this.setBirthDate(rs.getString("birth_date_Conductor"));
+            this.setEmail(rs.getString("email_Conductor"));
+            this.setLicenseCategory(rs.getString("licence_category_Conductor"));
+            this.setTurn(rs.getString("turn_Conductor"));
+            this.setResidenceCity(rs.getString("residence_city_Conductor"));
+            this.setAddress(rs.getString("address_Conductor"));
+            this.setCivilState(rs.getString("civil_state_Conductor"));
+            this.setZone(rs.getString("zone_Conductor"));
+            //this.codigovehiculo = "12";
+
+            consultaOK = true;
+         }
+
+         stmt.close();
+         con.close();
+
+         return consultaOK;
+      }
+      catch ( Exception e )
+      {
+         e.printStackTrace();
+         return false;
+      }
+   }
+   public boolean ConsultarConductorPorCategoriaLicencia(String caegoriaABuscar){
+      try {
+         boolean consultaOK = false;
+         cx = new Conexion();
+         con = cx.getConexion();
+         Statement stmt = con.createStatement();
+
+         ResultSet rs = stmt.executeQuery("SELECT * FROM tbl_conductores WHERE licence_category_Conductor = '" +
+                 caegoriaABuscar + "'");
+
+         if (rs.next()) {
+            this.setId(Long.parseLong(rs.getString("id_conductor")));
+            this.setIdLicencia(Long.parseLong(rs.getString("id_Licencia_Conductor")));
+            this.setName(rs.getString("name_Conductor"));
+            this.setLastName(rs.getString("last_name_Conductor"));
+            this.setPhone(rs.getString("phone_Conductor"));
+            this.setCellphone(rs.getString("cellphone_Conductor"));
+            this.setBirthDate(rs.getString("birth_date_Conductor"));
+            this.setEmail(rs.getString("email_Conductor"));
+            this.setLicenseCategory(rs.getString("licence_category_Conductor"));
+            this.setTurn(rs.getString("turn_Conductor"));
+            this.setResidenceCity(rs.getString("residence_city_Conductor"));
+            this.setAddress(rs.getString("address_Conductor"));
+            this.setCivilState(rs.getString("civil_state_Conductor"));
+            this.setZone(rs.getString("zone_Conductor"));
+            //this.codigovehiculo = "12";
+
+            consultaOK = true;
+         }
+
+         stmt.close();
+         con.close();
+
+         return consultaOK;
+      }
+      catch ( Exception e )
+      {
+         e.printStackTrace();
+         return false;
+      }
+   }
+   public boolean ConsultarConductorPorCiudadYBarrio(String ciudadABuscar, String barrioABuscar){
+      try {
+         boolean consultaOK = false;
+         cx = new Conexion();
+         con = cx.getConexion();
+         Statement stmt = con.createStatement();
+
+         ResultSet rs = stmt.executeQuery("SELECT * FROM tbl_conductores WHERE residence_city_Conductor = '" +
+                 ciudadABuscar + "' AND zone_Conductor= '" + barrioABuscar + "'");
+
+         if (rs.next()) {
+            this.setId(Long.parseLong(rs.getString("id_conductor")));
+            this.setIdLicencia(Long.parseLong(rs.getString("id_Licencia_Conductor")));
+            this.setName(rs.getString("name_Conductor"));
+            this.setLastName(rs.getString("last_name_Conductor"));
+            this.setPhone(rs.getString("phone_Conductor"));
+            this.setCellphone(rs.getString("cellphone_Conductor"));
+            this.setBirthDate(rs.getString("birth_date_Conductor"));
+            this.setEmail(rs.getString("email_Conductor"));
+            this.setLicenseCategory(rs.getString("licence_category_Conductor"));
+            this.setTurn(rs.getString("turn_Conductor"));
+            this.setResidenceCity(rs.getString("residence_city_Conductor"));
+            this.setAddress(rs.getString("address_Conductor"));
+            this.setCivilState(rs.getString("civil_state_Conductor"));
+            this.setZone(rs.getString("zone_Conductor"));
+            //this.codigovehiculo = "12";
+
+            consultaOK = true;
+         }
+
+         stmt.close();
+         con.close();
+
+         return consultaOK;
+      }
+      catch ( Exception e )
+      {
+         e.printStackTrace();
+         return false;
+      }
+   }
+
    public static boolean EliminarConductor(long IdentificacionABuscar){
       try {
          cx = new Conexion();
