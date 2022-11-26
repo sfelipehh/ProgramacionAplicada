@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane hgap="5.0" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sa.programacionaplicada.presentacion.grupos.ModifyAnyGrupoController">
+    <columnConstraints>
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="120.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <Label text="Código Grupo" GridPane.halignment="RIGHT" />
+        <TextField fx:id="idField" promptText="Id" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
+        <JFXButton buttonType="RAISED" defaultButton="true" onAction="#doSearch" style="-fx-background-color: rgb(66,208,207);" text=" Buscar o Crear" GridPane.columnIndex="2" />
+        <Label text="Salon Asigado" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+        <Label text="Docente Asignado" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+        <TextField fx:id="salonField" disable="true" promptText="Nombre" text="Salon" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+        <TextField fx:id="docenteField" disable="true" promptText="Apellidos" text="Docente" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+        <Label text="Cantidad  Inscritos" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+        <ChoiceBox fx:id="idAsignaturaChoiceBox" disable="true" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+        <JFXButton fx:id="modificationButton" buttonType="RAISED" disable="true"  style="-fx-background-color: rgb(172,208,80);" text="Guardar" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+        <Label text="Id Asignatura" GridPane.rowIndex="1" />
+        <TextField fx:id="candidadInscritosField" disable="true" promptText="Id Licencia" text="Id Asignaturas" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+    </children>
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+</GridPane>

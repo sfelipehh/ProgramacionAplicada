@@ -4,19 +4,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sa.programacionaplicada.presentacion.ConductoresSideController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sa.programacionaplicada.presentacion.GruposSideController">
     <JFXTabPane fx:id="tabsContainer" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
         <Tab fx:id="searchAllTab" onSelectionChanged="#searchAll" text="Conductores">
-            <fx:include fx:id="search" source="conductor-views/search-all-view.fxml" />
+            <fx:include fx:id="search" source="grupos-views/grupos-all-view.fxml" />
         </Tab>
-        <Tab fx:id="searchAny" text="Consultar">
+        <!---<Tab fx:id="searchAny" text="Consultar">
             <fx:include source="conductor-views/search-any-view.fxml" />
-        </Tab>
+        </Tab>-->
         <Tab fx:id="modifyAny" onSelectionChanged="#resetModify" text="Modificar">
-            <fx:include fx:id="modify" source="conductor-views/modify-any-view.fxml" />
+            <fx:include fx:id="modify" source="grupos-views/modify-grupo-view.fxml" />
         </Tab>
-        <Tab fx:id="deleteAny" text="Eliminar">
+        <!--<Tab fx:id="deleteAny" text="Eliminar">
             <fx:include source="conductor-views/delete-any-view.fxml" />
-        </Tab>
+        </Tab>-->
     </JFXTabPane>
 </AnchorPane>

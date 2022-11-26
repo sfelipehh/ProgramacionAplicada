@@ -3,7 +3,7 @@ import java.sql.*;
 
 public class Conexion {
     public Connection getConexion(){
-        String connectString = "jdbc:mysql://localhost:3306/vehiculosyconductores";
+        String connectString = "jdbc:mysql://localhost:3306/gruposuniversidad";
         String user = "saProgramacion";
         String password = "saProgramacion";
         try

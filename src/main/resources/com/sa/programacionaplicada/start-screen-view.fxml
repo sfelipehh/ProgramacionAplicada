@@ -12,8 +12,7 @@
             <Font size="18.0" />
          </font></Label>
       <HBox id="container" fx:id="container" alignment="CENTER" prefHeight="600.0" prefWidth="600.0" spacing="50.0">
-         <JFXButton buttonType="RAISED" onAction="#loadConductoresSide" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: rgb(0,188,212);" text="Conductores" />
-         <JFXButton buttonType="RAISED" onAction="#loadVehiculosSide" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color:darkorange;" text="Vehiculos" />
+         <JFXButton buttonType="RAISED" onAction="#loadConductoresSide" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: rgb(0,188,212);" text="Grupos" />
       </HBox>
    </children>
 </AnchorPane>

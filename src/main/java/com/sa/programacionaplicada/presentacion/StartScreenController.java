@@ -16,7 +16,7 @@ public class StartScreenController {
 
     @FXML
     private void loadConductoresSide(ActionEvent actionEvent) {
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("conductores-side-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("grupos-side-view.fxml"));
         Stage window = (Stage) container.getScene().getWindow();
         try {
             window.setScene(new Scene(loader.load(), 600, 600));

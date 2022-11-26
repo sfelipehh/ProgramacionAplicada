@@ -9,7 +9,7 @@ module com.sa.programacionaplicada {
 
     opens com.sa.programacionaplicada to javafx.fxml;
     opens com.sa.programacionaplicada.presentacion to javafx.fxml;
-    opens com.sa.programacionaplicada.presentacion.conductor to javafx.fxml;
+    opens com.sa.programacionaplicada.presentacion.grupos to javafx.fxml;
     exports com.sa.programacionaplicada;
     exports com.sa.programacionaplicada.logica;
     opens com.sa.programacionaplicada.logica to javafx.base, javafx.fxml;
