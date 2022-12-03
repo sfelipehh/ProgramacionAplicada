@@ -6,8 +6,10 @@
 
 ## Planeación Proyecto Final
 
+<div style="background:#0D1117">
+
 ````mermaid
-%%{init: { 'theme':'dark', 'securityLevel':'loose', 'themeVariables':{'background':'#1d1634','sectionBkgColor' : '#d39aff', 'sectionBkgColor2':'#ff665a', 'gridColor':'#00ffe7', 'textColor':'#00ffe7'} ,"gantt":{ "barGap": 10,"fontSize":15, "sectionFontSize":15, "numberSectionStyles":3}} }%%
+%%{init: { 'theme':'dark', 'securityLevel':'loose', 'themeVariables':{'darkMode':true,   'background':'#1d1634','sectionBkgColor' : '#d39aff', 'sectionBkgColor2':'#ff665a', 'gridColor':'#00ffe7', 'textColor':'#00ffe7'} ,"gantt":{ "barGap": 10,"fontSize":15, "sectionFontSize":15, "numberSectionStyles":3}} }%%
 gantt
 
     title Planificación Proyecto Final
@@ -58,4 +60,39 @@ gantt
 
     Entrega : milestone, m2, 2022-12-12,2m
 ````
+</div>
 
+## Modelo Entidad - Relación
+<div style="background:#0D1117">
+
+````mermaid
+%%{init: {'theme':'dark', 'themeCSS':'defs marker path {stroke:#edf1e4;}', 'themeVariables':{'primaryBorderColor':'#ffe9e9','lineColor':'#f0e1eb', 'textColor': '#db5f09','primaryColor':'#579cbc','attributeBackgroundColorOdd':'#cfc1d7','tertiaryColor':'#2d313b', 'attributeBackgroundColorEven':'#efc5d4'}}}%%
+erDiagram
+    Sede ||--|{ Empleado : emplea
+    Sede ||--|| Empleado : administra
+    Sede ||--|{ Localidad : cubre
+    
+    Cuadrilla ||--|| Sede : pertenece
+    Cuadrilla ||--|{ Localidad : "trabaja en"
+    Cuadrilla ||--|{ Empleado : contiene
+    Cuadrilla ||--|| Empleado : supervisa
+    
+    Empleado ||--|{ Evento-de-Gasto : registra  
+    
+    Sede {
+    }
+    
+    Localidad {
+    }
+    
+    Cuadrilla {
+    }
+    
+    
+    Empleado {
+    }
+    
+    Evento-de-Gasto {
+    }
+````
+</div>
