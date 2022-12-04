@@ -17,7 +17,11 @@ const drawerWidth = '20vw'
 const links = [
   ['/','Index'],
   ['/404','404'],
-  ['/crearSede','Crear Sede']
+  ['/crearSede','Crear Sede'],
+  ['/crearLocalidad','Crear Localidad'],
+  ['/crearCuadrilla', 'Crear Cuadrilla'],
+  ['/crearEmpleado','Crear Empleado'],
+  ['/crearEventodeGasto','Crear Evento de Gasto']
 ]
 
 const Layout = ({pageName,children})=> (

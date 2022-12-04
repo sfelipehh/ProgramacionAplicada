@@ -3,41 +3,30 @@ import Layout from '../components/layout'
 import * as Yup from 'yup'
 import CreationForm from '../components/creationForm'
 
-const fields = ['nombre', 'direccion','idAdministrador']
+const pageName = "Crear Sede"
+
+const fields = ['nombre', 'direccion','administrador']
 
 const onSubmit = async (values,actions)=>{
-  console.log(JSON.stringify(values,null,2))
-  await fetch(
-    'http://localhost:8080/demo/add',
-    {
-      method:'POST',
-      mode:'cors',
-      headers: {
-        'Content-Type':'application/json'
-      },
-      body : JSON.stringify(values,null,2)
-    }
-  ).then(value =>
-    console.log(value.status)
-  )
+  alert(JSON.stringify(values))
 }
 
 const validationSchema = Yup.object().shape(
   {
     nombre : Yup.string().required("Nombre de Sede Obligatorio"),
     direccion : Yup.string().required("Dirección Obligatoria"),
-    idAdministrador : Yup.number().optional()
+    administrador : Yup.number().optional()
   }
 )
 const initialValues = {
   nombre : '',
   direccion : '',
-  idAdministrador : ''
+  administrador : ''
 }
 
 const CrearSede = ()=>(
-  <Layout pageName='Crear Sede'>
-    <CreationForm formName='Crear Sede' 
+  <Layout pageName={pageName}>
+    <CreationForm formName={pageName} 
       fields={fields}
       initialValues={initialValues}
       validationSchema={validationSchema}
@@ -48,4 +37,4 @@ const CrearSede = ()=>(
 
 export default CrearSede
 
-export const Head= () => <title>Crear Sede</title>
+export const Head= () => <title>{pageName}</title>
