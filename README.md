@@ -167,7 +167,6 @@ erDiagram
         numero IdSede FK
         numero CupoAsignado
         numero CupoRestante
-        perfil Perfil
     }
     
     Evento-de-Gasto {
