@@ -73,7 +73,7 @@ erDiagram
     Sede ||--|{ Localidad : cubre
     
     Cuadrilla ||--|| Sede : pertenece
-    Cuadrilla ||--|{ Localidad : "trabaja en"
+    Cuadrilla ||--|{ Localidades-Cuadrilla__debil : "trabaja en"
     Cuadrilla ||--|{ Empleado : contiene
     Cuadrilla ||--|| Empleado : supervisa
     
@@ -84,6 +84,8 @@ erDiagram
     
     Usuario ||--|| Empleado : accede
     Usuario ||--|| Perfil : posee
+    
+    Localidad ||--|| Localidades-Cuadrilla__debil : "disponible para"
 ````
 </div>
 
@@ -98,7 +100,7 @@ erDiagram
     Sede ||--|{ Localidad : cubre
     
     Cuadrilla ||--|| Sede : pertenece
-    Cuadrilla ||--|{ Localidad : "trabaja en"
+    Cuadrilla ||--|{ Localidades-Cuadrilla : "trabaja en"
     Cuadrilla ||--|{ Empleado : contiene
     Cuadrilla ||--|| Empleado : supervisa
     
@@ -110,6 +112,8 @@ erDiagram
     Usuario ||--|| Empleado : accede
     Usuario ||--|| Perfil : posee
     
+    Localidad ||--|| Localidades-Cuadrilla : "disponible para"
+    
     Usuario {
         numero Id PK
         numero IdEmpleado FK
@@ -119,7 +123,7 @@ erDiagram
     }
     
     Perfil {
-        numero Id
+        numero Id PK
         booleano Consulta
         booleano Revision
         booleano Registro
@@ -140,8 +144,13 @@ erDiagram
         text CalleFin
         text CarreraInicio
         text CarreraFin
-        numero IdCuadrilla FK
         numero IdSede FK
+    }
+    
+    Localidades-Cuadrilla {
+        numero Id PK
+        numero IdCuadrilla FK
+        numero IdLocalidad FK
     }
     
     Cuadrilla {
@@ -173,7 +182,7 @@ erDiagram
         numero Id PK
         texto Fecha
         texto Hora
-        numero IdLocalidad
+        numero IdLocalidad FK
         numero IdCuadrilla FK
         texto Descripcion
         numero Valor
