@@ -62,7 +62,7 @@ gantt
 ````
 </div>
 
-## Modelo Entidad - Relación
+## Modelo Entidad - Relación Simple
 <div style="background:#0D1117">
 
 ````mermaid
@@ -79,20 +79,105 @@ erDiagram
     
     Empleado ||--|{ Evento-de-Gasto : registra  
     
+    Evento-de-Gasto ||--|| Localidad : "registrado en"
+    Evento-de-Gasto ||--|| Cuadrilla : "registrado por"
+    
+    Usuario<<debil>> ||--|| Empleado : accede
+    Usuario<<debil>> ||--|| Perfil : posee
+````
+</div>
+
+## Modelo Relacional
+<div style="background:#0D1117">
+
+````mermaid
+%%{init: {'theme':'dark', 'themeCSS':'defs marker path {stroke:#edf1e4;}', 'themeVariables':{'primaryBorderColor':'#ffe9e9','lineColor':'#f0e1eb', 'textColor': '#db5f09','primaryColor':'#579cbc','attributeBackgroundColorOdd':'#cfc1d7','tertiaryColor':'#2d313b', 'attributeBackgroundColorEven':'#efc5d4'}}}%%
+erDiagram
+    Sede ||--|{ Empleado : emplea
+    Sede ||--|| Empleado : administra
+    Sede ||--|{ Localidad : cubre
+    
+    Cuadrilla ||--|| Sede : pertenece
+    Cuadrilla ||--|{ Localidad : "trabaja en"
+    Cuadrilla ||--|{ Empleado : contiene
+    Cuadrilla ||--|| Empleado : supervisa
+    
+    Empleado ||--|{ Evento-de-Gasto : registra  
+    
+    Evento-de-Gasto ||--|| Localidad : "registrado en"
+    Evento-de-Gasto ||--|| Cuadrilla : "registrado por"
+    
+    Usuario ||--|| Empleado : accede
+    Usuario ||--|| Perfil : posee
+    
+    Usuario {
+        numero Id PK
+        numero IdEmpleado FK
+        numero IdPerfil FK
+        texto NombreUsuario
+        texto Contrasenia
+    }
+    
+    Perfil {
+        numero Id
+        booleano Consulta
+        booleano Revision
+        booleano Registro
+    }
+    
     Sede {
+        numero Id PK
+        text Direccion
+        numero IdAdministrador FK
+        
     }
     
     Localidad {
+        numero Id PK
+        text CalleInicio
+        text CalleFin
+        text CarreraInicio
+        text CarreraFin
+        numero IdCuadrilla FK
+        numero IdSede FK
     }
     
     Cuadrilla {
+        numero Id PK
+        numero SedeId
+        empleado IdSupervisor
+        numero CantidadEmpleados
+        numero CupoAsignado
+        numero CupoRestante
     }
     
-    
     Empleado {
+        numero Id PK
+        numero DNI
+        texto Nombres
+        texto Apellidos
+        texto Celular
+        texto Email
+        texto Cargo
+        texto FechaNacimiento
+        cuadrila IdCuadrilla
+        numero IdSede FK
+        numero CupoAsignado
+        numero CupoRestante
+        perfil Perfil
     }
     
     Evento-de-Gasto {
+        numero Id PK
+        texto Fecha
+        texto Hora
+        localidad Localidad
+        numero Cuadrilla FK
+        texto Descripcion
+        numero Valor
+        numero IdEmpleado FK
+        booleano Aprobado
     }
+    
 ````
 </div>
