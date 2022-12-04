@@ -82,8 +82,8 @@ erDiagram
     Evento-de-Gasto ||--|| Localidad : "registrado en"
     Evento-de-Gasto ||--|| Cuadrilla : "registrado por"
     
-    Usuario<<debil>> ||--|| Empleado : accede
-    Usuario<<debil>> ||--|| Perfil : posee
+    Usuario ||--|| Empleado : accede
+    Usuario ||--|| Perfil : posee
 ````
 </div>
 
