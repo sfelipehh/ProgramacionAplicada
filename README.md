@@ -147,8 +147,8 @@ erDiagram
     Cuadrilla {
         numero Id PK
         texto Nombre
-        numero SedeId
-        empleado IdSupervisor
+        numero IdSede FK
+        numero IdSupervisor FK
         numero CantidadEmpleados
         numero CupoAsignado
         numero CupoRestante
@@ -163,7 +163,7 @@ erDiagram
         texto Email
         texto Cargo
         texto FechaNacimiento
-        cuadrila IdCuadrilla
+        numero IdCuadrilla FK
         numero IdSede FK
         numero CupoAsignado
         numero CupoRestante
@@ -173,8 +173,8 @@ erDiagram
         numero Id PK
         texto Fecha
         texto Hora
-        localidad Localidad
-        numero Cuadrilla FK
+        numero IdLocalidad
+        numero IdCuadrilla FK
         texto Descripcion
         numero Valor
         numero IdEmpleado FK
