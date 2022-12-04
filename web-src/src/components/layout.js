@@ -12,8 +12,7 @@ import {
   Drawer,
   ListItem,
   ListItemIcon} from '@mui/material'
-import { Link } from 'gatsby-material-ui-components'
-
+import { Link } from 'gatsby'
 const drawerWidth = '20vw'
 const links = [
   ['/','Index'],
@@ -56,8 +55,9 @@ const Layout = ({pageName,children})=> (
           </List>
         </Box>
       </Drawer>
+      
       <Box component='main' sx={{flexGrow:1, p:3}}>
-        <Toolbar />
+        <Toolbar variant='dense'/>  
         {children}
       </Box>
     </Box>  

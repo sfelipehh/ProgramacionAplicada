@@ -127,6 +127,7 @@ erDiagram
     
     Sede {
         numero Id PK
+        text Nombre
         text Direccion
         numero IdAdministrador FK
         

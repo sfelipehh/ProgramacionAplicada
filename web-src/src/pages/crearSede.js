@@ -3,7 +3,7 @@ import Layout from '../components/layout'
 import * as Yup from 'yup'
 import CreationForm from '../components/creationForm'
 
-const fields = ['direccion','administrador']
+const fields = ['nombre', 'direccion','administrador']
 
 const onSubmit = async (values,actions)=>{
   console.log(JSON.stringify(values,null,2))
@@ -24,11 +24,13 @@ const onSubmit = async (values,actions)=>{
 
 const validationSchema = Yup.object().shape(
   {
+    nombre : Yup.string().required("Nombre de Sede Obligatorio"),
     direccion : Yup.string().required("Dirección Obligatoria"),
     administrador : Yup.number().optional()
   }
 )
 const initialValues = {
+  nombre : '',
   direccion : '',
   administrador : ''
 }
