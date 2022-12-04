@@ -135,6 +135,7 @@ erDiagram
     
     Localidad {
         numero Id PK
+        texto Nombre
         text CalleInicio
         text CalleFin
         text CarreraInicio
@@ -145,6 +146,7 @@ erDiagram
     
     Cuadrilla {
         numero Id PK
+        texto Nombre
         numero SedeId
         empleado IdSupervisor
         numero CantidadEmpleados
