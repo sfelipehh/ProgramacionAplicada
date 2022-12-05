@@ -5,7 +5,13 @@ import CreationForm from '../components/creationForm'
 
 const pageName = "Crear Cuadrilla"
 
-const fields = ['nombre','idSede','idSupervisor','cantidadEmpleados','cupoAsignado']
+const fields = [
+  { id:'nombre', name: 'Nombre', required:true},
+  { id:'idSede', name: 'Id Sede', required:true},
+  { id:'idSupervisor', name: 'Id Supervisor', required:true},
+  { id:'cantidadEmpleados', name: 'Cantidad de Empleados', required:true},
+  { id:'cupoAsignado', name: 'Cupo Asignado', required:false}
+]
 
 const onSubmit = (values,actions) => {
   alert(JSON.stringify(values,null,2))

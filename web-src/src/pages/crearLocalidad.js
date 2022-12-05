@@ -6,12 +6,13 @@ import CreationForm from '../components/creationForm'
 const pageName = "Crear Localidad"
 
 const fields = [
-  'nombre',
-  'calleInicio',
-  'calleFin',
-  'carreraInicio',
-  'carreraFin',
-  'idSede']
+  { id:'nombre', name : 'Nombre', required : true},
+  { id:'calleInicio', name : 'Calle Inicio', required : true},
+  { id:'calleFin', name : 'Calle Fin', required : true},
+  { id:'carreraInicio', name : 'Carrera Inicio', required : true},
+  { id:'carreraFin', name : 'Carrera Fin', required : true},
+  { id:'idSede', name : 'Id Sede', required : false}
+]
 
 const onSubmit = (values,actions)=>{
   alert(JSON.stringify(values))

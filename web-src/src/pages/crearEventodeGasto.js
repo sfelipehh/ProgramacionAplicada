@@ -6,13 +6,14 @@ import CreationForm from '../components/creationForm'
 const pageName = "Crear Evento de Gasto"
 
 const fields = [
-  'fecha',
-  'hora',
-  'idEmpleado',
-  'idLocalidad',
-  'idCuadrilla',
-  'descripcion',
-  'valor']
+  { id:'fecha', name:'Fecha', type:'date', required:true},
+  { id:'hora', name:'Hora', type:'time', required:true},
+  { id:'idEmpleado', name:'Id Empleado', type:'number', required:true},
+  { id:'idLocalidad', name:'Id Localidad', type:'number', required:true},
+  { id:'idCuadrilla', name:'Id Cuadrilla', type:'number', required:true},
+  { id:'descripcion', name:'Descripción', type:'text', required:true},
+  { id:'valor', name: 'Valor', type:'number', required:true}
+]
 
 const onSubmit = async (values,actions)=>{
   alert(JSON.stringify(values))

@@ -3,7 +3,11 @@ import Layout from '../components/layout'
 import * as Yup from 'yup'
 import CreationForm from '../components/creationForm'
 
-const fields = ['nombre', 'direccion','idAdministrador']
+const fields = [
+  { id:'nombre', name: 'Nombre', type:'text', required: true}, 
+  { id:'direccion', name:'Dirección', type:'text', required: true},
+  { id:'idAdministrador', name:'Id Administrador', type:'number', required:false}
+]
 
 const onSubmit = async (values,actions)=>{
   console.log(JSON.stringify(values,null,2))

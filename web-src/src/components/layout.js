@@ -7,21 +7,25 @@ import {
   Box, 
   Toolbar,
   Typography,
-  IconButton,
   CssBaseline,  
   Drawer,
   ListItem,
   ListItemIcon} from '@mui/material'
 import { Link } from 'gatsby'
+import { DomainAdd, 
+  AddLocationAlt, 
+  GroupAdd, 
+  PersonAdd, 
+  AddShoppingCart } from '@mui/icons-material'
 const drawerWidth = '20vw'
 const links = [
   ['/','Index'],
   ['/404','404'],
-  ['/crearSede','Crear Sede'],
-  ['/crearLocalidad','Crear Localidad'],
-  ['/crearCuadrilla', 'Crear Cuadrilla'],
-  ['/crearEmpleado','Crear Empleado'],
-  ['/crearEventodeGasto','Crear Evento de Gasto']
+  ['/crearSede','Crear Sede',<DomainAdd />],
+  ['/crearLocalidad','Crear Localidad', <AddLocationAlt />],
+  ['/crearCuadrilla', 'Crear Cuadrilla', <GroupAdd />],
+  ['/crearEmpleado','Crear Empleado', <PersonAdd />],
+  ['/crearEventodeGasto','Crear Evento de Gasto', <AddShoppingCart />]
 ]
 
 const Layout = ({pageName,children})=> (
@@ -49,8 +53,8 @@ const Layout = ({pageName,children})=> (
             {links.map((item,index)=>(
             <ListItem key={item[1]+index} disablePadding>
               <ListItemButton href={item[0]} LinkComponent={<Link to={item[0]} />}>
-                <ListItemIcon >
-                PosibleIcono
+                <ListItemIcon>
+                  {item[2]}
                 </ListItemIcon>
                 <ListItemText primary={item[1]} /> 
               </ListItemButton>
