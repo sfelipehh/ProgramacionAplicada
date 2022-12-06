@@ -86,6 +86,8 @@ erDiagram
     Usuario ||--|| Perfil : posee
     
     Localidad ||--|| Localidades-Cuadrilla__debil : "disponible para"
+    
+    Cargo ||--|| Empleado : posee
 ````
 </div>
 
@@ -96,7 +98,6 @@ erDiagram
 %%{init: {'theme':'dark', 'themeCSS':'defs marker path {stroke:#edf1e4;}', 'themeVariables':{'primaryBorderColor':'#ffe9e9','lineColor':'#f0e1eb', 'textColor': '#db5f09','primaryColor':'#579cbc','attributeBackgroundColorOdd':'#cfc1d7','tertiaryColor':'#2d313b', 'attributeBackgroundColorEven':'#efc5d4'}}}%%
 erDiagram
     Sede ||--|{ Empleado : emplea
-    Sede ||--|| Empleado : administra
     Sede ||--|{ Localidad : cubre
     
     Cuadrilla ||--|| Sede : pertenece
@@ -113,6 +114,7 @@ erDiagram
     Usuario ||--|| Perfil : posee
     
     Localidad ||--|| Localidades-Cuadrilla : "disponible para"
+    Cargo ||--|| Empleado : posee
     
     Usuario {
         numero Id PK
@@ -133,7 +135,6 @@ erDiagram
         numero Id PK
         text Nombre
         text Direccion
-        numero IdAdministrador FK
         
     }
     
@@ -145,6 +146,11 @@ erDiagram
         text CarreraInicio
         text CarreraFin
         numero IdSede FK
+    }
+    
+    Cargo {
+        number Id PK
+        text Nombre
     }
     
     Localidades-Cuadrilla {
@@ -170,7 +176,7 @@ erDiagram
         texto Apellidos
         texto Celular
         texto Email
-        texto Cargo
+        number IdCargo FK
         texto FechaNacimiento
         numero IdCuadrilla FK
         numero IdSede FK
