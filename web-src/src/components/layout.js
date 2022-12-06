@@ -16,16 +16,18 @@ import { DomainAdd,
   AddLocationAlt, 
   GroupAdd, 
   PersonAdd, 
-  AddShoppingCart } from '@mui/icons-material'
+  AddShoppingCart, 
+  Domain} from '@mui/icons-material'
 const drawerWidth = '20vw'
 const links = [
   ['/','Index'],
   ['/404','404'],
-  ['/crearSede','Crear Sede',<DomainAdd />],
+  ['/crearSede','Crear Sede', <DomainAdd />],
   ['/crearLocalidad','Crear Localidad', <AddLocationAlt />],
   ['/crearCuadrilla', 'Crear Cuadrilla', <GroupAdd />],
-  ['/crearEmpleado','Crear Empleado', <PersonAdd />],
-  ['/crearEventodeGasto','Crear Evento de Gasto', <AddShoppingCart />]
+  ['/crearEmpleado', 'Crear Empleado', <PersonAdd />],
+  ['/crearEventodeGasto', 'Crear Evento de Gasto', <AddShoppingCart />],
+  ['/modificarSede', 'Modificar Sede', <Domain />]
 ]
 
 const Layout = ({pageName,children})=> (
@@ -34,7 +36,7 @@ const Layout = ({pageName,children})=> (
       <CssBaseline />
       <AppBar position="fixed" sx={{ zIndex: (theme)=>theme.zIndex.drawer + 1}}>
         <Toolbar variant="dense">
-          <Typography variant="h6" color="inherit" noWrap component="div">
+          <Typography variant="h5" color="inherit" noWrap component="div">
             Programación Aplicada {'>'} {pageName}
           </Typography>
         </Toolbar>

@@ -2,21 +2,9 @@ import * as React from 'react'
 import * as Yup from 'yup'
 import Layout from '../components/layout'
 import CreationForm from '../components/creationForm'
+import {empleadoFields} from '../data_models/dataModel'
 
 const pageName = "Crear Empleado"
-
-const fields = [
-  { id:'identificacion', name :'Identificación', type:'number', required:true},
-  { id:'nombres', name :'Nombres', type:'text', required:true},
-  { id:'apellidos', name :'Apellidos', type:'text', required:true},
-  { id:'cargo', name :'Cargo', type:'text', required:true},
-  { id:'celular', name :'Celular', type:'tel', required:true},
-  { id:'correo', name :'Correo', type:'text', required:true},
-  { id:'fechaNacimiento', name :'Fecha de Nacimiento', type:'date', required:true},
-  { id:'idCuadrilla', name :'Id Cuadrilla', type:'number', required:false},
-  { id:'idSede', name :'Id Sede', type:'number', required:true},
-  { id:'cupoAsignado', name :'Cupo Asignado', type:'number', required:false}
-]
 
 const onSubmit = (values,actions)=>{
   alert(JSON.stringify(values))
@@ -55,7 +43,7 @@ const validationSchema = Yup.object().shape(
 const CrearEmpleado = ()=> (
   <Layout pageName={pageName} >
     <CreationForm formName={pageName} 
-    fields={fields}
+    fields={empleadoFields}
     initialValues={initialValues}
     validationSchema={validationSchema}
     onSubmit={onSubmit}

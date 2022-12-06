@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Box, Button,TextField } from '@mui/material'
 import { useFormik } from 'formik'
+import DataTable from './dataTable'
 
 const CreationForm = ({formName, fields, initialValues , validationSchema, onSubmit, width, height }) => {
   const formik = useFormik({
@@ -21,7 +22,7 @@ const CreationForm = ({formName, fields, initialValues , validationSchema, onSub
           name={field.id}
           type={field.type}
           label={field.name}
-          InputLabelProps={ (field.type === 'date' || field.type === 'time') ? { shrink: true} : ''}
+          InputLabelProps={ (field.type === 'date' || field.type === 'time') ? { shrink: true } : {}}
           required={field.required}
           value={formik.values[field.id]}
           onChange={formik.handleChange}

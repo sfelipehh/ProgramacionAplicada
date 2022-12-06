@@ -2,17 +2,10 @@ import * as React from 'react'
 import * as Yup from 'yup'
 import Layout from '../components/layout'
 import CreationForm from '../components/creationForm'
-
+import { localidadFields } from '../data_models/dataModel'
 const pageName = "Crear Localidad"
 
-const fields = [
-  { id:'nombre', name : 'Nombre', required : true},
-  { id:'calleInicio', name : 'Calle Inicio', required : true},
-  { id:'calleFin', name : 'Calle Fin', required : true},
-  { id:'carreraInicio', name : 'Carrera Inicio', required : true},
-  { id:'carreraFin', name : 'Carrera Fin', required : true},
-  { id:'idSede', name : 'Id Sede', required : false}
-]
+
 
 const onSubmit = (values,actions)=>{
   alert(JSON.stringify(values))
@@ -40,7 +33,7 @@ const validationSchema = Yup.object().shape(
 const CrearLocalidad = ()=> (
   <Layout pageName={pageName} >
     <CreationForm formName={pageName} 
-    fields={fields}
+    fields={localidadFields}
     initialValues={initialValues}
     validationSchema={validationSchema}
     onSubmit={onSubmit}

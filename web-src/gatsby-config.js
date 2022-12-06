@@ -5,5 +5,5 @@ module.exports = {
   siteMetadata: {
     title: `web-src`
   },
-  plugins: []
+  plugins: ['gatsby-plugin-material-ui']
 };

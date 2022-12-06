@@ -2,12 +2,9 @@ import * as React from 'react'
 import Layout from '../components/layout'
 import * as Yup from 'yup'
 import CreationForm from '../components/creationForm'
+import { sedeFields } from '../data_models/dataModel'
 
-const fields = [
-  { id:'nombre', name: 'Nombre', type:'text', required: true}, 
-  { id:'direccion', name:'Dirección', type:'text', required: true},
-  { id:'idAdministrador', name:'Id Administrador', type:'number', required:false}
-]
+const pageName = "Crear Sede"
 
 const onSubmit = async (values,actions)=>{
   console.log(JSON.stringify(values,null,2))
@@ -40,9 +37,9 @@ const initialValues = {
 }
 
 const CrearSede = ()=>(
-  <Layout pageName='Crear Sede'>
-    <CreationForm formName='Crear Sede' 
-      fields={fields}
+  <Layout pageName={pageName}>
+    <CreationForm formName={pageName} 
+      fields={sedeFields}
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
