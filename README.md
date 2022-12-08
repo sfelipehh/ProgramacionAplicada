@@ -31,7 +31,7 @@ gantt
     Modelo Entidad Relación (MER) :crit, d3, 2022-11-30, 3d
     Modelo Relacional (MR) :crit, d4, after d3,3d
     Diagrama de Secuencia :crit, d9, after d1, 3d
-    Diagrama de Clases UML : d5, 2022-12-3, 5d
+    Diagrama de Clases UML : d5, 2022-12-03, 5d
     Especificación de Clases : d6, after d5, 3d
     Diagrama de Componentes UML : d7, after d6, 2d
     Diagrama de Despliegue UML : d8, after d6, 2d
