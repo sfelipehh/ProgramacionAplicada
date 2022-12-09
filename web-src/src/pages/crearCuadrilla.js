@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as Yup from 'yup'
 import Layout from '../components/layout'
-import CreationForm from '../components/creationForm'
+import CustomForm from '../components/customForm'
 import {cuadrillaFields} from '../data_models/dataModel'
 
 const pageName = "Crear Cuadrilla"
@@ -22,16 +22,16 @@ const initialValues = {
 const validationSchema = Yup.object().shape(
   {
     nombre : Yup.string().required('Nombre de Cuadrilla Requerido'),
-    idSede : Yup.number().required('Id de Sede Requerido'),
-    idSupervisor : Yup.number().required('Id de Empleado Supervisor Requerido'),
-    cantidadEmpleados : Yup.number().required('Cantidad de Empleados Requerida'),
-    cupoAsignado : Yup.number().optional()
+    idSede : Yup.number().positive().required('Id de Sede Requerido'),
+    idSupervisor : Yup.number().positive().required('Id de Empleado Supervisor Requerido'),
+    cantidadEmpleados : Yup.number().positive().required('Cantidad de Empleados Requerida'),
+    cupoAsignado : Yup.number().positive().optional()
   }
 )
 
 const CrearCuadrilla = ()=>(
   <Layout pageName={pageName}>
-    <CreationForm  formName={pageName}
+    <CustomForm  formName={pageName}
     fields={cuadrillaFields}
     initialValues={initialValues}
     validationSchema={validationSchema}

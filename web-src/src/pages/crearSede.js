@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Layout from '../components/layout'
 import * as Yup from 'yup'
-import CreationForm from '../components/creationForm'
+import CustomForm from '../components/customForm'
 import { sedeFields } from '../data_models/dataModel'
 
 const pageName = "Crear Sede"
@@ -27,7 +27,7 @@ const validationSchema = Yup.object().shape(
   {
     nombre : Yup.string().required("Nombre de Sede Obligatorio"),
     direccion : Yup.string().required("Dirección Obligatoria"),
-    idAdministrador : Yup.number().optional()
+    idAdministrador : Yup.number().positive().optional()
   }
 )
 const initialValues = {
@@ -38,7 +38,7 @@ const initialValues = {
 
 const CrearSede = ()=>(
   <Layout pageName={pageName}>
-    <CreationForm formName={pageName} 
+    <CustomForm formName={pageName} 
       fields={sedeFields}
       initialValues={initialValues}
       validationSchema={validationSchema}

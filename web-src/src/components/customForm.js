@@ -3,7 +3,7 @@ import { Box, Button,TextField } from '@mui/material'
 import { useFormik } from 'formik'
 import DataTable from './dataTable'
 
-const CreationForm = ({formName, fields, initialValues , validationSchema, onSubmit, width, height }) => {
+const CustomForm = ({formName, fields, formType, initialValues, validationSchema, onSubmit, width, height }) => {
   const formik = useFormik({
     initialValues: initialValues,
       onSubmit: onSubmit,
@@ -16,8 +16,12 @@ const CreationForm = ({formName, fields, initialValues , validationSchema, onSub
       padding: 2
       }}>
     <form onSubmit={formik.handleSubmit} style={{width:'100%', height:'100%' }}>
-      {fields.map((field,index) => 
-        <TextField fullWidth margin='dense' variant='outlined' key={(field.id)+index}
+      {
+      fields.map((field,index) => {
+        if (field.foreingSelection.on === true) {
+          return <DataTable error={formik.errors[field.id]} tableTitle={field.name} useCheckBox={field.type==='array'} dataUrl={field.foreingSelection.url} selectionModelRef={formik.values[field.id]} key={(field.id)+index} />
+        }else { 
+          return field.basic || formType === 'modify' ? <TextField fullWidth margin='dense' variant='outlined' key={(field.id)+index}
           id={field.id}
           name={field.id}
           type={field.type}
@@ -29,7 +33,11 @@ const CreationForm = ({formName, fields, initialValues , validationSchema, onSub
           error={formik.touched[field.id] && Boolean(formik.errors[field.id])}
           helperText={formik.touched[field.id] && formik.errors[field.id]}
         />
-      )}
+        : ''
+      }
+      }
+      )
+    }
       <Button type='submit' color='primary' variant='contained' fullWidth>
         {formName}
       </Button>
@@ -38,4 +46,4 @@ const CreationForm = ({formName, fields, initialValues , validationSchema, onSub
   )
 }
 
-export default CreationForm
+export default CustomForm

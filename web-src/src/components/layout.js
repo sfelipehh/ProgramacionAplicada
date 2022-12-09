@@ -14,10 +14,13 @@ import {
 import { Link } from 'gatsby'
 import { DomainAdd, 
   AddLocationAlt, 
-  GroupAdd, 
-  PersonAdd, 
+  GroupAdd,
   AddShoppingCart, 
-  Domain} from '@mui/icons-material'
+  Domain,
+  EditLocationAlt,
+  PeopleAlt,
+  PersonAddAlt1,
+  Person} from '@mui/icons-material'
 const drawerWidth = '20vw'
 const links = [
   ['/','Index'],
@@ -25,9 +28,12 @@ const links = [
   ['/crearSede','Crear Sede', <DomainAdd />],
   ['/crearLocalidad','Crear Localidad', <AddLocationAlt />],
   ['/crearCuadrilla', 'Crear Cuadrilla', <GroupAdd />],
-  ['/crearEmpleado', 'Crear Empleado', <PersonAdd />],
+  ['/crearEmpleado', 'Crear Empleado', <PersonAddAlt1 />],
   ['/crearEventodeGasto', 'Crear Evento de Gasto', <AddShoppingCart />],
-  ['/modificarSede', 'Modificar Sede', <Domain />]
+  ['/modificarSede', 'Modificar Sede', <Domain />],
+  ['/modificarLocalidad', 'Modificar Localidad', <EditLocationAlt />],
+  ['/modificarCuadrilla', 'Modificar Cuadrilla', <PeopleAlt />],
+  ['/modificarEmpleado', 'Modificar Empleado', <Person />],
 ]
 
 const Layout = ({pageName,children})=> (
@@ -54,7 +60,7 @@ const Layout = ({pageName,children})=> (
           <List>
             {links.map((item,index)=>(
             <ListItem key={item[1]+index} disablePadding>
-              <ListItemButton href={item[0]} LinkComponent={<Link to={item[0]} />}>
+              <ListItemButton href={item[0]} to={item[0]} LinkComponent={Link}>
                 <ListItemIcon>
                   {item[2]}
                 </ListItemIcon>

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
-import { Skeleton,Box } from '@mui/material';
+import { DataGrid, GridToolbarContainer } from '@mui/x-data-grid';
+import { Box, Typography } from '@mui/material';
 
 //https://mui.com/material-ui/react-table/#data-table
 
@@ -40,7 +40,7 @@ const rows = [
 const getData = async (dataGetUrl,stateChangeFunction)=>{
   setTimeout(() => {
     stateChangeFunction(true)
-  }, 5000)
+  }, 500)
   /*
   let tableData
   await fetch(
@@ -59,33 +59,45 @@ const getData = async (dataGetUrl,stateChangeFunction)=>{
   return tableData
   */
 }
+const DataToolbar = ({tableTitle,error})=>(
+  <GridToolbarContainer>
+    <Typography sx={{px:1}} variant='body2'>
+      {tableTitle}
+    </Typography>
+    {error ? <Typography color={(theme)=>theme.palette.error.dark} sx={{px:1}} variant='body2'>{error}</Typography>:''}
+  </GridToolbarContainer>
+)
+//selectionModelRef para usar formik.fields.['algo']
 
-//selectionModelRef para usar formik.fields
-//selectionKey para inyectar el campo adecuado
-export default function DataTable({useCheckBox, selectionModelRef, selectionKey}) {
-  const [dataLoaded,setDataLoaded] = React.useState(false)
-
+export default function DataTable({tableTitle,useCheckBox,error, selectionModelRef, dataUrl}) {
+  const [dataLoaded, setDataLoaded] = React.useState(false)
+  const [selection, setSelection] = React.useState([1])
   getData('url',setDataLoaded)
 
   return (
     <>
-      {dataLoaded ? 
-      <Box sx={{ height: 400, width: '100%',p:2 }}>
-        <DataGrid
+      {
+      <Box sx={{ height: 300, width: '100%', py:1}}>
+        <DataGrid loading={!dataLoaded} components={{Toolbar:DataToolbar}} componentsProps={{toolbar:{tableTitle,error}}}
+          selectionModel={selection} 
+          disableColumnMenu
           rows={rows}
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5]}
           checkboxSelection={useCheckBox}
-          onSelectionModelChange={(newModel)=>{
-            if(selectionModelRef !== undefined){
-              selectionModelRef.values[selectionKey] = newModel[0]
-            }
+          onSelectionModelChange={
+            (newModel)=>{
+            /*if(selectionModelRef !== undefined){
+              if(useCheckBox){
+                selectionModelRef = newModel
+              }else{
+                selectionModelRef = newModel[0]
+              }
+            }*/
+            setSelection(newModel)
             console.log(newModel)
           }} />
-      </Box> :
-      <Box sx={{p:2}}>
-        <Skeleton width='100%' height={400} />
       </Box>
     }
     </>

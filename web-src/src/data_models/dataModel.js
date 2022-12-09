@@ -21,43 +21,63 @@ export const getAllLocalidadesUrl = '/getLocalidades'
 export const gettterLocalidadUrl = '/getLocalidadById'
 export const setterLocalidadUrl = '/setLocalidad'
 
+//Eventos de Gasto Urls
+export const getAllEventosGastoUrl = '/getEventosGasto'
+export const getterEventoGastoUrl = '/getEventoGastoById'
+export const setterEventoGastoUrl = '/setEventoGasto'
+export const getEventoCostoByAnyUrl = '/getEventoGasto'
+
 export const cargoFields =  [
-  { id:'nombre', name:'Nombre', type:'text', foreingSelection:{on:false,url:null}, required:true}
+  { id:'nombre', name:'Nombre', type:'text', basic:true,foreingSelection:{on:false,url:null}, required:true}
 ]
 
 export const sedeFields = [
-  { id:'nombre', name: 'Nombre', type:'text', foreingSelection:{on:false,url:null}, required: true}, 
-  { id:'direccion', name:'Dirección', type:'text', foreingSelection:{on:false,url:null}, required: true},
+  { id:'nombre', name: 'Nombre', type:'text', basic: true, foreingSelection:{on:false,url:null}, required: true}, 
+  { id:'direccion', name:'Dirección', type:'text', basic:true, foreingSelection:{on:false,url:null}, required: true},
   { id:'idAdministrador', name:'Id Administrador', 
-  type:'number',foreingSelection:{on:true,url:getEmpleadoByAnyUrl} , required:false}
+  type:'number', basic:false, foreingSelection:{on:true,url:getEmpleadoByAnyUrl} , required:false}
 ]
 
 export const cuadrillaFields = [
-  { id:'nombre', name: 'Nombre', foreingSelection:{on:false,url:null},required:true},
-  { id:'idSede', name: 'Id Sede', foreingSelection:{on:true,url:getAllSedesUrl},required:true},
-  { id:'idSupervisor', name: 'Id Supervisor', foreingSelection:{on:false,url:getEmpleadoByAnyUrl},required:true},
-  { id:'cantidadEmpleados', name: 'Cantidad de Empleados', foreingSelection:{on:false,url:null},required:true},
-  { id:'cupoAsignado', name: 'Cupo Asignado', foreingSelection:{on:false,url:null},required:false}
+  { id:'nombre', name: 'Nombre', type:'text', basic: true, foreingSelection:{on:false,url:null},required:true},
+  { id:'idSede', name: 'Id Sede', type:'number', basic: true, foreingSelection:{on:true,url:getAllSedesUrl},required:true},
+  { id:'idSupervisor', name: 'Id Supervisor', type:'text', basic: true,foreingSelection:{on:false,url:getEmpleadoByAnyUrl},required:true},
+  { id:'cantidadEmpleados', name: 'Cantidad de Empleados', type:'text', basic: true, foreingSelection:{on:false,url:null},required:true},
+  { id:'cupoAsignado', name: 'Cupo Asignado', type:'text', basic: true, foreingSelection:{on:false,url:null},required:false},
+  { id:'empleados', name: 'Empleados', type:'array', basic:false, foreingSelection:{on:true, url:getAllEmpleadosUrl}, required:false},
+  { id:'localidades', name:'Localidades',type:'array', basic:false, foreingSelection:{on:true, url:getAllLocalidadesUrl}, required:false}
+
 ]
 
 export const empleadoFields = [
-  { id:'identificacion', name :'Identificación', type:'number', externalforeingSelection:{on:false, url:null}, required:true},
-  { id:'nombres', name :'Nombres', type:'text',foreingSelection:{on:false, url:null}, required:true},
-  { id:'apellidos', name :'Apellidos', type:'text', foreingSelection:{on:false, url:null}, required:true},
-  { id:'cargo', name :'Cargo', type:'text', foreingSelection:{on:true, url:getAllCargosUrl}, required:true},
-  { id:'celular', name :'Celular', type:'tel',foreingSelection:{on:false,url:null}, required:true},
-  { id:'correo', name :'Correo', type:'text', foreingSelection:{on:false, url:null} ,required:true},
-  { id:'fechaNacimiento', name :'Fecha de Nacimiento', type:'date', foreingSelection:{on:false,url:null},required:true},
-  { id:'idCuadrilla', name :'Id Cuadrilla', type:'number', foreingSelection:{on:true,url:getAllCuadrillasUrl},required:false},
-  { id:'idSede', name :'Id Sede', type:'number', foreingSelection:{on:true,url:getAllSedesUrl},required:true},
-  { id:'cupoAsignado', name :'Cupo Asignado', type:'number', foreingSelection:{on:false,url:null}, required:false}
+  { id:'identificacion', name :'Identificación', type:'number', basic:true, foreingSelection:{on:false, url:null}, required:true},
+  { id:'nombres', name :'Nombres', type:'text', basic:true, foreingSelection:{on:false, url:null}, required:true},
+  { id:'apellidos', name :'Apellidos', type:'text', basic:true, foreingSelection:{on:false, url:null}, required:true},
+  { id:'cargo', name :'Cargo', type:'text', basic:true, foreingSelection:{on:true, url:getAllCargosUrl}, required:true},
+  { id:'celular', name :'Celular', type:'tel', basic:true, foreingSelection:{on:false,url:null}, required:true},
+  { id:'correo', name :'Correo', type:'text', basic:true, foreingSelection:{on:false, url:null} ,required:true},
+  { id:'fechaNacimiento', name :'Fecha de Nacimiento', type:'date', basic:true, foreingSelection:{on:false,url:null},required:true},
+  { id:'idCuadrilla', name :'Id Cuadrilla', type:'number', basic:true, foreingSelection:{on:true,url:getAllCuadrillasUrl},required:false},
+  { id:'idSede', name :'Id Sede', type:'number', basic:true, foreingSelection:{on:true,url:getAllSedesUrl},required:true},
+  { id:'cupoAsignado', name :'Cupo Asignado', type:'number', basic:true, foreingSelection:{on:false,url:null}, required:false}
 ]
 
 export const localidadFields = [
-  { id:'nombre', name : 'Nombre', foreingSelection:{on:false,url:null}, required : true},
-  { id:'calleInicio', name : 'Calle Inicio', foreingSelection:{on:false,url:null}, required : true},
-  { id:'calleFin', name : 'Calle Fin', foreingSelection:{on:false,url:null}, required : true},
-  { id:'carreraInicio', name : 'Carrera Inicio', foreingSelection:{on:false,url:null}, required : true},
-  { id:'carreraFin', name : 'Carrera Fin', foreingSelection:{on:false,url:null}, required : true},
-  { id:'idSede', name : 'Id Sede', foreingSelection:{on:true,url:getAllSedesUrl}, required : true}
+  { id:'nombre', name : 'Nombre', type:'text', basic:true, foreingSelection:{on:false,url:null}, required : true},
+  { id:'calleInicio', name : 'Calle Inicio', type:'text', basic:true, foreingSelection:{on:false,url:null}, required : true},
+  { id:'calleFin', name : 'Calle Fin', type:'text', basic:true, foreingSelection:{on:false,url:null}, required : true},
+  { id:'carreraInicio', name : 'Carrera Inicio', type:'text', basic:true, foreingSelection:{on:false,url:null}, required : true},
+  { id:'carreraFin', name : 'Carrera Fin', type:'text', basic:true, foreingSelection:{on:false,url:null}, required : true},
+  { id:'idSede', name : 'Id Sede', type:'number', basic:true, foreingSelection:{on:true,url:getAllSedesUrl}, required : true}
+]
+
+export const eventoDeGastoFields = [
+  { id:'fecha', name:'Fecha', type:'date', basic:true, foreingSelection:{on:false,url:null}, required:true},
+  { id:'hora', name:'Hora', type:'time', basic:true, foreingSelection:{on:false,url:null}, required:true},
+  { id:'idEmpleado', name:'Id Empleado', type:'number', basic:true, foreingSelection:{on:true,url:getAllEmpleadosUrl}, required:true},
+  { id:'idLocalidad', name:'Id Localidad', type:'number', basic:true, foreingSelection:{on:true,url:getAllLocalidadesUrl},  required:true},
+  { id:'idCuadrilla', name:'Id Cuadrilla', type:'number', basic:true, foreingSelection:{on:true,url:getAllCuadrillasUrl}, required:true},
+  { id:'descripcion', name:'Descripción', type:'text', basic:true, foreingSelection:{on:false,url:null}, required:true},
+  { id:'valor', name: 'Valor', type:'number', basic:true, foreingSelection:{on:false,url:null}, required:true},
+  { id:'aprobado', name:'Aprobado', type:'boolean', basic:false, foreingSelection:{on:false,url:null}, required:true}
 ]

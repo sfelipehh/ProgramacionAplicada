@@ -4,10 +4,10 @@ import Layout from '../components/layout'
 import CustomForm from '../components/customForm'
 import SekeletonForm from '../components/skeletonForm'
 import { IconButton, TextField, Box } from '@mui/material'
-import { sedeFields } from '../data_models/dataModel'
+import { cuadrillaFields } from '../data_models/dataModel'
 import { useFormik } from 'formik'
 import { Search } from '@mui/icons-material'
-const pageName = "Modificar Sede"
+const pageName = "Modificar Cuadrilla"
 
 
 const onSubmit = async (values,actions)=>{
@@ -33,9 +33,13 @@ const loadInfo = (stateChangeFunction,initialSaveRef) => {
   }, 500)
   console.log('Load Info')
   initialSaveRef.current = {
-    nombre : 'Sede1',
-    direccion : 'Calle 100',
-    idAdministrador : '10'
+    nombre : 'Cuadrilla1',
+    idSede : 2,
+    idSupervisor : 5,
+    cantidadEmpleados : 3,
+    cupoAsignado : 100,
+    empleados : [1,2,4],
+    localidades : [6,7,8]
   }
   /*let info
   await fetch(
@@ -57,7 +61,7 @@ const loadInfo = (stateChangeFunction,initialSaveRef) => {
 }
 
 
-const ModificarSede = () => {
+const ModificarCuadrilla = () => {
   const [infoLoaded,changeLoaded] = React.useState(false)
   const savedInitialValues = React.useRef(null)
   const idFormik = useFormik({
@@ -67,9 +71,13 @@ const ModificarSede = () => {
   })
   const validationSchema = Yup.object().shape(
     {
-      nombre : Yup.string().required("Nombre de Sede Obligatorio"),
-      direccion : Yup.string().required("Dirección Obligatoria"),
-      idAdministrador : Yup.number().positive().required("Administrador Requerido")
+      nombre : Yup.string().required('Nombre de Cuadrilla Requerido'),
+      idSede : Yup.number().positive().required('Id de Sede Requerido'),
+      idSupervisor : Yup.number().positive().required('Id de Empleado Supervisor Requerido'),
+      cantidadEmpleados : Yup.number().positive().required('Cantidad de Empleados Requerida'),
+      cupoAsignado : Yup.number().positive().optional(),
+      empleados : Yup.array().of(Yup.number().positive()).length(Yup.ref('cantidadEmpleados')),
+      localidades : Yup.array().of(Yup.number().positive())
     }
   )
 
@@ -79,9 +87,9 @@ const ModificarSede = () => {
         <form onSubmit={idFormik.handleSubmit} style={{display:'flex'}}>
           <TextField margin='dense' variant='outlined'
             name='id' 
-            id='idSede' 
+            id='idCuadrilla' 
             type='number'
-            label='Id Sede' 
+            label='Id Cuadrilla' 
             required 
             value={idFormik.values.id} 
             onChange={idFormik.handleChange}
@@ -95,15 +103,15 @@ const ModificarSede = () => {
       </Box>
       {infoLoaded ? 
       <CustomForm formName={pageName} formType='modify'
-        fields={sedeFields}
+        fields={cuadrillaFields}
         initialValues={savedInitialValues.current}
         validationSchema={validationSchema}
         onSubmit={onSubmit}/> 
-        : <SekeletonForm formName={pageName} fields={sedeFields} />
+        : <SekeletonForm formName={pageName} fields={cuadrillaFields} />
       }
     </Layout>
   )
 }
 
-export default ModificarSede
+export default ModificarCuadrilla
 export const Head = ()=><title>{pageName}</title>
