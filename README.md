@@ -106,7 +106,6 @@ erDiagram
     Cuadrilla ||--|| Sede : pertenece
     Cuadrilla ||--|{ Localidades-Cuadrilla : "trabaja en"
     Cuadrilla ||--|{ Empleado : contiene
-    Cuadrilla ||--|| Empleado : supervisa
     
     Empleado ||--|{ Evento-de-Gasto : registra  
     
@@ -191,6 +190,7 @@ erDiagram
         texto Email
         texto FechaNacimiento
         numero IdCuadrilla FK
+        numero IdSede FK
         numero CupoAsignado
         numero CupoRestante
     }
