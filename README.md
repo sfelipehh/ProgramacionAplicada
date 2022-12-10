@@ -69,13 +69,12 @@ gantt
 %%{init: {'theme':'dark', 'themeCSS':'defs marker path {stroke:#edf1e4;}', 'themeVariables':{'primaryBorderColor':'#ffe9e9','lineColor':'#f0e1eb', 'textColor': '#db5f09','primaryColor':'#579cbc','attributeBackgroundColorOdd':'#cfc1d7','tertiaryColor':'#2d313b', 'attributeBackgroundColorEven':'#efc5d4'}}}%%
 erDiagram
     Sede ||--|{ Empleado : emplea
-    Sede ||--|| Empleado : administra
+    Sede ||--|| Administrador-Sede__debil : administra
     Sede ||--|{ Localidad : cubre
     
     Cuadrilla ||--|| Sede : pertenece
     Cuadrilla ||--|{ Localidades-Cuadrilla__debil : "trabaja en"
     Cuadrilla ||--|{ Empleado : contiene
-    Cuadrilla ||--|| Empleado : supervisa
     
     Empleado ||--|{ Evento-de-Gasto : registra  
     
@@ -87,7 +86,10 @@ erDiagram
     
     Localidad ||--|| Localidades-Cuadrilla__debil : "disponible para"
     
-    Cargo ||--|| Empleado : posee
+    Administrador-Sede__debil ||--|| Empleado : administra
+    
+    Supervisor-Cuadrilla__debil ||--|| Cuadrilla : supervisa
+    Supervisor-Cuadrilla__debil ||--|| Empleado : supervisa
 ````
 </div>
 
@@ -99,6 +101,7 @@ erDiagram
 erDiagram
     Sede ||--|{ Empleado : emplea
     Sede ||--|{ Localidad : cubre
+    Sede ||--|| Administrador-Sede : administra
     
     Cuadrilla ||--|| Sede : pertenece
     Cuadrilla ||--|{ Localidades-Cuadrilla : "trabaja en"
@@ -114,7 +117,11 @@ erDiagram
     Usuario ||--|| Perfil : posee
     
     Localidad ||--|| Localidades-Cuadrilla : "disponible para"
-    Cargo ||--|| Empleado : posee
+    
+    Administrador-Sede ||--|| Empleado : administra
+    
+    Supervisor-Cuadrilla ||--|| Cuadrilla : supervisa
+    Supervisor-Cuadrilla ||--|| Empleado : supervisa
     
     Usuario {
         numero Id PK
@@ -148,9 +155,16 @@ erDiagram
         numero IdSede FK
     }
     
-    Cargo {
+    Administrador-Sede {
         number Id PK
-        text Nombre
+        number IdSede FK
+        number IdEmpleado FK
+    }
+    
+    Supervisor-Cuadrilla {
+        number Id Pk
+        number IdCuadrilla FK
+        number IdEmpleado FK
     }
     
     Localidades-Cuadrilla {
@@ -163,7 +177,6 @@ erDiagram
         numero Id PK
         texto Nombre
         numero IdSede FK
-        numero IdSupervisor FK
         numero CantidadEmpleados
         numero CupoAsignado
         numero CupoRestante
@@ -176,10 +189,8 @@ erDiagram
         texto Apellidos
         texto Celular
         texto Email
-        number IdCargo FK
         texto FechaNacimiento
         numero IdCuadrilla FK
-        numero IdSede FK
         numero CupoAsignado
         numero CupoRestante
     }
@@ -198,3 +209,4 @@ erDiagram
     
 ````
 </div>
+ 
