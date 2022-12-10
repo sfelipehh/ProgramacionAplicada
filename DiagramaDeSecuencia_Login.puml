@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+title Caso de Uso : Inicio de Sesión : Como Empleado
+
+actor Usuario
+boundary FrontEnd
+entity ManejadorPeticiones
+control Autenticación
+entity Repositorio
+database BaseDatos
+
+group Inicio de Sesión
+autonumber
+Usuario -> FrontEnd ++ : Usuario
+Usuario -> FrontEnd : Constraseña
+FrontEnd -> ManejadorPeticiones ++ : POST(Usuario,Constraseña) a /login
+ManejadorPeticiones -> Autenticación ++ : validar(Usuario,Constraseña)
+Autenticación -> Repositorio ++ : consultar(Usuario)
+Repositorio -> BaseDatos ++ : select * from Usuarios where username = (Usuario)
+BaseDatos --> Repositorio -- : N o cero Entidades(Usuario, Constraseña)
+Repositorio --> Autenticación -- : return (Usuario,Contraseña)
+Autenticación -> Autenticación : autenticar(Usuario,Constraseña)
+alt Autenticación exitosa
+Autenticación --> ManejadorPeticiones : exito(TokenAutorizado)
+ManejadorPeticiones --> FrontEnd ++ : respuesta(TokenAutorizado)
+FrontEnd --> Usuario : "Ha sido Autorizado"
+else Autenticación no Exitosa
+Autenticación --> ManejadorPeticiones -- : noExito()
+ManejadorPeticiones -->  FrontEnd -- : respuesta("no autorizado")
+FrontEnd --> Usuario -- : "No ha sido Autorizado"
+ref over Usuario,FrontEnd : Inicio de Sesión
+end
+end
+
+@enduml

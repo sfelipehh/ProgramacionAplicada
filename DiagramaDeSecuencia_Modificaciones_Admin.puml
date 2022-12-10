@@ -1,0 +1,43 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+title Casos de Uso : Modificaciones : Url '/modificaciones' : Como Administrador
+
+actor Administrador
+boundary FrontEnd
+entity ManejadorPeticiones
+entity Repositorio
+database BaseDatos
+
+autonumber
+group Comprobación Autenticación
+Administrador -> FrontEnd ++ : GET(Cualquier Vista de Modificación)
+FrontEnd -> FrontEnd : verificarAutoridad(TokenAutorizado)
+alt No hay (TokenAutorizado)
+ref over Administrador,FrontEnd : Secuencia de Inicio de Sesión
+else (TokenAutorizado)
+FrontEnd --> Administrador : respuesta(Vista de Registro)
+end
+
+group Caso : Modificar Sedes : Previa Autenticación
+Administrador -> FrontEnd ++ : Id de la Sede
+Administrador -> FrontEnd : BotónBuscarSede
+FrontEnd -> ManejadorPeticiones ++ : GET(IdSede) a '/consultas/getSedeById'
+ManejadorPeticiones -> Repositorio ++ : buscarSede(IdSede)
+Repositorio -> BaseDatos ++ : select * from Sedes() where id = (IdSede)
+BaseDatos --> Repositorio -- : 1 o cero Entidades(Sede)
+Repositorio --> ManejadorPeticiones -- : return (Sede)
+ManejadorPeticiones --> FrontEnd -- : respuesta(Sede)
+FrontEnd --> Administrador : Información de la Sede
+Administrador -> FrontEnd : Nueva Información de la Sede
+FrontEnd -> ManejadorPeticiones ++ : PATCH(InfoModificadaSede) a '/registros/setSede
+ManejadorPeticiones -> Sede ++ : setters(InfoModificadaSede)
+Sede --> ManejadorPeticiones -- : return (SedeModificada)
+ManejadorPeticiones -> Repositorio ++ : save(SedeModificada)
+Repositorio -> BaseDatos ++ : update Sedes() set columnasSede() = (SedeModificada) where id = idSedeModificada
+BaseDatos --> Repositorio -- : ok
+Repositorio --> ManejadorPeticiones -- : return (SedeModificada)
+ManejadorPeticiones --> FrontEnd -- : respuesta(SedeModificada)
+FrontEnd --> Administrador -- : "Sede Guardada"
+end
+
+@enduml

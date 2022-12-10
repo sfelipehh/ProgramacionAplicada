@@ -20,7 +20,8 @@ import { DomainAdd,
   EditLocationAlt,
   PeopleAlt,
   PersonAddAlt1,
-  Person} from '@mui/icons-material'
+  Person,
+  Login} from '@mui/icons-material'
 const drawerWidth = '20vw'
 const links = [
   ['/','Index'],
@@ -34,6 +35,8 @@ const links = [
   ['/modificarLocalidad', 'Modificar Localidad', <EditLocationAlt />],
   ['/modificarCuadrilla', 'Modificar Cuadrilla', <PeopleAlt />],
   ['/modificarEmpleado', 'Modificar Empleado', <Person />],
+  ['/consultarEmpleado', 'Consultar Empleado', <Person />],
+  ['/login', 'Iniciar Sesión', <Login />]
 ]
 
 const Layout = ({pageName,children})=> (

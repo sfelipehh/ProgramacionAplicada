@@ -1,0 +1,77 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+title Casos de Uso : Registros : Url '/registros' : Como Administrador
+
+actor Administrador
+boundary FrontEnd
+entity ManejadorPeticiones
+entity Repositorio
+database BaseDatos
+
+autonumber
+group Comprobación Autenticación
+Administrador -> FrontEnd ++ : GET(Cualquier Vista de Registro)
+FrontEnd -> FrontEnd : verificarAutoridad(TokenAutorizado)
+alt No hay (TokenAutorizado)
+ref over Administrador,FrontEnd : Secuencia de Inicio de Sesión
+else (TokenAutorizado)
+FrontEnd -> Administrador : respuesta(Vista de Registro)
+end
+
+group Caso : Registrar Sedes : Previa Autenticación
+Administrador -> FrontEnd ++ : Información Básica Sede
+Administrador -> FrontEnd : BotónCrearSede()
+FrontEnd -> ManejadorPeticiones ++ : POST(InfoSede) a /setSede
+ManejadorPeticiones -> Sede ** : CrearSede(InfoSede)
+Sede --> ManejadorPeticiones : return (Sede)
+ManejadorPeticiones -> Repositorio ++ : save(Sede)
+Repositorio -> BaseDatos ++ : insert into Sedes() values (Sede)
+BaseDatos --> Repositorio -- : ok
+Repositorio --> ManejadorPeticiones -- : return (Sede)
+ManejadorPeticiones --> FrontEnd -- : respuesta(Sede)
+FrontEnd --> Administrador -- : "Sede Guardada"
+end
+
+group Caso : Registrar Empleados : Previa Autenticación
+Administrador -> FrontEnd ++ : Información Básica Empleado
+Administrador -> FrontEnd : BotónCrearEmpleado()
+FrontEnd -> ManejadorPeticiones ++ : POST(InfoEmpleado) a /setEmpleado
+ManejadorPeticiones -> Empleado ** : CrearEmpleado(InfoEmpleado)
+Empleado --> ManejadorPeticiones : return (Empleado)
+ManejadorPeticiones -> Repositorio ++ : save(Empleado)
+Repositorio -> BaseDatos ++ : insert into Empleados() values (Empleado)
+BaseDatos --> Repositorio -- : ok
+Repositorio --> ManejadorPeticiones -- : return (Empleado)
+ManejadorPeticiones --> FrontEnd -- : respuesta(Empleado)
+FrontEnd --> Administrador -- : "Empleado Guardado"
+end
+
+group Caso : Registrar Cuadrillas : Previa Autenticación
+Administrador -> FrontEnd ++ : Información Básica Cuadrilla
+Administrador -> FrontEnd : BotónCrearCuadrilla()
+FrontEnd -> ManejadorPeticiones ++ : POST(InfoCuadrilla) a /setCuadrilla
+ManejadorPeticiones -> Cuadrilla ** : CrearCuadrilla(InfoCuadrilla)
+Cuadrilla --> ManejadorPeticiones : return (Cuadrilla)
+ManejadorPeticiones -> Repositorio ++ : save(Cuadrilla)
+Repositorio -> BaseDatos ++ : insert into Cuadrillas() values (Cuadrilla)
+BaseDatos --> Repositorio -- : ok
+Repositorio --> ManejadorPeticiones -- : return (Cuadrilla)
+ManejadorPeticiones --> FrontEnd -- : respuesta(Cuadrilla)
+FrontEnd --> Administrador -- : "Cuadrilla Guardada"
+end
+
+group Caso : Registrar Localidades : Previa Autenticación
+Administrador -> FrontEnd ++ : Información Básica Localidad
+Administrador -> FrontEnd : BotónCrearLocalidad()
+FrontEnd -> ManejadorPeticiones ++ : POST(InfoLocalidad) a /setLocalidad
+ManejadorPeticiones -> Localidad ** : CrearLocalidad(InfoLocalidad)
+Localidad --> ManejadorPeticiones : return (Localidad)
+ManejadorPeticiones -> Repositorio ++ : save(Localidad)
+Repositorio -> BaseDatos ++ : insert into Localidades() values (Localidad)
+BaseDatos --> Repositorio -- : ok
+Repositorio --> ManejadorPeticiones -- : return (Localidad)
+ManejadorPeticiones --> FrontEnd -- : respuesta(Localidad)
+FrontEnd --> Administrador -- : "Localidad Guardada"
+end
+
+@enduml

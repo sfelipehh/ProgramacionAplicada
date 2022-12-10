@@ -27,6 +27,9 @@ export const getterEventoGastoUrl = '/getEventoGastoById'
 export const setterEventoGastoUrl = '/setEventoGasto'
 export const getEventoCostoByAnyUrl = '/getEventoGasto'
 
+//Login Url
+export const doLogin = '/login'
+
 export const cargoFields =  [
   { id:'nombre', name:'Nombre', type:'text', basic:true,foreingSelection:{on:false,url:null}, required:true}
 ]
@@ -80,4 +83,9 @@ export const eventoDeGastoFields = [
   { id:'descripcion', name:'Descripción', type:'text', basic:true, foreingSelection:{on:false,url:null}, required:true},
   { id:'valor', name: 'Valor', type:'number', basic:true, foreingSelection:{on:false,url:null}, required:true},
   { id:'aprobado', name:'Aprobado', type:'boolean', basic:false, foreingSelection:{on:false,url:null}, required:true}
+]
+
+export const loginFields = [
+  {id:'username', name:'Nombre de Usuario', type:'text', basic:true, foreingSelection:{on:false,url:null}, requred:true},
+  {id:'password', name:'Contraseña', type:'password', basic:true, foreingSelection:{on:false,url:null}, required:true}
 ]

@@ -69,7 +69,7 @@ const DataToolbar = ({tableTitle,error})=>(
 )
 //selectionModelRef para usar formik.fields.['algo']
 
-export default function DataTable({tableTitle,useCheckBox,error, selectionModelRef, dataUrl}) {
+export default function DataTable({tableTitle, useCheckBox, error, selectionModelRef, dataUrl, tableProps}) {
   const [dataLoaded, setDataLoaded] = React.useState(false)
   const [selection, setSelection] = React.useState([1])
   getData('url',setDataLoaded)
@@ -78,7 +78,7 @@ export default function DataTable({tableTitle,useCheckBox,error, selectionModelR
     <>
       {
       <Box sx={{ height: 300, width: '100%', py:1}}>
-        <DataGrid loading={!dataLoaded} components={{Toolbar:DataToolbar}} componentsProps={{toolbar:{tableTitle,error}}}
+        <DataGrid {...tableProps} loading={!dataLoaded} components={{Toolbar:DataToolbar}} componentsProps={{toolbar:{tableTitle,error}}}
           selectionModel={selection} 
           disableColumnMenu
           rows={rows}

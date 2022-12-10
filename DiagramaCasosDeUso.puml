@@ -1,0 +1,104 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+left to right direction
+
+package Usuario {
+    actor "Administrador de Sede" as A
+    actor "Supervisor" as S
+    actor "Empleado" as E
+}
+
+package Consultas {
+    usecase "Consultar Información Empleado" as C1
+    usecase "Consultar Información Cuadrilla" as C2
+    usecase "Consultar Cupo Empleado" as C3
+    usecase "Consultar Empleados" as C4
+    usecase "Consultar Cupo Cuadrilla" as C5
+    usecase "Consultar Localidades Cuadrilla" as C6
+    usecase "Consultar Evento de Gasto de Empleado" as C7
+    usecase "Consultar Eventos de Gasto de Cuadrilla" as C8
+}
+
+C1 ..> C3
+C1 ..> C7
+C2 ..> C4
+C2 ..> C5
+C2 ..> C8
+C2 ..> C6
+C4 ..> C1
+C5 ..> C3
+C8 ..> C7
+package Registros {
+    usecase "Registrar Empleados" as R1
+    usecase "Registrar Sedes" as R2
+    usecase "Registrar Cuadrillas" as R3
+    usecase "Registrar Localidades" as R4
+    usecase "Registrar Eventos de Gasto" as R5
+}
+
+package Modificaciones {
+    usecase "Modificar Empleados" as M1
+    usecase "Modificar Sedes" as M2
+    usecase "Modificar Cuadrillas" as M3
+    usecase "Modificar Localidades" as M4
+}
+
+package Asignaciones {
+    usecase "Asignar Supervisor a Cuadrilla" as A2
+    usecase "Asignar Empleados a Cuadrilla" as A3
+    usecase "Asignar Localidades a Cuadrilla" as A4
+}
+
+package Aprobaciones {
+    usecase "Aprobar Eventos de Gasto" as AA1
+}
+
+package Seguridad {
+    usecase "Verificar Autoridad" as S1
+}
+
+
+A <|-- S
+S <|-- E
+
+'Usos Empleado
+E --> C1
+E --> C2
+E --> R5
+
+'Usos Supervisor
+S --> AA1
+
+'Usos Admin de Sede
+A --> R1
+A --> R2
+A --> R3
+A --> R4
+A --> M1
+A --> M2
+A --> M3
+A --> M4
+'Inclusión de Seguridad
+A2 ..> S1
+A3 ..> S1
+A4 ..> S1
+AA1 ..> S1
+C3 ..> S1
+C6 ..> S1
+C7 ..> S1
+M1 ..> S1
+M2 ..> S1
+M4 ..> S1
+R1 ..> S1
+R2 ..> S1
+R3 ..> S1
+R4 ..> S1
+R5 ..> S1
+
+'Extensión de Asignaciones
+M3 <|-- A2
+M3 <|-- A3
+M3 <|-- A4
+
+
+@enduml

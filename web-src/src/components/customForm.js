@@ -3,7 +3,7 @@ import { Box, Button,TextField } from '@mui/material'
 import { useFormik } from 'formik'
 import DataTable from './dataTable'
 
-const CustomForm = ({formName, fields, formType, initialValues, validationSchema, onSubmit, width, height }) => {
+const CustomForm = ({formName, fields, formType='creation', initialValues, validationSchema, onSubmit, width='auto', height='auto' }) => {
   const formik = useFormik({
     initialValues: initialValues,
       onSubmit: onSubmit,
@@ -11,8 +11,8 @@ const CustomForm = ({formName, fields, formType, initialValues, validationSchema
     })
   return (
   <Box sx={{
-      width : width || 'auto',
-      height: height || 'auto',
+      width : width,
+      height: height,
       padding: 2
       }}>
     <form onSubmit={formik.handleSubmit} style={{width:'100%', height:'100%' }}>

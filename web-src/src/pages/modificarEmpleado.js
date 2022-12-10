@@ -27,7 +27,7 @@ const onSubmit = async (values,actions)=>{
   )*/
 }
 
-const loadInfo = (stateChangeFunction,initialSaveRef) => {
+const loadInfo = (id,stateChangeFunction,initialSaveRef) => {
   setTimeout(() => {
     stateChangeFunction(true)
   }, 500)
@@ -46,7 +46,7 @@ const loadInfo = (stateChangeFunction,initialSaveRef) => {
   }
   /*let info
   await fetch(
-    'http://localhost:8080/demo/get',
+    'http://localhost:8080/demo/get?id={id}',
     {
       method:'GET',
       mode:'cors',
@@ -69,7 +69,7 @@ const ModificarEmpleado = () => {
   const savedInitialValues = React.useRef(null)
   const idFormik = useFormik({
     initialValues : {id:''},
-    onSubmit : ()=> loadInfo(changeLoaded,savedInitialValues),
+    onSubmit : ({id})=> loadInfo(id,changeLoaded,savedInitialValues),
     validationSchema : Yup.object().shape({id:Yup.number().positive().required("Ingresa un Id")})
   })
   const validationSchema = Yup.object().shape(

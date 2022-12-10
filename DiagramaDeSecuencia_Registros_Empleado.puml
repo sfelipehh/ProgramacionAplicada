@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+title Casos de Uso : Registros : Url '/registros' : Como Empleado
+
+actor Empleado
+boundary FrontEnd
+entity ManejadorPeticiones
+entity Repositorio
+database BaseDatos
+
+autonumber
+group Comprobación Autenticación
+Empleado -> FrontEnd ++ : GET(Cualquier Vista de Registro)
+FrontEnd -> FrontEnd : verificarAutoridad(TokenAutorizado)
+alt No hay (TokenAutorizado)
+ref over Empleado,FrontEnd : Secuencia de Inicio de Sesión
+else (TokenAutorizado)
+FrontEnd -> Empleado : respuesta(Vista de Registro)
+end
+
+group Caso : Registrar Evento de Gasto : Previa Autenticación
+Empleado -> FrontEnd ++ : Información Básica Evento Gasto
+Empleado -> FrontEnd : BotónCrearSede()
+FrontEnd -> ManejadorPeticiones ++ : POST(InfoEventoGasto) a /setEventoGasto
+ManejadorPeticiones -> EventoGasto ** : CrearEventoGasto(InfoEventoGasto)
+EventoGasto --> ManejadorPeticiones : return (EventoGasto)
+ManejadorPeticiones -> Repositorio ++ : save(EventoGasto)
+Repositorio -> BaseDatos ++ : insert into EventoGasto() values (EventoGasto)
+BaseDatos --> Repositorio -- : ok
+Repositorio --> ManejadorPeticiones -- : return (EventoGasto)
+ManejadorPeticiones --> FrontEnd -- : respuesta(EventoGasto)
+FrontEnd --> Empleado -- : "Evento de Gasto Guardado"
+end
+
+@enduml

@@ -5,5 +5,12 @@ module.exports = {
   siteMetadata: {
     title: `web-src`
   },
-  plugins: ['gatsby-plugin-material-ui']
+  plugins: [
+    {
+    resolve: `gatsby-plugin-layout`,
+    options: {
+      component: require.resolve(`./src/components/layout`),
+      },
+    },
+  ],
 };
