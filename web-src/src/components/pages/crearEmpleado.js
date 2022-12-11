@@ -1,8 +1,8 @@
 import * as React from 'react'
 import * as Yup from 'yup'
-import Layout from '../components/layout'
-import CustomForm from '../components/customForm'
-import {empleadoFields} from '../data_models/dataModel'
+    
+import CustomForm from '../customForm'
+import {empleadoFields} from '../../data_models/dataModel'
 
 const pageName = "Crear Empleado"
 
@@ -41,14 +41,14 @@ const validationSchema = Yup.object().shape(
 )
 
 const CrearEmpleado = ()=> (
-  <Layout pageName={pageName} >
+    <>
     <CustomForm formName={pageName} 
     fields={empleadoFields}
     initialValues={initialValues}
     validationSchema={validationSchema}
     onSubmit={onSubmit}
     />
-  </Layout>
+    </>
 )
 
 export default CrearEmpleado

@@ -1,13 +1,12 @@
 import * as React from 'react'
 import * as Yup from 'yup'
-import Layout from '../components/layout'
-import CustomForm from '../components/customForm'
-import SekeletonForm from '../components/skeletonForm'
+import CustomForm from '../customForm'
+import SekeletonForm from '../skeletonForm'
 import { IconButton, TextField, Box } from '@mui/material'
-import { sedeFields } from '../data_models/dataModel'
+import { localidadFields } from '../../data_models/dataModel'
 import { useFormik } from 'formik'
 import { Search } from '@mui/icons-material'
-const pageName = "Modificar Sede"
+const pageName = "Modificar Localidad"
 
 
 const onSubmit = async (values,actions)=>{
@@ -33,9 +32,12 @@ const loadInfo = (stateChangeFunction,initialSaveRef) => {
   }, 500)
   console.log('Load Info')
   initialSaveRef.current = {
-    nombre : 'Sede1',
-    direccion : 'Calle 100',
-    idAdministrador : '10'
+    nombre : 'Localidad1',
+    calleInicio : 'Calle1',
+    calleFin : 'Calle2',
+    carreraInicio : 'Carrera1',
+    carreraFin : 'Carrera2',
+    idSede : 4
   }
   /*let info
   await fetch(
@@ -57,7 +59,7 @@ const loadInfo = (stateChangeFunction,initialSaveRef) => {
 }
 
 
-const ModificarSede = () => {
+const ModificarLocalidad = () => {
   const [infoLoaded,changeLoaded] = React.useState(false)
   const savedInitialValues = React.useRef(null)
   const idFormik = useFormik({
@@ -67,21 +69,24 @@ const ModificarSede = () => {
   })
   const validationSchema = Yup.object().shape(
     {
-      nombre : Yup.string().required("Nombre de Sede Obligatorio"),
-      direccion : Yup.string().required("Dirección Obligatoria"),
-      idAdministrador : Yup.number().positive().required("Administrador Requerido")
+      nombre : Yup.string().required('Nombre de Localiad Requerido'),
+      calleInicio : Yup.string().required('Calle de Inicio Requerida'),
+      calleFin : Yup.string().required('Calle de Finalización Requerida'),
+      carreraInicio : Yup.string().required('Carreda de Inicio Requerida'),
+      carreraFin : Yup.string().required('Carreda de Finalización Requerida'),
+      idSede : Yup.number().positive().optional()
     }
   )
 
   return (
-    <Layout pageName={pageName} >
+    <>
       <Box sx={{p:2}}>
         <form onSubmit={idFormik.handleSubmit} style={{display:'flex'}}>
           <TextField margin='dense' variant='outlined'
             name='id' 
-            id='idSede' 
+            id='idLocalidad' 
             type='number'
-            label='Id Sede' 
+            label='Id Localidad' 
             required 
             value={idFormik.values.id} 
             onChange={idFormik.handleChange}
@@ -95,15 +100,15 @@ const ModificarSede = () => {
       </Box>
       {infoLoaded ? 
       <CustomForm formName={pageName} formType='modify'
-        fields={sedeFields}
+        fields={localidadFields}
         initialValues={savedInitialValues.current}
         validationSchema={validationSchema}
         onSubmit={onSubmit}/> 
-        : <SekeletonForm formName={pageName} fields={sedeFields} />
+        : <SekeletonForm formName={pageName} fields={localidadFields} />
       }
-    </Layout>
+    </>
   )
 }
 
-export default ModificarSede
+export default ModificarLocalidad
 export const Head = ()=><title>{pageName}</title>

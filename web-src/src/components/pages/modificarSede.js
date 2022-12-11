@@ -1,13 +1,12 @@
 import * as React from 'react'
 import * as Yup from 'yup'
-import Layout from '../components/layout'
-import CustomForm from '../components/customForm'
-import SekeletonForm from '../components/skeletonForm'
+import CustomForm from '../customForm'
+import SekeletonForm from '../skeletonForm'
 import { IconButton, TextField, Box } from '@mui/material'
-import { empleadoFields } from '../data_models/dataModel'
+import { sedeFields } from '../../data_models/dataModel'
 import { useFormik } from 'formik'
 import { Search } from '@mui/icons-material'
-const pageName = "Modificar Empleado"
+const pageName = "Modificar Sede"
 
 
 const onSubmit = async (values,actions)=>{
@@ -27,26 +26,19 @@ const onSubmit = async (values,actions)=>{
   )*/
 }
 
-const loadInfo = (id,stateChangeFunction,initialSaveRef) => {
+const loadInfo = (stateChangeFunction,initialSaveRef) => {
   setTimeout(() => {
     stateChangeFunction(true)
   }, 500)
   console.log('Load Info')
   initialSaveRef.current = {
-    identificacion : 5667,
-    nombres : 'Samuel',
-    apellidos  : 'Hernandez',
-    cargo: 'Admin',
-    celular : '45567',
-    correo : 'sfelipehh@gmail.com',
-    fechaNacimiento : '2004-02-14',
-    idCuadrilla : 67, 
-    idSede : 8,
-    cupoAsignado : 100
+    nombre : 'Sede1',
+    direccion : 'Calle 100',
+    idAdministrador : '10'
   }
   /*let info
   await fetch(
-    'http://localhost:8080/demo/get?id={id}',
+    'http://localhost:8080/demo/get',
     {
       method:'GET',
       mode:'cors',
@@ -64,40 +56,31 @@ const loadInfo = (id,stateChangeFunction,initialSaveRef) => {
 }
 
 
-const ModificarEmpleado = () => {
+const ModificarSede = () => {
   const [infoLoaded,changeLoaded] = React.useState(false)
   const savedInitialValues = React.useRef(null)
   const idFormik = useFormik({
     initialValues : {id:''},
-    onSubmit : ({id})=> loadInfo(id,changeLoaded,savedInitialValues),
+    onSubmit : ()=> loadInfo(changeLoaded,savedInitialValues),
     validationSchema : Yup.object().shape({id:Yup.number().positive().required("Ingresa un Id")})
   })
   const validationSchema = Yup.object().shape(
     {
-      identificacion : Yup.number().positive().required("Identificación Requerida"),
-      nombres : Yup.string().required("Nombres Requeridos"),
-      apellidos : Yup.string().required("Apellidos Requeridos"),
-      cargo : Yup.string().required("Cargo Requerido") ,
-      celular : Yup.string()
-      .matches("[0-9]{3}-[0-9]{7}","El celuar de ser xxx-xxxxxxx")
-      .required("Celular Requerido"),
-      correo : Yup.string().email("Correo Invalido (ej@emp.lo)").required("Correo Electronico Requerido"),
-      fechaNacimiento : Yup.date().required("Fecha de Nacimiento Requerida"),
-      idCuadrilla : Yup.number().positive().optional(),
-      idSede : Yup.number().positive().required("Id de Sede Requerido"),
-      cupoAsignado : Yup.number().positive().optional()
+      nombre : Yup.string().required("Nombre de Sede Obligatorio"),
+      direccion : Yup.string().required("Dirección Obligatoria"),
+      idAdministrador : Yup.number().positive().required("Administrador Requerido")
     }
   )
 
   return (
-    <Layout pageName={pageName} >
+    <>
       <Box sx={{p:2}}>
         <form onSubmit={idFormik.handleSubmit} style={{display:'flex'}}>
           <TextField margin='dense' variant='outlined'
             name='id' 
-            id='idEmpleado' 
+            id='idSede' 
             type='number'
-            label='Id Empleado' 
+            label='Id Sede' 
             required 
             value={idFormik.values.id} 
             onChange={idFormik.handleChange}
@@ -111,15 +94,15 @@ const ModificarEmpleado = () => {
       </Box>
       {infoLoaded ? 
       <CustomForm formName={pageName} formType='modify'
-        fields={empleadoFields}
+        fields={sedeFields}
         initialValues={savedInitialValues.current}
         validationSchema={validationSchema}
         onSubmit={onSubmit}/> 
-        : <SekeletonForm formName={pageName} fields={empleadoFields} />
+        : <SekeletonForm formName={pageName} fields={sedeFields} />
       }
-    </Layout>
+    </>
   )
 }
 
-export default ModificarEmpleado
+export default ModificarSede
 export const Head = ()=><title>{pageName}</title>

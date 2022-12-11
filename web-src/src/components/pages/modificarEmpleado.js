@@ -1,13 +1,13 @@
 import * as React from 'react'
 import * as Yup from 'yup'
-import Layout from '../components/layout'
-import CustomForm from '../components/customForm'
-import SekeletonForm from '../components/skeletonForm'
+    
+import CustomForm from '../customForm'
+import SekeletonForm from '../skeletonForm'
 import { IconButton, TextField, Box } from '@mui/material'
-import { localidadFields } from '../data_models/dataModel'
+import { empleadoFields } from '../../data_models/dataModel'
 import { useFormik } from 'formik'
 import { Search } from '@mui/icons-material'
-const pageName = "Modificar Localidad"
+const pageName = "Modificar Empleado"
 
 
 const onSubmit = async (values,actions)=>{
@@ -27,22 +27,26 @@ const onSubmit = async (values,actions)=>{
   )*/
 }
 
-const loadInfo = (stateChangeFunction,initialSaveRef) => {
+const loadInfo = (id,stateChangeFunction,initialSaveRef) => {
   setTimeout(() => {
     stateChangeFunction(true)
   }, 500)
   console.log('Load Info')
   initialSaveRef.current = {
-    nombre : 'Localidad1',
-    calleInicio : 'Calle1',
-    calleFin : 'Calle2',
-    carreraInicio : 'Carrera1',
-    carreraFin : 'Carrera2',
-    idSede : 4
+    identificacion : 5667,
+    nombres : 'Samuel',
+    apellidos  : 'Hernandez',
+    cargo: 'Admin',
+    celular : '45567',
+    correo : 'sfelipehh@gmail.com',
+    fechaNacimiento : '2004-02-14',
+    idCuadrilla : 67, 
+    idSede : 8,
+    cupoAsignado : 100
   }
   /*let info
   await fetch(
-    'http://localhost:8080/demo/get',
+    'http://localhost:8080/demo/get?id={id}',
     {
       method:'GET',
       mode:'cors',
@@ -60,34 +64,40 @@ const loadInfo = (stateChangeFunction,initialSaveRef) => {
 }
 
 
-const ModificarLocalidad = () => {
+const ModificarEmpleado = () => {
   const [infoLoaded,changeLoaded] = React.useState(false)
   const savedInitialValues = React.useRef(null)
   const idFormik = useFormik({
     initialValues : {id:''},
-    onSubmit : ()=> loadInfo(changeLoaded,savedInitialValues),
+    onSubmit : ({id})=> loadInfo(id,changeLoaded,savedInitialValues),
     validationSchema : Yup.object().shape({id:Yup.number().positive().required("Ingresa un Id")})
   })
   const validationSchema = Yup.object().shape(
     {
-      nombre : Yup.string().required('Nombre de Localiad Requerido'),
-      calleInicio : Yup.string().required('Calle de Inicio Requerida'),
-      calleFin : Yup.string().required('Calle de Finalización Requerida'),
-      carreraInicio : Yup.string().required('Carreda de Inicio Requerida'),
-      carreraFin : Yup.string().required('Carreda de Finalización Requerida'),
-      idSede : Yup.number().positive().optional()
+      identificacion : Yup.number().positive().required("Identificación Requerida"),
+      nombres : Yup.string().required("Nombres Requeridos"),
+      apellidos : Yup.string().required("Apellidos Requeridos"),
+      cargo : Yup.string().required("Cargo Requerido") ,
+      celular : Yup.string()
+      .matches("[0-9]{3}-[0-9]{7}","El celuar de ser xxx-xxxxxxx")
+      .required("Celular Requerido"),
+      correo : Yup.string().email("Correo Invalido (ej@emp.lo)").required("Correo Electronico Requerido"),
+      fechaNacimiento : Yup.date().required("Fecha de Nacimiento Requerida"),
+      idCuadrilla : Yup.number().positive().optional(),
+      idSede : Yup.number().positive().required("Id de Sede Requerido"),
+      cupoAsignado : Yup.number().positive().optional()
     }
   )
 
   return (
-    <Layout pageName={pageName} >
+    <>
       <Box sx={{p:2}}>
         <form onSubmit={idFormik.handleSubmit} style={{display:'flex'}}>
           <TextField margin='dense' variant='outlined'
             name='id' 
-            id='idLocalidad' 
+            id='idEmpleado' 
             type='number'
-            label='Id Localidad' 
+            label='Id Empleado' 
             required 
             value={idFormik.values.id} 
             onChange={idFormik.handleChange}
@@ -101,15 +111,15 @@ const ModificarLocalidad = () => {
       </Box>
       {infoLoaded ? 
       <CustomForm formName={pageName} formType='modify'
-        fields={localidadFields}
+        fields={empleadoFields}
         initialValues={savedInitialValues.current}
         validationSchema={validationSchema}
         onSubmit={onSubmit}/> 
-        : <SekeletonForm formName={pageName} fields={localidadFields} />
+        : <SekeletonForm formName={pageName} fields={empleadoFields} />
       }
-    </Layout>
+    </>
   )
 }
 
-export default ModificarLocalidad
+export default ModificarEmpleado
 export const Head = ()=><title>{pageName}</title>

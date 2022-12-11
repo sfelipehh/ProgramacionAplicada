@@ -1,8 +1,8 @@
 import * as React from 'react'
-import Layout from '../components/layout'
+    
 import * as Yup from 'yup'
-import CustomForm from '../components/customForm'
-import { eventoDeGastoFields } from '../data_models/dataModel'
+import CustomForm from '../customForm'
+import { eventoDeGastoFields } from '../../data_models/dataModel'
 
 const pageName = "Crear Evento de Gasto"
 
@@ -32,14 +32,14 @@ const initialValues = {
 }
 
 const CrearEventoGasto = ()=>(
-  <Layout pageName={pageName}>
+  <>
     <CustomForm formName={pageName} 
       fields={eventoDeGastoFields}
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     />
-  </Layout>
+  </>
 )
 
 export default CrearEventoGasto

@@ -10,7 +10,7 @@ import {
   CssBaseline,  
   Drawer,
   ListItem,
-  ListItemIcon} from '@mui/material'
+  ListItemIcon } from '@mui/material'
 import { Link } from 'gatsby'
 import { DomainAdd, 
   AddLocationAlt, 
@@ -22,6 +22,7 @@ import { DomainAdd,
   PersonAddAlt1,
   Person,
   Login} from '@mui/icons-material'
+import pageNames from '../data_models/pageNames'
 const drawerWidth = '20vw'
 const links = [
   ['/','Index'],
@@ -39,14 +40,21 @@ const links = [
   ['/login', 'Iniciar Sesión', <Login />]
 ]
 
-const Layout = ({pageName,children})=> (
+const Layout = ({children,params})=> {
+  const getPageName = (params)=>{
+    const location = params['*']
+    return pageNames[location]
+  }
+
+  return(
+  params['*'] !== 'login' ? 
   <>
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" sx={{ zIndex: (theme)=>theme.zIndex.drawer + 1}}>
         <Toolbar variant="dense">
           <Typography variant="h5" color="inherit" noWrap component="div">
-            Programación Aplicada {'>'} {pageName}
+            Programación Aplicada {'>'} {getPageName(params)}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -81,6 +89,10 @@ const Layout = ({pageName,children})=> (
       </Box>
     </Box>  
   </>
-)
+  : <Box sx={{width:'100%', height:'100%', display:'flex', justifyContent:'center', alignItems:'center'}}>
+    {children}
+  </Box>
+  )
+}
 
 export default Layout

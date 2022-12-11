@@ -1,10 +1,10 @@
 import * as React from 'react'
 import * as Yup from 'yup'
-import Layout from '../components/layout'
-import CustomForm from '../components/customForm'
-import SekeletonForm from '../components/skeletonForm'
+    
+import CustomForm from '../customForm'
+import SekeletonForm from '../skeletonForm'
 import { IconButton, TextField, Box } from '@mui/material'
-import { cuadrillaFields } from '../data_models/dataModel'
+import { cuadrillaFields } from '../../data_models/dataModel'
 import { useFormik } from 'formik'
 import { Search } from '@mui/icons-material'
 const pageName = "Modificar Cuadrilla"
@@ -82,7 +82,7 @@ const ModificarCuadrilla = () => {
   )
 
   return (
-    <Layout pageName={pageName} >
+      <>
       <Box sx={{p:2}}>
         <form onSubmit={idFormik.handleSubmit} style={{display:'flex'}}>
           <TextField margin='dense' variant='outlined'
@@ -109,7 +109,7 @@ const ModificarCuadrilla = () => {
         onSubmit={onSubmit}/> 
         : <SekeletonForm formName={pageName} fields={cuadrillaFields} />
       }
-    </Layout>
+      </>
   )
 }
 

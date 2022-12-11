@@ -1,9 +1,11 @@
 import * as React from 'react'
 import { Box } from '@mui/system'
-import CustomForm from '../components/customForm'
-import { loginFields } from '../data_models/dataModel'
+import CustomForm from '../customForm'
+import { loginFields } from '../../data_models/dataModel'
 import * as Yup from 'yup'
-
+import { Paper } from '@mui/material'
+import { navigate } from 'gatsby'
+import { setUser } from '../../services/autentication'
 const pageName = 'Iniciar Sesión'
 
 const initialValues = {
@@ -23,13 +25,14 @@ const onSubmit = (values,actions)=>{
   setTimeout(() => {
     alert(JSON.stringify(values))
   }, 500);
-
+  setUser()
+  navigate('/index')
 }
 
 const Login = ()=>{
   return(
     <Box sx={{width:'30vw',height:'30vh'}}>
-      <form>
+      <Paper elevation={2} >
         <CustomForm formName={pageName} 
           fields={loginFields}
           formType='creation'
@@ -37,7 +40,7 @@ const Login = ()=>{
           validationSchema={validationSchema}
           onSubmit = {onSubmit}
         />
-      </form>
+        </Paper>
     </Box>
   )
 

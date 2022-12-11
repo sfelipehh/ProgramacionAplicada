@@ -1,8 +1,8 @@
 import * as React from 'react'
 import * as Yup from 'yup'
-import Layout from '../components/layout'
-import CustomForm from '../components/customForm'
-import {cuadrillaFields} from '../data_models/dataModel'
+    
+import CustomForm from '../customForm'
+import {cuadrillaFields} from '../../data_models/dataModel'
 
 const pageName = "Crear Cuadrilla"
 
@@ -30,14 +30,14 @@ const validationSchema = Yup.object().shape(
 )
 
 const CrearCuadrilla = ()=>(
-  <Layout pageName={pageName}>
+  <>
     <CustomForm  formName={pageName}
     fields={cuadrillaFields}
     initialValues={initialValues}
     validationSchema={validationSchema}
     onSubmit = {onSubmit}
     />
-  </Layout>
+  </>
 
 )
 

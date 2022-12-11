@@ -1,8 +1,9 @@
 import * as React from 'react'
-import Layout from '../components/layout'
+    
 import * as Yup from 'yup'
-import CustomForm from '../components/customForm'
-import { sedeFields } from '../data_models/dataModel'
+import CustomForm from '../customForm'
+import { sedeFields } from '../../data_models/dataModel'
+import { isLogged } from '../../services/autentication'
 
 const pageName = "Crear Sede"
 
@@ -37,14 +38,15 @@ const initialValues = {
 }
 
 const CrearSede = ()=>(
-  <Layout pageName={pageName}>
+  <>
+  {isLogged()}
     <CustomForm formName={pageName} 
       fields={sedeFields}
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
     />
-  </Layout>
+  </>
 )
 
 export default CrearSede

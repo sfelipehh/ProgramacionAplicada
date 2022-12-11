@@ -1,11 +1,12 @@
 import * as React from 'react'
-import { IconButton, TextField, Box, Skeleton} from '@mui/material'
+import { IconButton, TextField, Box} from '@mui/material'
 import { Search } from '@mui/icons-material'
-import DisplayData from '../components/displayData'
-import Layout from '../components/layout'
-import { empleadoFields } from '../data_models/dataModel'
+import DisplayData from '../displayData'
+    
+import { empleadoFields } from '../../data_models/dataModel'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
+import SekeletonDisplayData from '../skeletonDisplayData'
 
 const pageName = 'Consultar Empleado'
 
@@ -36,7 +37,7 @@ const ConsultarEmpleado = ()=>{
   })
   
   return(
-    <Layout pageName={pageName}>
+    <>
       <Box sx={{px:2}}>
         <form onSubmit={idFormik.handleSubmit} style={{display:'flex'}}>
           <TextField margin='dense' variant='outlined'
@@ -55,8 +56,11 @@ const ConsultarEmpleado = ()=>{
           </IconButton>
         </form>
       </Box>
-      {infoLoaded ? <DisplayData fields={empleadoFields} data={valuesRef.current} /> : <Skeleton sx={{p:2}} width={360} height={360} /> }
-    </Layout>
+      {infoLoaded ? 
+      <DisplayData fields={empleadoFields} data={valuesRef.current} /> 
+      : <SekeletonDisplayData fields={empleadoFields} /> 
+      }
+    </>
   )
 
 }
