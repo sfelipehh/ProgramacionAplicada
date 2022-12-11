@@ -29,8 +29,8 @@ Repositorio --> ManejadorPeticiones -- : return (Sede)
 ManejadorPeticiones --> FrontEnd -- : respuesta(Sede)
 FrontEnd --> Administrador : Información de la Sede
 Administrador -> FrontEnd : Nueva Información de la Sede
-FrontEnd -> ManejadorPeticiones ++ : PATCH(InfoModificadaSede) a '/registros/setSede
-ManejadorPeticiones -> Sede ++ : setters(InfoModificadaSede)
+FrontEnd -> ManejadorPeticiones ++ : PATCH(InfoModificadaSede) a '/registros/setSede'
+ManejadorPeticiones -> Sede ** : setters(InfoModificadaSede)
 Sede --> ManejadorPeticiones -- : return (SedeModificada)
 ManejadorPeticiones -> Repositorio ++ : save(SedeModificada)
 Repositorio -> BaseDatos ++ : update Sedes() set columnasSede() = (SedeModificada) where id = idSedeModificada
@@ -38,6 +38,72 @@ BaseDatos --> Repositorio -- : ok
 Repositorio --> ManejadorPeticiones -- : return (SedeModificada)
 ManejadorPeticiones --> FrontEnd -- : respuesta(SedeModificada)
 FrontEnd --> Administrador -- : "Sede Guardada"
+end
+
+group Caso : Modificar Localidades : Previa Autenticación
+Administrador -> FrontEnd ++ : Id de la Localidad
+Administrador -> FrontEnd : BotónBuscarLocalidad
+FrontEnd -> ManejadorPeticiones ++ : GET(IdLocalidad) a '/consultas/getLocalidadById'
+ManejadorPeticiones -> Repositorio ++ : buscarLocalidad(IdLocalidad)
+Repositorio -> BaseDatos ++ : select * from Localidades() where id = (IdLocalidad)
+BaseDatos --> Repositorio -- : 1 o cero Entidades(Localidad)
+Repositorio --> ManejadorPeticiones -- : return (Localidad)
+ManejadorPeticiones --> FrontEnd -- : respuesta(Localidad)
+FrontEnd --> Administrador : Información de la Localidad
+Administrador -> FrontEnd : Nueva Información de la Localidad
+FrontEnd -> ManejadorPeticiones ++ : PATCH(InfoModificadaLocalidad) a '/registros/setLocalidad'
+ManejadorPeticiones -> Localidad ** : setters(InfoModificadaLocalidad)
+Localidad --> ManejadorPeticiones -- : return (LocalidadModificada)
+ManejadorPeticiones -> Repositorio ++ : save(LocalidadModificada)
+Repositorio -> BaseDatos ++ : update Localidades() set columnasLocalidad() = (LocalidadModificada) where id = idLocalidadModificada
+BaseDatos --> Repositorio -- : ok
+Repositorio --> ManejadorPeticiones -- : return (LocalidadModificada)
+ManejadorPeticiones --> FrontEnd -- : respuesta(LocalidadModificada)
+FrontEnd --> Administrador -- : "Localidad Guardada"
+end
+
+group Caso : Modificar Cuadrillas : Previa Autenticación
+Administrador -> FrontEnd ++ : Id de la Cuadrilla
+Administrador -> FrontEnd : BotónBuscarCuadrilla
+FrontEnd -> ManejadorPeticiones ++ : GET(IdCuadrilla) a '/consultas/getCuadrillaById'
+ManejadorPeticiones -> Repositorio ++ : buscarCuadrilla(IdCuadrilla)
+Repositorio -> BaseDatos ++ : select * from Cuadrillas() where id = (IdCuadrilla)
+BaseDatos --> Repositorio -- : 1 o cero Entidades(Cuadrilla)
+Repositorio --> ManejadorPeticiones -- : return (Cuadrilla)
+ManejadorPeticiones --> FrontEnd -- : respuesta(Cuadrilla)
+FrontEnd --> Administrador : Información de la Cuadrilla
+Administrador -> FrontEnd : Nueva Información de la Cuadrilla
+FrontEnd -> ManejadorPeticiones ++ : PATCH(InfoModificadaCuadrilla) a '/registros/setCuadrilla
+ManejadorPeticiones -> Sede ** : setters(InfoModificadaCuadrilla)
+Sede --> ManejadorPeticiones -- : return (CuadrillaModificada)
+ManejadorPeticiones -> Repositorio ++ : save(CuadrillaModificada)
+Repositorio -> BaseDatos ++ : update Sedes() set columnasCuadrilla() = (CuadrillaModificada) where id = idCuadrillaModificada
+BaseDatos --> Repositorio -- : ok
+Repositorio --> ManejadorPeticiones -- : return (CuadrillaModificada)
+ManejadorPeticiones --> FrontEnd -- : respuesta(CuadrillaModificada)
+FrontEnd --> Administrador -- : "Cuadrilla Guardada"
+end
+
+group Caso : Modificar Empleados : Previa Autenticación
+Administrador -> FrontEnd ++ : Id de la Empleado
+Administrador -> FrontEnd : BotónBuscarEmpleado
+FrontEnd -> ManejadorPeticiones ++ : GET(IdEmpleado) a '/consultas/getEmpleadoById'
+ManejadorPeticiones -> Repositorio ++ : buscarEmpleado(IdEmpleado)
+Repositorio -> BaseDatos ++ : select * from Empleados() where id = (IdEmpleado)
+BaseDatos --> Repositorio -- : 1 o cero Entidades(Empleado)
+Repositorio --> ManejadorPeticiones -- : return (Empleado)
+ManejadorPeticiones --> FrontEnd -- : respuesta(Empleado)
+FrontEnd --> Administrador : Información del Empleado
+Administrador -> FrontEnd : Nueva Información del Empleado
+FrontEnd -> ManejadorPeticiones ++ : PATCH(InfoModificadaEmpleado) a '/registros/setEmpleado
+ManejadorPeticiones -> Empleado ** : setters(InfoModificadaEmpleado)
+Empleado --> ManejadorPeticiones -- : return (EmpleadoModificado)
+ManejadorPeticiones -> Repositorio ++ : save(EmpleadoModificado)
+Repositorio -> BaseDatos ++ : update Empleados() set columnasEmpleado() = (EmpleadoModificada) where id = idEmpleadoModificado
+BaseDatos --> Repositorio -- : ok
+Repositorio --> ManejadorPeticiones -- : return (EmpleadoModificado)
+ManejadorPeticiones --> FrontEnd -- : respuesta(EmpleadoModificado)
+FrontEnd --> Administrador -- : "Empleado Guardado"
 end
 
 @enduml
