@@ -2,7 +2,7 @@
 'https://plantuml.com/use-case-diagram
 left to right direction
 
-package Usuario {
+package Usuarios {
     actor "Administrador de Sede" as A
     actor "Supervisor" as S
     actor "Empleado" as E
