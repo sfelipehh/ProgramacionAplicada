@@ -72,19 +72,19 @@ erDiagram
     Sede ||--|| Administrador-Sede__debil : administra
     Sede ||--|{ Localidad : cubre
     
-    Cuadrilla ||--|| Sede : pertenece
+    Cuadrilla }|--|| Sede : pertenece
     Cuadrilla ||--|{ Localidades-Cuadrilla__debil : "trabaja en"
     Cuadrilla ||--|{ Empleado : contiene
     
     Empleado ||--|{ Evento-de-Gasto : registra  
     
     Evento-de-Gasto ||--|| Localidad : "registrado en"
-    Evento-de-Gasto ||--|| Cuadrilla : "registrado por"
+    Evento-de-Gasto ||--|{ Cuadrilla : "registrado por"
     
     Usuario ||--|| Empleado : accede
     Usuario ||--|| Perfil : posee
     
-    Localidad ||--|| Localidades-Cuadrilla__debil : "disponible para"
+    Localidad ||--|{ Localidades-Cuadrilla__debil : "disponible para"
     
     Administrador-Sede__debil ||--|| Empleado : administra
     
@@ -103,19 +103,19 @@ erDiagram
     Sede ||--|{ Localidad : cubre
     Sede ||--|| Administrador-Sede : administra
     
-    Cuadrilla ||--|| Sede : pertenece
+    Cuadrilla }|--|| Sede : pertenece
     Cuadrilla ||--|{ Localidades-Cuadrilla : "trabaja en"
     Cuadrilla ||--|{ Empleado : contiene
     
     Empleado ||--|{ Evento-de-Gasto : registra  
     
     Evento-de-Gasto ||--|| Localidad : "registrado en"
-    Evento-de-Gasto ||--|| Cuadrilla : "registrado por"
+    Evento-de-Gasto ||--|{ Cuadrilla : "registrado por"
     
     Usuario ||--|| Empleado : accede
     Usuario ||--|| Perfil : posee
     
-    Localidad ||--|| Localidades-Cuadrilla : "disponible para"
+    Localidad ||--|{ Localidades-Cuadrilla : "disponible para"
     
     Administrador-Sede ||--|| Empleado : administra
     
