@@ -1,14 +1,35 @@
 package com.sa.programacionaplicada;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="usuario")
 public class Usuario {
 
-    private long id;
-    private long idEmpleado;
-    private long idPerfil;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name="id",nullable = false )
+
+    private Long id;
+    private Long idEmpleado;
+    private Long idPerfil;
     private String nombreUsuario;
     private String contraseña;
 
-    public long getId() {
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "perfil_id")
+
+    private Perfil perfil;
+
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
+    }
+
+    public Long getId() {
         return id;
     }
 
@@ -16,7 +37,7 @@ public class Usuario {
         this.id = id;
     }
 
-    public long getIdEmpleado() {
+    public Long getIdEmpleado() {
         return idEmpleado;
     }
 
@@ -24,7 +45,7 @@ public class Usuario {
         this.idEmpleado = idEmpleado;
     }
 
-    public long getIdPerfil() {
+    public Long getIdPerfil() {
         return idPerfil;
     }
 

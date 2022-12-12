@@ -1,15 +1,40 @@
 package com.sa.programacionaplicada;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
+
+@Entity
+@Table(name="cuadrilla")
+
 public class Cuadrilla {
 
-    private long id;
-    private String nombre;
-    private long idsede;
-    private long cantidadempleados;
-    private long cupoasignado;
-    private long cuporestante;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name="id",nullable = false )
 
-    public long getId() {
+    private Long id;
+    private String nombre;
+    private Long cantidadempleados;
+    private Long cupoasignado;
+    private Long cuporestante;
+
+    @OneToMany(mappedBy = "cuadrilla", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties({"cuadrilla"})
+    private Set<Empleado> empleados = new LinkedHashSet<>();
+
+
+    public Set<Empleado> getEmpleados() {
+        return empleados;
+    }
+
+    public void setEmpleados(Set<Empleado> empleados) {
+        this.empleados = empleados;
+    }
+
+    public Long getId() {
         return id;
     }
 
@@ -25,15 +50,7 @@ public class Cuadrilla {
         this.nombre = nombre;
     }
 
-    public long getIdsede() {
-        return idsede;
-    }
-
-    public void setIdsede(long idsede) {
-        this.idsede = idsede;
-    }
-
-    public long getCantidadempleados() {
+    public Long getCantidadempleados() {
         return cantidadempleados;
     }
 
@@ -41,7 +58,7 @@ public class Cuadrilla {
         this.cantidadempleados = cantidadempleados;
     }
 
-    public long getCupoasignado() {
+    public Long getCupoasignado() {
         return cupoasignado;
     }
 
@@ -49,7 +66,7 @@ public class Cuadrilla {
         this.cupoasignado = cupoasignado;
     }
 
-    public long getCuporestante() {
+    public Long getCuporestante() {
         return cuporestante;
     }
 

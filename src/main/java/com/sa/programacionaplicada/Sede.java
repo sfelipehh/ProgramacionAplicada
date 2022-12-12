@@ -1,13 +1,21 @@
 package com.sa.programacionaplicada;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="sede")
 public class Sede {
 
-    private long id;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name="id",nullable = false )
+
+    private Long id;
     private String nombre;
 
     private String direccion;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

@@ -1,13 +1,22 @@
 package com.sa.programacionaplicada;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="perfil")
+
 public class Perfil {
 
-    private long id;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name="id",nullable = false )
+
+    private Long id;
     private boolean consulta;
     private boolean revision;
     private boolean registro;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

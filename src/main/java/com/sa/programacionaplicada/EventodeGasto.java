@@ -1,18 +1,39 @@
 package com.sa.programacionaplicada;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="eventodegasto")
+
 public class EventodeGasto {
 
-    private long id;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name="id",nullable = false )
+
+    private Long id;
     private String fecha;
     private String hora;
-    private long idlocalidad;
-    private long idcuadrilla;
+    private Long idlocalidad;
+    private Long idcuadrilla;
     private String descripcion;
-    private long valor;
-    private long idempleado;
+    private Long valor;
+    private Long idempleado;
     boolean aprobado;
 
-    public long getId() {
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cuadrilla_id")
+    private Cuadrilla cuadrilla;
+
+    public Cuadrilla getCuadrilla() {
+        return cuadrilla;
+    }
+
+    public void setCuadrilla(Cuadrilla cuadrilla) {
+        this.cuadrilla = cuadrilla;
+    }
+
+    public Long getId() {
         return id;
     }
 
@@ -36,7 +57,7 @@ public class EventodeGasto {
         this.hora = hora;
     }
 
-    public long getIdlocalidad() {
+    public Long getIdlocalidad() {
         return idlocalidad;
     }
 
@@ -44,7 +65,7 @@ public class EventodeGasto {
         this.idlocalidad = idlocalidad;
     }
 
-    public long getIdcuadrilla() {
+    public Long getIdcuadrilla() {
         return idcuadrilla;
     }
 
@@ -60,7 +81,7 @@ public class EventodeGasto {
         this.descripcion = descripcion;
     }
 
-    public long getValor() {
+    public Long getValor() {
         return valor;
     }
 
@@ -68,7 +89,7 @@ public class EventodeGasto {
         this.valor = valor;
     }
 
-    public long getIdempleado() {
+    public Long getIdempleado() {
         return idempleado;
     }
 

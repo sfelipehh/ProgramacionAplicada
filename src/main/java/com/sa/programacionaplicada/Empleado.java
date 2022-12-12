@@ -1,19 +1,45 @@
 package com.sa.programacionaplicada;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
+import org.hibernate.Hibernate;
+
+import java.util.Objects;
+
+@Entity
+@Table(name="empleado")
+
 public class Empleado {
 
-    private long id;
-    private long dni;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name="id",nullable = false )
+
+    private Long id;
+    private Long dni;
     private String nombres;
     private String apellidos;
     private String celular;
     private String email;
     private String fechadenacimiento;
-    private long idcuadrilla;
-    private long cupoasignado;
-    private long cuporestante;
 
-    public long getId() {
+    private Long cupoasignado;
+    private Long cuporestante;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cuadrilla_id")
+    @JsonIgnoreProperties({"empleados"})
+    private Cuadrilla cuadrilla;
+
+    public Cuadrilla getCuadrilla() {
+        return cuadrilla;
+    }
+
+    public void setCuadrilla(Cuadrilla cuadrilla) {
+        this.cuadrilla = cuadrilla;
+    }
+
+    public Long getId() {
         return id;
     }
 
@@ -21,7 +47,7 @@ public class Empleado {
         this.id = id;
     }
 
-    public long getDni() {
+    public Long getDni() {
         return dni;
     }
 
@@ -69,15 +95,9 @@ public class Empleado {
         this.fechadenacimiento = fechadenacimiento;
     }
 
-    public long getIdcuadrilla() {
-        return idcuadrilla;
-    }
 
-    public void setIdcuadrilla(long idcuadrilla) {
-        this.idcuadrilla = idcuadrilla;
-    }
 
-    public long getCupoasignado() {
+    public Long getCupoasignado() {
         return cupoasignado;
     }
 
@@ -85,11 +105,24 @@ public class Empleado {
         this.cupoasignado = cupoasignado;
     }
 
-    public long getCuporestante() {
+    public Long getCuporestante() {
         return cuporestante;
     }
 
     public void setCuporestante(long cuporestante) {
         this.cuporestante = cuporestante;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Empleado empleado = (Empleado) o;
+        return id != null && Objects.equals(id, empleado.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }

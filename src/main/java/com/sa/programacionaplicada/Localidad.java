@@ -1,16 +1,25 @@
 package com.sa.programacionaplicada;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="localidad")
+
 public class Localidad {
 
-    private long id;
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name="id",nullable = false )
+
+    private Long id;
     private String nombre;
     private String calleinicio;
     private String callefin;
     private String carrerainicio;
     private String carrerafin;
-    private long idsede;
+    private Long idsede;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -58,7 +67,7 @@ public class Localidad {
         this.carrerafin = carrerafin;
     }
 
-    public long getIdsede() {
+    public Long getIdsede() {
         return idsede;
     }
 
