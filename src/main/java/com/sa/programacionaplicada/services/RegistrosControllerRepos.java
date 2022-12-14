@@ -121,7 +121,13 @@ public class RegistrosControllerRepos extends SuperRequestControllerRepos {
                 }
                 if (!alterCuadrilla.getEmpleados().isEmpty()) {
                     System.out.println(alterCuadrilla.getEmpleados());
-                    actual.setEmpleados(alterCuadrilla.getEmpleados());
+                    for (Empleado alterEmpleado:
+                         alterCuadrilla.getEmpleados()) {
+                        empleadosRepository.findById(alterEmpleado.getId()).ifPresent(empleado -> {
+                            empleado.setCuadrilla(actual);
+                            empleadosRepository.save(empleado);
+                        });
+                    }
                 }
                 cuadrillasRepository.save(actual);
             });

@@ -29,7 +29,7 @@ public class Cuadrilla {
     @JsonIgnoreProperties({"localidades","cuadrillas","empleados","administradorSede"})
     private Sede sede;
 
-    @OneToMany(mappedBy = "cuadrilla", orphanRemoval = true)
+    @OneToMany(mappedBy = "cuadrilla", orphanRemoval = true, fetch = FetchType.EAGER)
     @JsonIgnoreProperties({"cuadrilla","eventosDeGasto","sede"})
     private Set<Empleado> empleados = new LinkedHashSet<>();
 
