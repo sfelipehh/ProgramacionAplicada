@@ -14,7 +14,7 @@ public class AdministradorSede {
 
     @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "empleado_id")
-    @JsonIgnoreProperties({"cuadrilla","sede","eventosDeGasto"})
+    @JsonIgnoreProperties({"cuadrilla","sede","eventosDeGasto","DNI","celular","email","cupoAsignado","cupoRestante"})
     private Empleado empleado;
 
     @OneToOne(orphanRemoval = true, fetch = FetchType.EAGER)

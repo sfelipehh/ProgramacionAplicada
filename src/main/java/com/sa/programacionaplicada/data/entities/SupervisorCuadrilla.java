@@ -2,17 +2,20 @@ package com.sa.programacionaplicada.data.entities;/*Author:sfeli*/
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name = "supervisor_cuadrilla")
 public class SupervisorCuadrilla {
-    @OneToOne(orphanRemoval = true)
+    @OneToOne(orphanRemoval = true, fetch = FetchType.EAGER)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "cuadrilla_id")
+    @JsonIgnoreProperties({"supervisorCuadrilla", "localidades", "sede", "empleados", "eventosDeGasto","cupoAsignado","cupoRestante"})
     private Cuadrilla cuadrilla;
 
     @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "empleado_id")
-    @JsonIgnoreProperties({"cuadrilla", "eventosDeGasto","sede"})
+    @JsonIgnoreProperties({"cuadrilla","sede","eventosDeGasto","DNI","celular","email","cupoAsignado","cupoRestante"})
     private Empleado empleado;
 
     @Id

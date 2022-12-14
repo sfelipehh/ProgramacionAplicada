@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import org.hibernate.Hibernate;
 
+import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -17,16 +18,15 @@ public class Cuadrilla {
     private String nombre;
     private Long cantidadEmpleados;
     private Long cupoAsignado;
-
+    @OneToOne(cascade = CascadeType.PERSIST, mappedBy = "cuadrilla", orphanRemoval = true, fetch = FetchType.EAGER)
+    private SupervisorCuadrilla supervisorCuadrilla;
     @OneToMany(mappedBy = "cuadrilla", orphanRemoval = true)
     @JsonIgnoreProperties({"sede","cuadrilla"})
     private Set<Localidad> localidades = new LinkedHashSet<>();
-
     private Long cupoRestante;
-
     @ManyToOne()
     @JoinColumn(name = "sede_id")
-    @JsonIgnoreProperties({"localidades","cuadrillas","empleados"})
+    @JsonIgnoreProperties({"localidades","cuadrillas","empleados","administradorSede"})
     private Sede sede;
 
     @OneToMany(mappedBy = "cuadrilla", orphanRemoval = true)
@@ -45,7 +45,7 @@ public class Cuadrilla {
         this.localidades = localidades;
     }
 
-    public Set<EventoDeGasto> getEventosdeGasto() {
+    public Set<EventoDeGasto> getEventosDeGasto() {
         return eventosDeGasto;
     }
 
@@ -123,18 +123,27 @@ public class Cuadrilla {
         return getClass().hashCode();
     }
 
+    public SupervisorCuadrilla getSupervisorCuadrilla() {
+        return supervisorCuadrilla;
+    }
+
+    public void setSupervisorCuadrilla(SupervisorCuadrilla supervisorCuadrilla) {
+        this.supervisorCuadrilla = supervisorCuadrilla;
+    }
+
     @Override
     public String toString() {
         return "Cuadrilla{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", cantidadEmpleados=" + cantidadEmpleados +
+                ", supervisorCuadrilla=" + supervisorCuadrilla +
                 ", cupoAsignado=" + cupoAsignado +
-                ", localidades=" + localidades +
+                ", localidades=" + Arrays.toString(localidades.stream().map(Localidad::getId).toArray()) +
                 ", cupoRestante=" + cupoRestante +
-                ", sede=" + sede +
-                ", empleados=" + empleados +
-                ", eventosDeGasto=" + eventosDeGasto +
+                ", sede=" + (sede != null ? sede.getId() : null) +
+                ", empleados=" + Arrays.toString(empleados.stream().map(Empleado::getId).toArray()) +
+                ", eventosDeGasto=" + Arrays.toString(eventosDeGasto.stream().map(EventoDeGasto::getId).toArray()) +
                 '}';
     }
 }

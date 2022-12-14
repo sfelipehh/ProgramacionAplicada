@@ -36,7 +36,7 @@ public class Empleado {
 
     @ManyToOne()
     @JoinColumn(name = "sede_id")
-    @JsonIgnoreProperties({"localidades","cuadrillas","empleados"})
+    @JsonIgnoreProperties({"localidades","cuadrillas","empleados","administradorSede"})
     private Sede sede;
 
     public Set<EventoDeGasto> getEventosDeGasto() {

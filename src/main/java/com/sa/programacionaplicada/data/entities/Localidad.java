@@ -114,8 +114,8 @@ public class Localidad {
                 ", calleFin='" + calleFin + '\'' +
                 ", carreraInicio='" + carreraInicio + '\'' +
                 ", carreraFin='" + carreraFin + '\'' +
-                ", sede=" + sede +
-                ", cuadrilla=" + cuadrilla +
+                ", sede=" + (sede != null ? sede.getId() : null) +
+                ", cuadrilla=" + (cuadrilla !=null ? cuadrilla.getId() : null) +
                 '}';
     }
 }

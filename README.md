@@ -58,7 +58,7 @@ gantt
     Verificación de la capa de Presentación : ts3, after cl1, 5d
     Verificacion de Seguridad :crit, ts4, after c3, 1d
 
-    Entrega : milestone, m2, 2022-12-12,2m
+    Entrega : milestone, m2, 2022-12-14,2m
 ````
 </div>
 
