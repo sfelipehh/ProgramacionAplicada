@@ -1,6 +1,6 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-title Casos de Uso : Registros : Url '/registros' : Como Administrador
+title Casos de Uso : Registros : Como Administrador
 
 actor Administrador
 boundary FrontEnd
@@ -18,10 +18,10 @@ else (TokenAutorizado)
 FrontEnd -> Administrador : respuesta(Vista de Registro)
 end
 
-group Caso : Registrar Sedes : Previa Autenticación
+group Caso : Registrar Sedes : Url '/registros/setSede' : Previa Autenticación
 Administrador -> FrontEnd ++ : Información Básica Sede
 Administrador -> FrontEnd : BotónCrearSede()
-FrontEnd -> ManejadorPeticiones ++ : POST(InfoSede) a /setSede
+FrontEnd -> ManejadorPeticiones ++ : POST(InfoSede) a /registros/setSede
 ManejadorPeticiones -> Sede ** : CrearSede(InfoSede)
 Sede --> ManejadorPeticiones : return (Sede)
 ManejadorPeticiones -> Repositorio ++ : save(Sede)
@@ -32,10 +32,10 @@ ManejadorPeticiones --> FrontEnd -- : respuesta(Sede)
 FrontEnd --> Administrador -- : "Sede Guardada"
 end
 
-group Caso : Registrar Empleados : Previa Autenticación
+group Caso : Registrar Empleados : Url '/registros/setEmpleado' :Previa Autenticación
 Administrador -> FrontEnd ++ : Información Básica Empleado
 Administrador -> FrontEnd : BotónCrearEmpleado()
-FrontEnd -> ManejadorPeticiones ++ : POST(InfoEmpleado) a /setEmpleado
+FrontEnd -> ManejadorPeticiones ++ : POST(InfoEmpleado) a /registros/setEmpleado
 ManejadorPeticiones -> Empleado ** : CrearEmpleado(InfoEmpleado)
 Empleado --> ManejadorPeticiones : return (Empleado)
 ManejadorPeticiones -> Repositorio ++ : save(Empleado)
@@ -46,10 +46,10 @@ ManejadorPeticiones --> FrontEnd -- : respuesta(Empleado)
 FrontEnd --> Administrador -- : "Empleado Guardado"
 end
 
-group Caso : Registrar Cuadrillas : Previa Autenticación
+group Caso : Registrar Cuadrillas : Url '/registros/setCuadrilla' : Previa Autenticación
 Administrador -> FrontEnd ++ : Información Básica Cuadrilla
 Administrador -> FrontEnd : BotónCrearCuadrilla()
-FrontEnd -> ManejadorPeticiones ++ : POST(InfoCuadrilla) a /setCuadrilla
+FrontEnd -> ManejadorPeticiones ++ : POST(InfoCuadrilla) a /registros/setCuadrilla
 ManejadorPeticiones -> Cuadrilla ** : CrearCuadrilla(InfoCuadrilla)
 Cuadrilla --> ManejadorPeticiones : return (Cuadrilla)
 ManejadorPeticiones -> Repositorio ++ : save(Cuadrilla)
@@ -60,10 +60,10 @@ ManejadorPeticiones --> FrontEnd -- : respuesta(Cuadrilla)
 FrontEnd --> Administrador -- : "Cuadrilla Guardada"
 end
 
-group Caso : Registrar Localidades : Previa Autenticación
+group Caso : Registrar Localidades : Url '/registros/setLocalidad' :Previa Autenticación
 Administrador -> FrontEnd ++ : Información Básica Localidad
 Administrador -> FrontEnd : BotónCrearLocalidad()
-FrontEnd -> ManejadorPeticiones ++ : POST(InfoLocalidad) a /setLocalidad
+FrontEnd -> ManejadorPeticiones ++ : POST(InfoLocalidad) a /registros/setLocalidad
 ManejadorPeticiones -> Localidad ** : CrearLocalidad(InfoLocalidad)
 Localidad --> ManejadorPeticiones : return (Localidad)
 ManejadorPeticiones -> Repositorio ++ : save(Localidad)

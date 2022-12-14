@@ -9,7 +9,4 @@ public class ServerApp {
         SpringApplication.run(ServerApp.class,args);
     }
 
-    public static void (){
-
-    }
 }

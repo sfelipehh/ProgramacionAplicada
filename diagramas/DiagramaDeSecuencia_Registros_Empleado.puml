@@ -18,7 +18,7 @@ else (TokenAutorizado)
 FrontEnd -> Empleado : respuesta(Vista de Registro)
 end
 
-group Caso : Registrar Evento de Gasto : Previa Autenticación
+group Caso : Registrar Evento de Gasto : Url '/setEventoGasto' : Previa Autenticación
 Empleado -> FrontEnd ++ : Información Básica Evento Gasto
 Empleado -> FrontEnd : BotónCrearSede()
 FrontEnd -> ManejadorPeticiones ++ : POST(InfoEventoGasto) a /setEventoGasto

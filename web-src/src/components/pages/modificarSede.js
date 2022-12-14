@@ -9,22 +9,7 @@ import { Search } from '@mui/icons-material'
 const pageName = "Modificar Sede"
 
 
-const onSubmit = async (values,actions)=>{
-  alert(JSON.stringify(values,null,2))
-  /*await fetch(
-    'http://localhost:8080/demo/add',
-    {
-      method:'POST',
-      mode:'cors',
-      headers: {
-        'Content-Type':'application/json'
-      },
-      body : JSON.stringify(values,null,2)
-    }
-  ).then(value =>
-    console.log(value.status)
-  )*/
-}
+
 
 const loadInfo = (stateChangeFunction,initialSaveRef) => {
   setTimeout(() => {
@@ -55,8 +40,8 @@ const loadInfo = (stateChangeFunction,initialSaveRef) => {
   return info*/
 }
 
-
 const ModificarSede = () => {
+
   const [infoLoaded,changeLoaded] = React.useState(false)
   const savedInitialValues = React.useRef(null)
   const idFormik = useFormik({
@@ -71,7 +56,24 @@ const ModificarSede = () => {
       idAdministrador : Yup.number().positive().required("Administrador Requerido")
     }
   )
-
+  const onSubmit = async (values,actions)=>{
+    const id = idFormik.values.id
+    const data = {id:id, ...values}
+    alert(JSON.stringify(data,null,2))
+    /*await fetch(
+      'http://localhost:8080/demo/add',
+      {
+        method:'POST',
+        mode:'cors',
+        headers: {
+          'Content-Type':'application/json'
+        },
+        body : JSON.stringify(values,null,2)
+      }
+    ).then(value =>
+      console.log(value.status)
+    )*/
+  }
   return (
     <>
       <Box sx={{p:2}}>

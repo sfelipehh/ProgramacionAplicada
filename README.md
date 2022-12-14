@@ -73,7 +73,7 @@ erDiagram
     Sede ||--|{ Localidad : cubre
     
     Cuadrilla }|--|| Sede : pertenece
-    Cuadrilla ||--|{ Localidades-Cuadrilla__debil : "trabaja en"
+    Cuadrilla ||--|{ Localidad : "trabaja en"
     Cuadrilla ||--|{ Empleado : contiene
     
     Empleado ||--|{ Evento-de-Gasto : registra  
@@ -83,8 +83,6 @@ erDiagram
     
     Usuario ||--|| Empleado : accede
     Usuario ||--|| Perfil : posee
-    
-    Localidad ||--|{ Localidades-Cuadrilla__debil : "disponible para"
     
     Administrador-Sede__debil ||--|| Empleado : administra
     
@@ -104,7 +102,7 @@ erDiagram
     Sede ||--|| Administrador-Sede : administra
     
     Cuadrilla }|--|| Sede : pertenece
-    Cuadrilla ||--|{ Localidades-Cuadrilla : "trabaja en"
+    Cuadrilla ||--|{ Localidad : "trabaja en"
     Cuadrilla ||--|{ Empleado : contiene
     
     Empleado ||--|{ Evento-de-Gasto : registra  
@@ -114,9 +112,7 @@ erDiagram
     
     Usuario ||--|| Empleado : accede
     Usuario ||--|| Perfil : posee
-    
-    Localidad ||--|{ Localidades-Cuadrilla : "disponible para"
-    
+        
     Administrador-Sede ||--|| Empleado : administra
     
     Supervisor-Cuadrilla ||--|| Cuadrilla : supervisa
@@ -152,6 +148,7 @@ erDiagram
         text CarreraInicio
         text CarreraFin
         numero IdSede FK
+        numero IdCuadrilla FK
     }
     
     Administrador-Sede {
@@ -164,12 +161,6 @@ erDiagram
         number Id Pk
         number IdCuadrilla FK
         number IdEmpleado FK
-    }
-    
-    Localidades-Cuadrilla {
-        numero Id PK
-        numero IdCuadrilla FK
-        numero IdLocalidad FK
     }
     
     Cuadrilla {

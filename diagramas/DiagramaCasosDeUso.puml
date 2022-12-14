@@ -3,7 +3,7 @@
 left to right direction
 
 package Usuarios {
-    actor "Administrador de Sede" as A
+    actor "Administrador" as A
     actor "Supervisor" as S
     actor "Empleado" as E
 }

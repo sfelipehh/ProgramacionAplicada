@@ -1,30 +1,30 @@
 //Cargos Urls
 export const getAllCargosUrl = '/getCargos'
 export const getterCargoUrl = '/getCargoById'
-export const setterCargoUrl = '/setCargo'
+export const setterCargoUrl = '/registros/setCargo'
 //Sedes Urls
 export const getAllSedesUrl = '/getSedes'
 export const gettterSedeUrl = '/getSedeById'
-export const setterSedeUrl = '/setSede'
+export const setterSedeUrl = '/registros/setSede'
 //Cuadrilla Urls
 export const getAllCuadrillasUrl = '/getCuadrillas'
 export const getterCuadrillaUrl = '/getCuadrillaById'
-export const setterCuadrillaUrl = '/setCuadrilla'
+export const setterCuadrillaUrl = '/registros/setCuadrilla'
 export const getCuadrillaByAny = '/getCuadrilla'
 //Empleados Urls
 export const getAllEmpleadosUrl = '/getEmpleados'
 export const getterEmpleadoUrl = '/getEmpleadoById'
-export const setterEmpleadoUrl = '/setEmpleado'
+export const setterEmpleadoUrl = '/registros/setEmpleado'
 export const getEmpleadoByAnyUrl = '/getEmpleado'
 //Localidades Urls
 export const getAllLocalidadesUrl = '/getLocalidades'
 export const gettterLocalidadUrl = '/getLocalidadById'
-export const setterLocalidadUrl = '/setLocalidad'
+export const setterLocalidadUrl = '/registros/setLocalidad'
 
 //Eventos de Gasto Urls
 export const getAllEventosGastoUrl = '/getEventosGasto'
 export const getterEventoGastoUrl = '/getEventoGastoById'
-export const setterEventoGastoUrl = '/setEventoGasto'
+export const setterEventoGastoUrl = '/registros/setEventoGasto'
 export const getEventoCostoByAnyUrl = '/getEventoGasto'
 
 //Login Url
@@ -37,7 +37,7 @@ export const cargoFields =  [
 export const sedeFields = [
   { id:'nombre', name: 'Nombre', type:'text', basic: true, foreingSelection:{on:false,url:null}, required: true}, 
   { id:'direccion', name:'Dirección', type:'text', basic:true, foreingSelection:{on:false,url:null}, required: true},
-  { id:'idAdministrador', name:'Id Administrador', 
+  { id:'administrador_id', name:'Id Administrador', 
   type:'number', basic:false, foreingSelection:{on:true,url:getEmpleadoByAnyUrl} , required:false}
 ]
 
@@ -53,7 +53,7 @@ export const cuadrillaFields = [
 ]
 
 export const empleadoFields = [
-  { id:'identificacion', name :'Identificación', type:'number', basic:true, foreingSelection:{on:false, url:null}, required:true},
+  { id:'dni', name :'Identificación', type:'number', basic:true, foreingSelection:{on:false, url:null}, required:true},
   { id:'nombres', name :'Nombres', type:'text', basic:true, foreingSelection:{on:false, url:null}, required:true},
   { id:'apellidos', name :'Apellidos', type:'text', basic:true, foreingSelection:{on:false, url:null}, required:true},
   { id:'cargo', name :'Cargo', type:'text', basic:true, foreingSelection:{on:true, url:getAllCargosUrl}, required:true},

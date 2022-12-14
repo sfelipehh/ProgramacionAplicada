@@ -1,6 +1,6 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-title Casos de Uso : Modificaciones : Url '/modificaciones' : Como Administrador
+title Casos de Uso : Modificaciones : Como Administrador
 
 actor Administrador
 boundary FrontEnd
@@ -74,8 +74,8 @@ ManejadorPeticiones --> FrontEnd -- : respuesta(Cuadrilla)
 FrontEnd --> Administrador : Información de la Cuadrilla
 Administrador -> FrontEnd : Nueva Información de la Cuadrilla
 FrontEnd -> ManejadorPeticiones ++ : PATCH(InfoModificadaCuadrilla) a '/registros/setCuadrilla
-ManejadorPeticiones -> Sede ** : setters(InfoModificadaCuadrilla)
-Sede --> ManejadorPeticiones -- : return (CuadrillaModificada)
+ManejadorPeticiones -> Cuadrilla ** : setters(InfoModificadaCuadrilla)
+Cuadrilla --> ManejadorPeticiones -- : return (CuadrillaModificada)
 ManejadorPeticiones -> Repositorio ++ : save(CuadrillaModificada)
 Repositorio -> BaseDatos ++ : update Sedes() set columnasCuadrilla() = (CuadrillaModificada) where id = idCuadrillaModificada
 BaseDatos --> Repositorio -- : ok
