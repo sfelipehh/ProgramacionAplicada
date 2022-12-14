@@ -117,7 +117,13 @@ public class RegistrosControllerRepos extends SuperRequestControllerRepos {
                     }
                 }
                 if (!alterCuadrilla.getLocalidades().isEmpty()){
-                    actual.setLocalidades(alterCuadrilla.getLocalidades());
+                    for (Localidad alterLocalidad:
+                            alterCuadrilla.getLocalidades()) {
+                        localidadesRepository.findById(alterLocalidad.getId()).ifPresent(localidad -> {
+                            localidad.setCuadrilla(actual);
+                            localidadesRepository.save(localidad);
+                        });
+                    }
                 }
                 if (!alterCuadrilla.getEmpleados().isEmpty()) {
                     System.out.println(alterCuadrilla.getEmpleados());
@@ -138,7 +144,7 @@ public class RegistrosControllerRepos extends SuperRequestControllerRepos {
 
     @PostMapping(path = "/setLocalidad")
     public ResponseEntity<String> CrearLocalidad(@RequestBody Localidad localidad) throws URISyntaxException {
-        if (localidad.getSede() != null){
+        if (localidad.getSede() == null){
             return ResponseEntity.badRequest().build();
         }
         Localidad saved = localidadesRepository.save(localidad);
@@ -154,8 +160,15 @@ public class RegistrosControllerRepos extends SuperRequestControllerRepos {
                 if (alterLocalidad.getCalleFin() != null) actual.setCalleFin(alterLocalidad.getCalleFin());
                 if (alterLocalidad.getCarreraInicio() != null) actual.setCarreraInicio(alterLocalidad.getCarreraInicio());
                 if (alterLocalidad.getCarreraFin() != null) actual.setCarreraFin(alterLocalidad.getCarreraFin());
-                if (alterLocalidad.getSede() != null) actual.setSede(alterLocalidad.getSede());
-                if (alterLocalidad.getCuadrilla() != null) actual.setCuadrilla(alterLocalidad.getCuadrilla());
+                if (alterLocalidad.getSede() != null && alterLocalidad.getSede().getId() != null) {
+                    sedesRepository.findById(alterLocalidad.getSede().getId()).ifPresent(actual::setSede);
+                }
+                if (alterLocalidad.getCuadrilla() != null && alterLocalidad.getCuadrilla().getId() != null){
+                    cuadrillasRepository.findByIdAndSede(
+                            alterLocalidad.getCuadrilla().getId(),
+                            actual.getSede().getId())
+                            .ifPresent(actual::setCuadrilla);
+                }
                 localidadesRepository.save(actual);
             });
             return ResponseEntity.accepted().location(new URI("/consultas/getLocalidadById?id=%d".formatted(alterLocalidad.getId()))).build();

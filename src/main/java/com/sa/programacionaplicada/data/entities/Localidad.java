@@ -13,7 +13,6 @@ public class Localidad {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-
     private String nombre;
     private String calleInicio;
     private String calleFin;
@@ -23,10 +22,9 @@ public class Localidad {
     @JoinColumn(name = "sede_id")
     @JsonIgnoreProperties({"localidades","cuadrillas","empleados"})
     private Sede sede;
-
     @ManyToOne
     @JoinColumn(name = "cuadrilla_id")
-    @JsonIgnoreProperties({"localidades","sede","empleados","eventosDeGasto"})
+    @JsonIgnoreProperties({"localidades","sede","empleados","eventosDeGasto","supervisorCuadrilla"})
     private Cuadrilla cuadrilla;
 
     public Cuadrilla getCuadrilla() {

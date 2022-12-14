@@ -7,6 +7,9 @@ import org.hibernate.annotations.Cascade;
 @Entity
 @Table(name = "supervisor_cuadrilla")
 public class SupervisorCuadrilla {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
     @OneToOne(orphanRemoval = true, fetch = FetchType.EAGER)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "cuadrilla_id")
@@ -18,9 +21,6 @@ public class SupervisorCuadrilla {
     @JsonIgnoreProperties({"cuadrilla","sede","eventosDeGasto","DNI","celular","email","cupoAsignado","cupoRestante"})
     private Empleado empleado;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
 
     public Cuadrilla getCuadrilla() {
         return cuadrilla;
