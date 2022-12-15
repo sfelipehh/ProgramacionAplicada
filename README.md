@@ -2,7 +2,7 @@
 - ### Samuel Hernández
 - ### Ana Londoño
 
-## [Formatos](https://docs.google.com/spreadsheets/d/1UWm8Wyd6_T9sMyD8EEZ08AhpKJ9wbOb9we1-EXGffIk/edit?usp=sharing)
+## [Formatos(Definición de Stakeholders, Requerimientos Funcionales y No Funcionales)](https://docs.google.com/spreadsheets/d/1UWm8Wyd6_T9sMyD8EEZ08AhpKJ9wbOb9we1-EXGffIk/edit?usp=sharing)
 
 ## Planeación Proyecto Final
 
@@ -201,3 +201,17 @@ erDiagram
 ````
 </div>
  
+## Diagrama Implementación de Base de Datos
+<img src="./diagramas/implementacion_MySQL.png">
+
+## Diagrama de Casos de Uso
+<img src="./diagramas/DiagramaCasosDeUso.png">
+
+## Diagrama de Secuencia Registros Administrador
+<img src="./diagramas/DiagramaDeSecuencia_Registros_Admin.png">
+
+## Diagrama de Secuencia Registros Empleado
+<img src="./diagramas/DiagramaDeSecuencia_Registros_Empleado.png">
+
+## Diagrama de Secuencia Modificaciones Administrador
+<img src="./diagramas/DiagramaDeSecuencia_Modificaciones_Admin.png">
