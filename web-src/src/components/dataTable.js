@@ -1,4 +1,4 @@
-import * as React from 'react';
+ import * as React from 'react';
 import { DataGrid, GridToolbarContainer } from '@mui/x-data-grid';
 import { Box, Typography } from '@mui/material';
 
@@ -37,27 +37,86 @@ const rows = [
   { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
 ];
 
-const getData = async (dataGetUrl,stateChangeFunction)=>{
+const columnsUrl = {
+  '/consultas/getSedes':[
+    { field: 'id', headerName: 'ID', width: 70, sortable:false },
+    { field: 'nombre', headerName:'Nombre', width:130, sortable:false},
+    { field:'direccion', headerName:'Dirección', width :130, sortable:false}
+  ],
+  '/consultas/getCuadrillas':[
+    {field:'id',headerName:'ID',width:70,sortable:false},
+    {field:'nombre', headerName:'Nombre', width:130,sortable:false},
+    {field:'cupoAsignado', headerName:'Cupo Asignado', width:70, sortable:false},
+    {field:'supervisorCuadrilla', headerName:'Supervisor', width:160,sortable:false,
+    valueGetter:(params) =>`${
+      params.row.supervisorCuadrilla.empleado !== null ? 
+      'Id:' + params.row.supervisorCuadrilla.empleado.id : ''} 
+      ${params.row.supervisorCuadrilla.empleado !== null ? 
+        params.row.supervisorCuadrilla.empleado.nombres : ''}`,}
+  ],
+  '/consultas/getEmpleados':[
+    {field:'id', headerName:'ID',width:50,sortable:false},
+    {field:'dni', headerName:'Identificacion', width:100, sortable:false},
+    {field:'nombres', headerName:'Nombres', width:130, sortable:false},
+    {field:'apellidos', headerName:'Apellidos', width:130, sortable:false},
+    {field:'celular', headerName:'Celular', width:130, sortable:false},
+    {field:'email', headerName:'Correo', width:130,sortable:false},
+    {field:'fechaNacimiento', headerName:'Fecha de Nacimiento', width:130,sortable:false},
+    {field:'cuadrilla', headerName:'Cuadrilla', width:160,sortable:false,
+    valueGetter:(params)=>`${params.row.cuadrilla !== null ? 'Id:'+params.row.cuadrilla.id : ''} ${params.row.cuadrilla !== null ? params.row.cuadrilla.nombre : ''}`},
+    {field:'sede', headerName:'Sede', width:160, sortable:false,
+    valueGetter:(params)=>`${params.row.sede !== null ?'Id:'+params.row.sede.id : ''} ${params.row.sede !==null ? params.row.sede.nombre : ''}`}
+  ],
+  '/consultas/getLocalidades':[
+    {field:'id', headerName:'ID', width:70, sortable:false},
+    {field:'nombre', headerName:'Nombre', width:130, sortable:false},
+    {field:'calleInicio', headerName:'Calle Inicio', width:130,sortable:false},
+    {field:'calleFin', headerName:'Calle Fin', width:130, sortable:false},
+    {field:'carreraInicio',headerName:'Carrera Fin', width:130, sortable:false},
+    {field:'carreraFin', headerName:'Carrera Fin', width:130,sortable:false},
+    {field:'cuadrilla', headerName:'Cuadrilla', width:160,sortable:false,
+    valueGetter:(params)=>`${params.row.cuadrilla !== null ? 'Id:'+params.row.cuadrilla.id : ''} ${params.row.cuadrilla !== null ? params.row.cuadrilla.nombre : ''}`},
+    {field:'sede', headerName:'Sede', width:160, sortable:false,
+    valueGetter:(params)=>`${params.row.sede !== null ? 'Id:'+params.row.sede.id : ''} ${params.row.sede !==null ? params.row.sede.nombre : ''}`}
+  ],
+  '/consultas/getEventosGasto':[
+    {field:'id', headerName:'ID', width:70, sortable:false},
+    {field:'fecha', headerName:'Fecha', width:130, sortable:false},
+    {field:'hora', headerName:'Fecha', width:130, sortable:false},
+    {field:'valor', headerName:'Valor', width:130, sortable:false},
+    {field:'localidad', headerName:'Localidad', width:160, sortable:false,
+    valueGetter:(params)=>`${params.row.loading !== null ? 'Id:'+params.row.localidad.id : ''} ${params.row.loading !== null ? params.row.localidad.nombre : ''}`},
+    {field:'empleado', headerName:'Empleado', width:160, sortable:false,
+    valueGetter:(params)=>`${params.row.empleado !==null ? 'Id:'+params.row.empleado.id : ''} ${params.row.empleado !==null ? 'DNI:'+params.row.empleado.dni : ''} ${params.row.empleado !==null ?  params.row.empleado.nombres : ''}`},
+    {field:'cuadrilla', headerName:'Cuadrilla', width:160, sortable:false,
+    valueGetter:(params)=>`${params.row.cuadrilla !== null ? 'Id:'+params.row.cuadrilla.id : ''} ${params.row.cuadrilla !== null ? params.row.cuadrilla.nombre : ''}`}
+  ]
+}
+
+const wrapGetData = (f) => {f()} 
+
+const getData = async (dataGetUrl,stateChangeFunction, dataRef)=>{
   setTimeout(() => {
     stateChangeFunction(true)
   }, 500)
-  /*
-  let tableData
   await fetch(
-    dataGetUrl,
+    'http://localhost:8080'+dataGetUrl,
     {
-      method:'POST',
+      method:'GET',
       mode:'cors',
       headers: {
         'Content-Type':'application/json'
-      },
-      body : JSON.stringify(values,null,2)
+      }
     }
-  ).then(value =>
-    console.log(value.status)
   )
-  return tableData
-  */
+  .then(response => response.json())
+  .then(data =>{
+    dataRef.current = data 
+    console.log(dataRef.current)
+    stateChangeFunction(true)
+  }
+  ).catch(e=>console.log(e))
+  
 }
 const DataToolbar = ({tableTitle,error})=>(
   <GridToolbarContainer>
@@ -67,38 +126,35 @@ const DataToolbar = ({tableTitle,error})=>(
     {error ? <Typography color={(theme)=>theme.palette.error.dark} sx={{px:1}} variant='body2'>{error}</Typography>:''}
   </GridToolbarContainer>
 )
-//selectionModelRef para usar formik.fields.['algo']
 
-export default function DataTable({tableTitle, useCheckBox, error, selectionModelRef, dataUrl, tableProps}) {
+export default function DataTable({id,tableTitle, useCheckBox, error, selectionModelFun, dataUrl, tableProps}) {
   const [dataLoaded, setDataLoaded] = React.useState(false)
-  const [selection, setSelection] = React.useState([1])
-  getData('url',setDataLoaded)
-
+  const dataRef = React.useRef({})
+  const [selection, setSelection] = React.useState([])
   return (
     <>
-      {
+      {dataLoaded ?
       <Box sx={{ height: 300, width: '100%', py:1}}>
         <DataGrid {...tableProps} loading={!dataLoaded} components={{Toolbar:DataToolbar}} componentsProps={{toolbar:{tableTitle,error}}}
           selectionModel={selection} 
           disableColumnMenu
-          rows={rows}
-          columns={columns}
+          rows={dataRef.current}
+          columns={columnsUrl[dataUrl]}
           pageSize={5}
           rowsPerPageOptions={[5]}
           checkboxSelection={useCheckBox}
           onSelectionModelChange={
             (newModel)=>{
-            /*if(selectionModelRef !== undefined){
+            if(selectionModelFun !== undefined){
               if(useCheckBox){
-                selectionModelRef = newModel
+                selectionModelFun(id, newModel) 
               }else{
-                selectionModelRef = newModel[0]
+                selectionModelFun(id,newModel[0])
               }
-            }*/
+            }
             setSelection(newModel)
-            console.log(newModel)
           }} />
-      </Box>
+      </Box> : wrapGetData(()=> getData(dataUrl,setDataLoaded, dataRef))
     }
     </>
   );

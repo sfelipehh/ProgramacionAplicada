@@ -18,8 +18,8 @@ const CustomForm = ({formName, fields, formType='creation', initialValues, valid
     <form onSubmit={formik.handleSubmit} style={{width:'100%', height:'100%' }}>
       {
       fields.map((field,index) => {
-        if (field.foreingSelection.on === true) {
-          return <DataTable error={formik.errors[field.id]} tableTitle={field.name} useCheckBox={field.type==='array'} dataUrl={field.foreingSelection.url} selectionModelRef={formik.values[field.id]} key={(field.id)+index} />
+        if (field.foreingSelection.on === true && (field.basic || formType === 'modify')) {
+          return <DataTable formik={formik.values} id={field.id} error={formik.errors[field.id]} tableTitle={field.name} useCheckBox={field.type==='array'} dataUrl={field.foreingSelection.url} selectionModelFun={formik.setFieldValue} key={(field.id)+index} />
         }else { 
           return field.basic || formType === 'modify' ? <TextField fullWidth margin='dense' variant='outlined' key={(field.id)+index}
           id={field.id}

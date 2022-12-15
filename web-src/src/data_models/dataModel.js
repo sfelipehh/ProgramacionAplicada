@@ -1,50 +1,49 @@
 //Cargos Urls
-export const getAllCargosUrl = '/getCargos'
-export const getterCargoUrl = '/getCargoById'
+export const getAllCargosUrl = '/consultas/getCargos'
+export const getterCargoUrl = '/consultas/getCargoById?id='
 export const setterCargoUrl = '/registros/setCargo'
 //Sedes Urls
-export const getAllSedesUrl = '/getSedes'
-export const gettterSedeUrl = '/getSedeById'
+export const getAllSedesUrl = '/consultas/getSedes'
+export const gettterSedeUrl = '/consultas/getSedeById?id='
 export const setterSedeUrl = '/registros/setSede'
 //Cuadrilla Urls
-export const getAllCuadrillasUrl = '/getCuadrillas'
-export const getterCuadrillaUrl = '/getCuadrillaById'
+export const getAllCuadrillasUrl = '/consultas/getCuadrillas'
+export const getterCuadrillaUrl = '/consultas/getCuadrillaById?id='
 export const setterCuadrillaUrl = '/registros/setCuadrilla'
 export const getCuadrillaByAny = '/getCuadrilla'
 //Empleados Urls
-export const getAllEmpleadosUrl = '/getEmpleados'
-export const getterEmpleadoUrl = '/getEmpleadoById'
+export const getAllEmpleadosUrl = '/consultas/getEmpleados'
+export const getterEmpleadoUrl = '/consultas/getEmpleadoById?id='
 export const setterEmpleadoUrl = '/registros/setEmpleado'
-export const getEmpleadoByAnyUrl = '/getEmpleado'
+export const getEmpleadoByAnyUrl = '/consultas/getEmpleado'
+export const getEmpleadoByAnyParams = {idCuadrilla:"idCuadrilla=",idSede:"idSede="}
 //Localidades Urls
-export const getAllLocalidadesUrl = '/getLocalidades'
-export const gettterLocalidadUrl = '/getLocalidadById'
+export const getAllLocalidadesUrl = '/consultas/getLocalidades'
+export const gettterLocalidadUrl = '/consultas/getLocalidadById?id='
 export const setterLocalidadUrl = '/registros/setLocalidad'
 
 //Eventos de Gasto Urls
-export const getAllEventosGastoUrl = '/getEventosGasto'
-export const getterEventoGastoUrl = '/getEventoGastoById'
+export const getAllEventosGastoUrl = '/consultas/getEventosGasto'
+export const getterEventoGastoUrl = '/consultas/getEventoGastoById?id='
 export const setterEventoGastoUrl = '/registros/setEventoGasto'
-export const getEventoCostoByAnyUrl = '/getEventoGasto'
+export const getEventoCostoByAnyUrl = '/consultas/getEventoGastoByAny'
+export const getEventoCostoByAnyParams = {idCuadrilla:"idCuadrilla=",idEmpleado:"idEmpleado=",aprobado:"aprobado="}
 
 //Login Url
 export const doLogin = '/login'
 
-export const cargoFields =  [
-  { id:'nombre', name:'Nombre', type:'text', basic:true,foreingSelection:{on:false,url:null}, required:true}
-]
 
 export const sedeFields = [
   { id:'nombre', name: 'Nombre', type:'text', basic: true, foreingSelection:{on:false,url:null}, required: true}, 
   { id:'direccion', name:'Dirección', type:'text', basic:true, foreingSelection:{on:false,url:null}, required: true},
-  { id:'administrador_id', name:'Id Administrador', 
+  { id:'idAdministrador', name:'Id Administrador', 
   type:'number', basic:false, foreingSelection:{on:true,url:getEmpleadoByAnyUrl} , required:false}
 ]
 
 export const cuadrillaFields = [
   { id:'nombre', name: 'Nombre', type:'text', basic: true, foreingSelection:{on:false,url:null},required:true},
   { id:'idSede', name: 'Id Sede', type:'number', basic: true, foreingSelection:{on:true,url:getAllSedesUrl},required:true},
-  { id:'idSupervisor', name: 'Id Supervisor', type:'text', basic: true,foreingSelection:{on:false,url:getEmpleadoByAnyUrl},required:true},
+  { id:'idSupervisor', name: 'Id Supervisor', type:'text', basic: false,foreingSelection:{on:false,url:getEmpleadoByAnyUrl},required:true},
   { id:'cantidadEmpleados', name: 'Cantidad de Empleados', type:'text', basic: true, foreingSelection:{on:false,url:null},required:true},
   { id:'cupoAsignado', name: 'Cupo Asignado', type:'text', basic: true, foreingSelection:{on:false,url:null},required:false},
   { id:'empleados', name: 'Empleados', type:'array', basic:false, foreingSelection:{on:true, url:getAllEmpleadosUrl}, required:false},
@@ -56,11 +55,11 @@ export const empleadoFields = [
   { id:'dni', name :'Identificación', type:'number', basic:true, foreingSelection:{on:false, url:null}, required:true},
   { id:'nombres', name :'Nombres', type:'text', basic:true, foreingSelection:{on:false, url:null}, required:true},
   { id:'apellidos', name :'Apellidos', type:'text', basic:true, foreingSelection:{on:false, url:null}, required:true},
-  { id:'cargo', name :'Cargo', type:'text', basic:true, foreingSelection:{on:true, url:getAllCargosUrl}, required:true},
   { id:'celular', name :'Celular', type:'tel', basic:true, foreingSelection:{on:false,url:null}, required:true},
-  { id:'correo', name :'Correo', type:'text', basic:true, foreingSelection:{on:false, url:null} ,required:true},
+  { id:'email', name :'Correo', type:'text', basic:true, foreingSelection:{on:false, url:null} ,required:true},
   { id:'fechaNacimiento', name :'Fecha de Nacimiento', type:'date', basic:true, foreingSelection:{on:false,url:null},required:true},
-  { id:'idCuadrilla', name :'Id Cuadrilla', type:'number', basic:true, foreingSelection:{on:true,url:getAllCuadrillasUrl},required:false},
+  { id:'cargo', name :'Cargo', type:'text', basic:true, foreingSelection:{on:false, url:null}, required:true},
+  { id:'idCuadrilla', name :'Id Cuadrilla', type:'number', basic:false, foreingSelection:{on:true,url:getAllCuadrillasUrl},required:false},
   { id:'idSede', name :'Id Sede', type:'number', basic:true, foreingSelection:{on:true,url:getAllSedesUrl},required:true},
   { id:'cupoAsignado', name :'Cupo Asignado', type:'number', basic:true, foreingSelection:{on:false,url:null}, required:false}
 ]

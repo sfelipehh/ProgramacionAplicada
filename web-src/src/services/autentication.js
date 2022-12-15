@@ -1,5 +1,7 @@
 export function isLogged(){
-  console.log(window.localStorage.getItem('userToken'))  
+  setUser()
+  console.log(window.localStorage.getItem('userToken'))
+  return true  
 }
 
 export function setUser(user={username:'samuel'}){

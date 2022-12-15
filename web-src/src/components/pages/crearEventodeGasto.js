@@ -2,12 +2,37 @@ import * as React from 'react'
     
 import * as Yup from 'yup'
 import CustomForm from '../customForm'
-import { eventoDeGastoFields } from '../../data_models/dataModel'
+import { eventoDeGastoFields, setterEventoGastoUrl } from '../../data_models/dataModel'
+import { isLogged } from '../../services/autentication'
 
 const pageName = "Crear Evento de Gasto"
 
 const onSubmit = async (values,actions)=>{
-  alert(JSON.stringify(values))
+  console.log(JSON.stringify(values, null,2))
+  const copy_values = {...values}
+  delete copy_values.idCuadrilla
+  delete copy_values.idEmpleado
+  delete copy_values.idLocalidad
+  await fetch(
+    'http://localhost:8080' + setterEventoGastoUrl,
+    {
+      method:'POST',
+      mode:'cors',
+      headers : {
+        'Content-Type':'application/json'
+      },
+      body : JSON.stringify({
+        cuadrilla:{id:values.idCuadrilla},
+        empleado:{id:values.idEmpleado},
+        localidad:{id:values.idLocalidad},
+        aprobado:false,
+        ...copy_values
+      })
+    }
+  ).then(response =>{
+    alert(`Evento de Gasto Guardado Id:${response.headers.get("id")}`)
+    actions.resetForm()
+  }).catch(e=>console.error(e))
 }
 
 const validationSchema = Yup.object().shape(
@@ -32,13 +57,14 @@ const initialValues = {
 }
 
 const CrearEventoGasto = ()=>(
-  <>
+  <>{ isLogged() ?
     <CustomForm formName={pageName} 
       fields={eventoDeGastoFields}
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
-    />
+    /> : <></>
+  }
   </>
 )
 
