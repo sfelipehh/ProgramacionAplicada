@@ -1,6 +1,9 @@
 package com.sa.programacionaplicada.data.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 public class Usuario {
@@ -14,6 +17,7 @@ public class Usuario {
     private Empleado empleado;
 
     @OneToOne(orphanRemoval = true)
+    @Cascade(CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "perfil_id")
     private Perfil perfil;
 

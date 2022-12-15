@@ -21,7 +21,7 @@ public class EventoDeGasto {
 
     private String descripcion;
     private Long valor;
-    boolean aprobado;
+    private Boolean aprobado = Boolean.FALSE;
 
     @ManyToOne()
     @JoinColumn(name = "empleado_id")
@@ -30,6 +30,7 @@ public class EventoDeGasto {
 
     @ManyToOne()
     @JoinColumn(name = "cuadrilla_id")
+    @JsonIgnoreProperties({"localidades","sede","empleados","eventosDeGasto","supervisorCuadrilla"})
     private Cuadrilla cuadrilla;
 
     public Cuadrilla getCuadrilla() {

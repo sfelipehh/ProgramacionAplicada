@@ -9,9 +9,9 @@ public class Perfil {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    private Boolean consulta;
-    private Boolean revision;
-    private Boolean registro;
+    private Boolean consulta=Boolean.TRUE;
+    private Boolean revision=Boolean.FALSE;
+    private Boolean registro=Boolean.FALSE;
 
     public Long getId() {
         return id;

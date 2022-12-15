@@ -1,16 +1,15 @@
 package com.sa.programacionaplicada.services;/*Author:sfeli*/
 
 import com.sa.programacionaplicada.data.entities.*;
-import org.springframework.http.HttpHeaders;
+import jdk.jfr.Event;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/consultas")
-@CrossOrigin(methods = {RequestMethod.GET})
-public class ConsultasControllerRepos extends SuperRequestControllerRepos {
+@CrossOrigin
+public class ConsultasController extends SuperRequestControllerRepos {
 
     @GetMapping(path = "/getSedeById")
     public @ResponseBody Optional<Sede> getSedeById(@RequestParam Long id){
@@ -57,6 +56,10 @@ public class ConsultasControllerRepos extends SuperRequestControllerRepos {
         return eventosDeGastoRepository.findById(id);
     }
 
+    @GetMapping(path = "/getEventosGasto")
+    public @ResponseBody Iterable<EventoDeGasto> getEventosGasto(){
+        return eventosDeGastoRepository.findAll();
+    }
     @GetMapping(path = "/getEventosGastoByAny")
     public @ResponseBody Iterable<EventoDeGasto> getEventosGastoByAny(
             @RequestParam(required = false) Long idCuadrilla,

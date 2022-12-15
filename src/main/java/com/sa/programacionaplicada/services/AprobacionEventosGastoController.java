@@ -11,7 +11,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import java.util.List;
 
 @RestController
-@CrossOrigin(methods = RequestMethod.PATCH)
+@CrossOrigin
 @RequestMapping(path = "/aprobaciones")
 public class AprobacionEventosGastoController {
 

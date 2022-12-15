@@ -1,7 +1,6 @@
 package com.sa.programacionaplicada.services;/*Author:sfeli*/
 
 import com.sa.programacionaplicada.data.entities.*;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,8 +10,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/registros")
-@CrossOrigin(methods = {RequestMethod.POST,RequestMethod.PATCH})
-public class RegistrosControllerRepos extends SuperRequestControllerRepos {
+@CrossOrigin(exposedHeaders = {"Access-Control-Expose-Headers","Id"})
+public class RegistrosController extends SuperRequestControllerRepos {
 
     @PostMapping(path = "/setSede")
     public ResponseEntity<String> CrearSede(@RequestBody Sede newSede) throws URISyntaxException {
@@ -23,8 +22,10 @@ public class RegistrosControllerRepos extends SuperRequestControllerRepos {
         AdministradorSede administradorSede = saved.getAdministradorSede();
         administradorSede.setSede(saved);
         administradorSedeRepository.save(administradorSede);
-        return ResponseEntity.accepted().
-                location(new URI("/consultas/getSedeById?id=%d".formatted(saved.getId()))).build();
+        return ResponseEntity
+                .created(new URI("/consultas/getSedeById?id=%d".formatted(saved.getId())))
+                .header("Id", String.valueOf(saved.getId()))
+                .build();
     }
 
     @PatchMapping(path = "/setSede")
@@ -58,7 +59,10 @@ public class RegistrosControllerRepos extends SuperRequestControllerRepos {
     @PostMapping(path = "/setEmpleado")
     public ResponseEntity<String> CrearEmpleado(@RequestBody Empleado newEmpleado) throws URISyntaxException {
         Empleado saved = empleadosRepository.save(newEmpleado);
-        return ResponseEntity.accepted().location(new URI("/consultas/getEmpleadoById?id=%d".formatted(saved.getId()))).build();
+        return ResponseEntity
+                .created(new URI("/consultas/getEmpleadoById?id=%d".formatted(saved.getId())))
+                .header("Id", String.valueOf(saved.getId()))
+                .build();
     }
 
     @PatchMapping(path = "/setEmpleado")
@@ -91,7 +95,10 @@ public class RegistrosControllerRepos extends SuperRequestControllerRepos {
         SupervisorCuadrilla supervisorCuadrilla = saved.getSupervisorCuadrilla();
         supervisorCuadrilla.setCuadrilla(saved);
         supervisorCuadrillaRepository.save(supervisorCuadrilla);
-        return ResponseEntity.accepted().location(new URI("/consultas/getCuadrillaById?id=%d".formatted(saved.getId()))).build();
+        return ResponseEntity
+                .created(new URI("/consultas/getCuadrillaById?id=%d".formatted(saved.getId())))
+                .header("Id", String.valueOf(saved.getId()))
+                .build();
     }
 
     @PatchMapping(path = "/setCuadrilla")
@@ -148,7 +155,10 @@ public class RegistrosControllerRepos extends SuperRequestControllerRepos {
             return ResponseEntity.badRequest().build();
         }
         Localidad saved = localidadesRepository.save(localidad);
-        return ResponseEntity.accepted().location(new URI("/consultas/getLocalidadById?id=%d".formatted(saved.getId()))).build();
+        return ResponseEntity
+                .created(new URI("/consultas/getLocalidadById?id=%d".formatted(saved.getId())))
+                .header("Id", String.valueOf(saved.getId()))
+                .build();
     }
 
     @PatchMapping(path = "/setLocalidad")
@@ -179,7 +189,10 @@ public class RegistrosControllerRepos extends SuperRequestControllerRepos {
     @PostMapping(path = "/setEventoGasto")
     public ResponseEntity<String> CrearEventoDeGasto(@RequestBody EventoDeGasto eventoDeGasto) throws URISyntaxException {
         EventoDeGasto saved = eventosDeGastoRepository.save(eventoDeGasto);
-        return ResponseEntity.accepted().location(new URI("/consultar/getEventoGastoById?id=%d".formatted(saved.getId()))).build();
+        return ResponseEntity
+                .created(new URI("/consultas/getEventoGastoById?id=%d".formatted(saved.getId())))
+                .header("Id", String.valueOf(saved.getId()))
+                .build();
     }
     @PatchMapping(path = "/setEventoGasto")
     public ResponseEntity<String> ModificarEventoDeGasto(@RequestBody EventoDeGasto alterEventoDeGasto) throws URISyntaxException {
@@ -189,12 +202,24 @@ public class RegistrosControllerRepos extends SuperRequestControllerRepos {
                 if (alterEventoDeGasto.getFecha() != null) actual.setFecha(alterEventoDeGasto.getFecha());
                 if (alterEventoDeGasto.getHora() != null) actual.setHora(alterEventoDeGasto.getHora());
                 if (alterEventoDeGasto.getValor() != null) actual.setValor(alterEventoDeGasto.getValor());
-                if (alterEventoDeGasto.getEmpleado() != null) actual.setEmpleado(alterEventoDeGasto.getEmpleado());
-                if (alterEventoDeGasto.getCuadrilla() != null) actual.setCuadrilla(alterEventoDeGasto.getCuadrilla());
-                if (alterEventoDeGasto.getLocalidad() != null) actual.setLocalidad(alterEventoDeGasto.getLocalidad());
+                if (alterEventoDeGasto.getEmpleado() != null && alterEventoDeGasto.getEmpleado().getId() != null) {
+                    empleadosRepository.findById(
+                            alterEventoDeGasto.getEmpleado().getId())
+                            .ifPresent(actual::setEmpleado);
+                }
+                if (alterEventoDeGasto.getCuadrilla() != null && alterEventoDeGasto.getCuadrilla().getId() != null) {
+                    cuadrillasRepository.findById(
+                            alterEventoDeGasto.getCuadrilla().getId())
+                            .ifPresent(actual::setCuadrilla);
+                }
+                if (alterEventoDeGasto.getLocalidad() != null && alterEventoDeGasto.getLocalidad().getId() != null) {
+                    localidadesRepository.findById(
+                            alterEventoDeGasto.getLocalidad().getId())
+                            .ifPresent(actual::setLocalidad);
+                }
                 eventosDeGastoRepository.save(actual);
             });
-            return ResponseEntity.accepted().location(new URI("/consultar/getEventoGastoById?id=%d".formatted(alterEventoDeGasto.getId()))).build();
+            return ResponseEntity.accepted().location(new URI("/consultas/getEventoGastoById?id=%d".formatted(alterEventoDeGasto.getId()))).build();
         }
         return ResponseEntity.notFound().build();
     }
