@@ -65,6 +65,20 @@ gantt
 ````
 </div>
 
+## Diagrama de Casos de Uso
+<img src="./diagramas/DiagramaCasosDeUso.png">
+
+## Diagrama de Secuencia Registros Administrador
+<img src="./diagramas/DiagramaDeSecuencia_Registros_Admin.png">
+
+## Diagrama de Secuencia Registros Empleado
+<img src="./diagramas/DiagramaDeSecuencia_Registros_Empleado.png">
+
+## Diagrama de Secuencia Modificaciones Administrador
+<img src="./diagramas/DiagramaDeSecuencia_Modificaciones_Admin.png">
+
+ 
+
 ## Modelo Entidad - Relación Simple
 <div style="background:#0D1117">
 
@@ -207,14 +221,8 @@ erDiagram
 ## Diagrama Implementación de Base de Datos
 <img src="./diagramas/implementacion_MySQL.png">
 
-## Diagrama de Casos de Uso
-<img src="./diagramas/DiagramaCasosDeUso.png">
+## Diagrama de Clases Entidades
+<img src="./diagramas/Diagrama_de_Clases_Entidades.png">
 
-## Diagrama de Secuencia Registros Administrador
-<img src="./diagramas/DiagramaDeSecuencia_Registros_Admin.png">
-
-## Diagrama de Secuencia Registros Empleado
-<img src="./diagramas/DiagramaDeSecuencia_Registros_Empleado.png">
-
-## Diagrama de Secuencia Modificaciones Administrador
-<img src="./diagramas/DiagramaDeSecuencia_Modificaciones_Admin.png">
+## Diagrama de Clases Manejador Peticiones
+<img src="./diagramas/Diagrama_de_Clases_Peticiones.png">

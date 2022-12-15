@@ -1,0 +1,292 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "com.sa.programacionaplicada.data.entities.AdministradorSede",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_3662 { 
+   	label=sa
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_586165129 { 
+   	label=programacionaplicada
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   AdministradorSede1143982387[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)AdministradorSede</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   empleado: Empleado [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: Long [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   sede: Sede [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Cuadrilla1143982387[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Cuadrilla</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   cantidadEmpleados: Long [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   cupoAsignado: Long [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   cupoRestante: Long [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   empleados: Set&lt;Empleado&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   eventosDeGasto: Set&lt;EventoDeGasto&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: Long [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   localidades: Set&lt;Localidad&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   nombre: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   sede: Sede [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   supervisorCuadrilla: SupervisorCuadrilla [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Empleado1143982387[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Empleado</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   DNI: Long [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   apellidos: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   celular: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   cuadrilla: Cuadrilla [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   cupoAsignado: Long [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   cupoRestante: Long [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   email: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   eventosDeGasto: Set&lt;EventoDeGasto&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   fechaNacimiento: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: Long [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   nombres: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   sede: Sede [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+EventoDeGasto1143982387[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)EventoDeGasto</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   aprobado: Boolean [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   cuadrilla: Cuadrilla [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   descripcion: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   empleado: Empleado [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   fecha: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   hora: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: Long [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   localidad: Localidad [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   valor: Long [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Localidad1143982387[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Localidad</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   calleFin: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   calleInicio: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   carreraFin: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   carreraInicio: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   cuadrilla: Cuadrilla [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: Long [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   nombre: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   sede: Sede [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Sede1143982387[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Sede</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   administradorSede: AdministradorSede [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   cuadrillas: Set&lt;Cuadrilla&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   direccion: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   empleados: Set&lt;Empleado&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: Long [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   localidades: Set&lt;Localidad&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   nombre: String [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+SupervisorCuadrilla1143982387[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)SupervisorCuadrilla</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   cuadrilla: Cuadrilla [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   empleado: Empleado [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: Long [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Usuario1143982387[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Usuario</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   empleado: Empleado [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   id: Long [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   nombreUsuario: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   password: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   perfil: Perfil [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+AdministradorSede1143982387 -> Empleado1143982387[label="empleado
+[0..1]"];
+AdministradorSede1143982387 -> Sede1143982387[label="sede
+[0..1]"];
+Cuadrilla1143982387 -> Empleado1143982387[label="empleados
+[0..*]"];
+Cuadrilla1143982387 -> EventoDeGasto1143982387[label="eventosDeGasto
+[0..*]"];
+Cuadrilla1143982387 -> Localidad1143982387[label="localidades
+[0..*]"];
+Cuadrilla1143982387 -> Sede1143982387[label="sede
+[0..1]"];
+Cuadrilla1143982387 -> SupervisorCuadrilla1143982387[label="supervisorCuadrilla
+[0..1]"];
+Empleado1143982387 -> Cuadrilla1143982387[label="cuadrilla
+[0..1]"];
+Empleado1143982387 -> EventoDeGasto1143982387[label="eventosDeGasto
+[0..*]"];
+Empleado1143982387 -> Sede1143982387[label="sede
+[0..1]"];
+EventoDeGasto1143982387 -> Cuadrilla1143982387[label="cuadrilla
+[0..1]"];
+EventoDeGasto1143982387 -> Empleado1143982387[label="empleado
+[0..1]"];
+EventoDeGasto1143982387 -> Localidad1143982387[label="localidad
+[0..1]"];
+Localidad1143982387 -> Cuadrilla1143982387[label="cuadrilla
+[0..1]"];
+Localidad1143982387 -> Sede1143982387[label="sede
+[0..1]"];
+Sede1143982387 -> AdministradorSede1143982387[label="administradorSede
+[0..1]"];
+Sede1143982387 -> Cuadrilla1143982387[label="cuadrillas
+[0..*]"];
+Sede1143982387 -> Empleado1143982387[label="empleados
+[0..*]"];
+Sede1143982387 -> Localidad1143982387[label="localidades
+[0..*]"];
+SupervisorCuadrilla1143982387 -> Cuadrilla1143982387[label="cuadrilla
+[0..1]"];
+SupervisorCuadrilla1143982387 -> Empleado1143982387[label="empleado
+[0..1]"];
+Usuario1143982387 -> Empleado1143982387[label="empleado
+[0..1]"];
+    
+}
+@enduml
