@@ -17,7 +17,7 @@ public interface EventosDeGastoRepository extends CrudRepository<EventoDeGasto, 
                     "(:idEmpleado is null or ev.empleado_id=:idEmpleado) or " +
                     "(:aprobado is null or ev.aprobado=:aprobado)" +
                     ")")
-    Collection<EventoDeGasto> findEventoDeGastoByAny(
+    Iterable<EventoDeGasto> findEventoDeGastoByAny(
             @Nullable @Param("idCuadrilla") Long idCuadrilla,
             @Nullable @Param("idEmpleado") Long idEmpleado,
             @Nullable @Param("aprobado") Boolean aprobado);

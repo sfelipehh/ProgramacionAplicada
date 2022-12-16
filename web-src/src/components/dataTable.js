@@ -37,13 +37,13 @@ const rows = [
   { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
 ];
 
-const columnsUrl = {
-  '/consultas/getSedes':[
+const columnasStructure = {
+  'sede':[
     { field: 'id', headerName: 'ID', width: 70, sortable:false },
     { field: 'nombre', headerName:'Nombre', width:130, sortable:false},
     { field:'direccion', headerName:'Dirección', width :130, sortable:false}
   ],
-  '/consultas/getCuadrillas':[
+  'cuadrilla':[
     {field:'id',headerName:'ID',width:70,sortable:false},
     {field:'nombre', headerName:'Nombre', width:130,sortable:false},
     {field:'cupoAsignado', headerName:'Cupo Asignado', width:70, sortable:false},
@@ -54,7 +54,7 @@ const columnsUrl = {
       ${params.row.supervisorCuadrilla.empleado !== null ? 
         params.row.supervisorCuadrilla.empleado.nombres : ''}`,}
   ],
-  '/consultas/getEmpleados':[
+  'empleado':[
     {field:'id', headerName:'ID',width:50,sortable:false},
     {field:'dni', headerName:'Identificacion', width:100, sortable:false},
     {field:'nombres', headerName:'Nombres', width:130, sortable:false},
@@ -67,7 +67,7 @@ const columnsUrl = {
     {field:'sede', headerName:'Sede', width:160, sortable:false,
     valueGetter:(params)=>`${params.row.sede !== null ?'Id:'+params.row.sede.id : ''} ${params.row.sede !==null ? params.row.sede.nombre : ''}`}
   ],
-  '/consultas/getLocalidades':[
+  'localidad':[
     {field:'id', headerName:'ID', width:70, sortable:false},
     {field:'nombre', headerName:'Nombre', width:130, sortable:false},
     {field:'calleInicio', headerName:'Calle Inicio', width:130,sortable:false},
@@ -79,7 +79,7 @@ const columnsUrl = {
     {field:'sede', headerName:'Sede', width:160, sortable:false,
     valueGetter:(params)=>`${params.row.sede !== null ? 'Id:'+params.row.sede.id : ''} ${params.row.sede !==null ? params.row.sede.nombre : ''}`}
   ],
-  '/consultas/getEventosGasto':[
+  'eventodegasto':[
     {field:'id', headerName:'ID', width:70, sortable:false},
     {field:'fecha', headerName:'Fecha', width:130, sortable:false},
     {field:'hora', headerName:'Fecha', width:130, sortable:false},
@@ -95,12 +95,9 @@ const columnsUrl = {
 
 const wrapGetData = (f) => {f()} 
 
-const getData = async (dataGetUrl,stateChangeFunction, dataRef)=>{
-  setTimeout(() => {
-    stateChangeFunction(true)
-  }, 500)
+const getData = async (dataGetUrl,stateChangeFunction, dataRef, params)=>{
   await fetch(
-    'http://localhost:8080'+dataGetUrl,
+    'http://localhost:8080'+dataGetUrl + params,
     {
       method:'GET',
       mode:'cors',
@@ -109,13 +106,16 @@ const getData = async (dataGetUrl,stateChangeFunction, dataRef)=>{
       }
     }
   )
-  .then(response => response.json())
-  .then(data =>{
-    dataRef.current = data 
-    console.log(dataRef.current)
-    stateChangeFunction(true)
-  }
-  ).catch(e=>console.log(e))
+  .then(response => {
+    if(response.status===302){
+      response.json().then(data =>{
+        dataRef.current.filas = data
+        dataRef.current.columnas = columnasStructure[response.headers.get("type").toLowerCase()] 
+        console.log(dataRef.current)
+        stateChangeFunction(true)
+      })  
+    } 
+  }).catch(e=>console.log(e))
   
 }
 const DataToolbar = ({tableTitle,error})=>(
@@ -127,9 +127,9 @@ const DataToolbar = ({tableTitle,error})=>(
   </GridToolbarContainer>
 )
 
-export default function DataTable({id,tableTitle, useCheckBox, error, selectionModelFun, dataUrl, tableProps}) {
+export default function DataTable({id,tableTitle, useCheckBox, error, selectionModelFun, dataUrl, tableProps, dataFetchParams}) {
   const [dataLoaded, setDataLoaded] = React.useState(false)
-  const dataRef = React.useRef({})
+  const dataRef = React.useRef({columnas:columns, filas: rows})
   const [selection, setSelection] = React.useState([])
   return (
     <>
@@ -138,8 +138,8 @@ export default function DataTable({id,tableTitle, useCheckBox, error, selectionM
         <DataGrid {...tableProps} loading={!dataLoaded} components={{Toolbar:DataToolbar}} componentsProps={{toolbar:{tableTitle,error}}}
           selectionModel={selection} 
           disableColumnMenu
-          rows={dataRef.current}
-          columns={columnsUrl[dataUrl]}
+          rows={dataRef.current.filas}
+          columns={dataRef.current.columnas}
           pageSize={5}
           rowsPerPageOptions={[5]}
           checkboxSelection={useCheckBox}
@@ -154,7 +154,7 @@ export default function DataTable({id,tableTitle, useCheckBox, error, selectionM
             }
             setSelection(newModel)
           }} />
-      </Box> : wrapGetData(()=> getData(dataUrl,setDataLoaded, dataRef))
+      </Box> : wrapGetData(()=> getData(dataUrl,setDataLoaded, dataRef, dataFetchParams))
     }
     </>
   );

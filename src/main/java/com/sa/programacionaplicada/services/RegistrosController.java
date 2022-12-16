@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/registros")
-@CrossOrigin(exposedHeaders = {"Access-Control-Expose-Headers","Id"})
+@CrossOrigin(exposedHeaders = {"Id"}, origins = {"*"})
 public class RegistrosController extends SuperRequestControllerRepos {
 
     @PostMapping(path = "/setSede")
@@ -40,7 +40,7 @@ public class RegistrosController extends SuperRequestControllerRepos {
                     AdministradorSede alterAdministrador = alterSede.getAdministradorSede();
                     AdministradorSede actualAdministrador = actual.getAdministradorSede();
                     if (alterAdministrador.getEmpleado() != null && alterAdministrador.getEmpleado().getId() !=null) {
-                        empleadosRepository.findByIdAndSede(
+                        empleadosRepository.findEmpleadoByIdAndSede(
                                 alterAdministrador.getEmpleado().getId(),
                                 actualAdministrador.getSede().getId()
                                 ).ifPresent(actualAdministrador::setEmpleado);
@@ -116,7 +116,7 @@ public class RegistrosController extends SuperRequestControllerRepos {
                     SupervisorCuadrilla alterSupervisor = alterCuadrilla.getSupervisorCuadrilla();
                     SupervisorCuadrilla actualSupervisor = actual.getSupervisorCuadrilla();
                     if (alterSupervisor.getEmpleado() != null && alterSupervisor.getEmpleado().getId() != null){
-                        empleadosRepository.findByIdAndCuadrilla(
+                        empleadosRepository.findEmpleadoByIdAndCuadrilla(
                                 alterSupervisor.getEmpleado().getId(),
                                 actualSupervisor.getCuadrilla().getId()
                         ).ifPresent(actualSupervisor::setEmpleado);

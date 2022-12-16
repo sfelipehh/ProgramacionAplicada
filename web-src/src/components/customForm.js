@@ -3,7 +3,7 @@ import { Box, Button,TextField } from '@mui/material'
 import { useFormik } from 'formik'
 import DataTable from './dataTable'
 
-const CustomForm = ({formName, fields, formType='creation', initialValues, validationSchema, onSubmit, width='auto', height='auto' }) => {
+const CustomForm = ({formName, fields, formType='creation', initialValues, validationSchema, onSubmit, width='auto', height='auto', other },) => {
   const formik = useFormik({
     initialValues: initialValues,
       onSubmit: onSubmit,
@@ -19,7 +19,8 @@ const CustomForm = ({formName, fields, formType='creation', initialValues, valid
       {
       fields.map((field,index) => {
         if (field.foreingSelection.on === true && (field.basic || formType === 'modify')) {
-          return <DataTable formik={formik.values} id={field.id} error={formik.errors[field.id]} tableTitle={field.name} useCheckBox={field.type==='array'} dataUrl={field.foreingSelection.url} selectionModelFun={formik.setFieldValue} key={(field.id)+index} />
+          console.log(other)
+          return <DataTable formik={formik.values} id={field.id} error={formik.errors[field.id]} tableTitle={field.name} useCheckBox={field.type==='array'} dataUrl={field.foreingSelection.url} selectionModelFun={formik.setFieldValue} key={(field.id)+index} {...other} />
         }else { 
           return field.basic || formType === 'modify' ? <TextField fullWidth margin='dense' variant='outlined' key={(field.id)+index}
           id={field.id}

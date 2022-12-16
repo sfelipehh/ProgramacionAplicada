@@ -15,7 +15,7 @@ export const getCuadrillaByAny = '/getCuadrilla'
 export const getAllEmpleadosUrl = '/consultas/getEmpleados'
 export const getterEmpleadoUrl = '/consultas/getEmpleadoById?id='
 export const setterEmpleadoUrl = '/registros/setEmpleado'
-export const getEmpleadoByAnyUrl = '/consultas/getEmpleado'
+export const getEmpleadoByAnyUrl = '/consultas/getEmpleadoByAny?'
 export const getEmpleadoByAnyParams = {idCuadrilla:"idCuadrilla=",idSede:"idSede="}
 //Localidades Urls
 export const getAllLocalidadesUrl = '/consultas/getLocalidades'
@@ -37,7 +37,7 @@ export const sedeFields = [
   { id:'nombre', name: 'Nombre', type:'text', basic: true, foreingSelection:{on:false,url:null}, required: true}, 
   { id:'direccion', name:'Dirección', type:'text', basic:true, foreingSelection:{on:false,url:null}, required: true},
   { id:'idAdministrador', name:'Id Administrador', 
-  type:'number', basic:false, foreingSelection:{on:true,url:getEmpleadoByAnyUrl} , required:false}
+  type:'number', basic:false, foreingSelection:{on:true,url:getEmpleadoByAnyUrl+getEmpleadoByAnyParams.idSede} , required:false}
 ]
 
 export const cuadrillaFields = [

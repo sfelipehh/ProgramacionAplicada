@@ -25,7 +25,7 @@ public class Empleado {
     private Long cupoAsignado;
     private Long cupoRestante;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cuadrilla_id")
     @JsonIgnoreProperties({"sede","localidades","empleados","eventosDeGasto"})
     private Cuadrilla cuadrilla;
