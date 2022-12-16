@@ -6,7 +6,7 @@
 ## Introducción
 Una empresa requiere de un programa que le permita conocer y manejar los cupos globales de sus empleados. No obstante, se sabe que en una empresa existen las jerarquías, mediante las cuales se puede organizar cierto tipo de acceso especial dependiendo del cargo que se tenga. Por Ende es importante contar con una base de datos que permita organizar la información de cada empleado para poder relacionarla entre si, y de esta forma, dependiendo de la sede, cuadrilla o cargo, mostrarle y permitirle e manejo de cierto tipo de información, así como su combinación con un diseño web que permita tener una interfaz amigable con el cliente, y pueda mantener entrelazadas las informaciones de cada sede y cada cuadrilla
 
-## [Formatos(Definición de Stakeholders, Requerimientos Funcionales y No Funcionales)](https://docs.google.com/spreadsheets/d/1UWm8Wyd6_T9sMyD8EEZ08AhpKJ9wbOb9we1-EXGffIk/edit?usp=sharing)
+## [Formatos(Requerimientos Funcionales y No Funcionales)](https://docs.google.com/spreadsheets/d/1UWm8Wyd6_T9sMyD8EEZ08AhpKJ9wbOb9we1-EXGffIk/edit?usp=sharing)
 
 ## Planeación Proyecto Final
 
